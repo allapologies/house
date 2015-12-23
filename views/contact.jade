@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1  Контакты
+  form.form-horizontal(action='/contact', method='post')
+    label(for='name') Name:
+    input#name(type='text', name='name')
+    label(for='message') Name:
+    input#message(type='text', name='message')
+    input(type='submit', value='Отправить')
