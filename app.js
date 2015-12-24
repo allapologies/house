@@ -5,11 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var calculator = require('./routes/calculator');
-var smeta = require('./routes/smeta');
-var contact = require('./routes/contact');
-
 var app = express();
 
 // view engine setup
@@ -24,10 +19,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var routes = require('./routes/index');
+var calculator = require('./routes/calculator');
+var smeta = require('./routes/smeta');
+var contact = require('./routes/contact');
+
 app.use('/', routes);
 app.use('/calculator', calculator);
 app.use('/smeta', smeta);
 app.use('/contact', contact);
+
+app.post('/contact/send', function(req,res){
+  var message= req.body.msg;
+  console.log(message);
+  res.end("yes");
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
