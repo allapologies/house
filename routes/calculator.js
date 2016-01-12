@@ -35,10 +35,13 @@ class Calculation{
     this.house = house;
   };
   countAreas(){
-    return {
-      perimeter   : (this.house.walls.sideA*this.house.walls.sideB)*2,
-      foundation  : this.house.walls.sideA*this.house.walls.sideB
-      //walls       : this.perimeter * 4
+    let perimeter   = (this.house.walls.sideA*this.house.walls.sideB)*2,
+        foundation  = this.house.walls.sideA*this.house.walls.sideB,
+        walls       = perimeter * 4;
+
+    return {"perimeter":perimeter,
+            "foundation": foundation,
+            "walls": walls
     };
   };
 }
@@ -46,10 +49,13 @@ class Calculation{
 class FoundationCalculation extends Calculation{
   constructor(house){
     super(house);
+    this.stage = "Foundation";
   };
   countFoundation(){
     let areas = super.countAreas();
+
     return {
+      stage: this.stage,
       beton : areas.foundation * parameters.foundationThickness,
       metall : this.house.walls.sideA * this.house.walls.sideB / parameters.metallStep * parameters.metallLayers
     };
@@ -67,6 +73,7 @@ router.get('/', function(req, res) {
  * Calculation interface
  */
 router.post('/calculate.json', function(req, res) {
+  console.log(req.headers);
   let houseData = {
     floors : req.body.floors,
     walls : req.body.walls,
