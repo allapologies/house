@@ -13,13 +13,6 @@
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
-    "connect-flash":"*",
-    "express-validator":"*",
-    "express-session":"*",
-    "express-messages":"*",
-    "passport":"*",
-    "passport-local":"*",
-    "passport-http":"*",
     "nodemailer":"*"
   }
 }

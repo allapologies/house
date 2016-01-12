@@ -1,47 +1,84 @@
+"use strict";
+
 var express = require('express');
 var router = express.Router();
 
-var defaultSizes = {
-  room:12,
-  kitchen: 10,
-  hall:5,
-  bathroom:6,
-  dining:20
+/**
+ * Parameters for house evaluation
+ * @type {{foundationThickness: number, metallStep: number, metallLayers: number, roomtypes: string[]}}
+ */
+const parameters = {
+  foundationThickness: 0.3,
+  metallStep : 0.2,
+  metallLayers : 2,
+  roomtypes : ["bedroom", "wc", "bathroom", "kitchen", "dining", "boiler"]
 };
 
-function House(housedata){
-  var roomtypes = ["bedroom", "wc", "bathroom", "kitchen", "dining", "boiler"];
-  this.floors = housedata.floors;         // [{number:number1, height: height1}, {number:number2, height: height2}]
-  this.walls = housedata.walls;           // [width, height]
-  this.foundation = housedata.foundation; // string
-  this.roof = housedata.roof;             // string
-  this.rooms=housedata.rooms;             //[   {floor, type, area, windows: [{id, width, height}], {} ]
-};
+/**
+ * House entity
+ */
+class House{
+  constructor(data){
+    this.floors = data.floors;         // {1:{height:3}, 2: {height:1.2}}
+    this.walls = data.walls;           // {width:7, length:8}
+    this.foundation = data.foundation; // string
+    this.roof = data.roof;             // string
+    this.rooms=data.rooms;             // {   {floor, type, area, windows: {{id, width, height}} {}   }
+  }
+}
 
-//var paramsCalculate = function(sizes, input){
-//  var params = {
-//    totalArea: sizes.room * input.rooms + sizes.kitchen + sizes.hall + sizes.bathroom + sizes.dining
-//  };
-//  return params;
-//};
+/**
+ * Calculation model
+ */
+class Calculation{
+  constructor(house){
+    this.house = house;
+  };
+  countAreas(){
+    return {
+      perimeter   : (this.house.walls.sideA*this.house.walls.sideB)*2,
+      foundation  : this.house.walls.sideA*this.house.walls.sideB
+      //walls       : this.perimeter * 4
+    };
+  };
+}
 
-router.get('/', function(req, res, next) {
+class FoundationCalculation extends Calculation{
+  constructor(house){
+    super(house);
+  };
+  countFoundation(){
+    let areas = super.countAreas();
+    return {
+      beton : areas.foundation * parameters.foundationThickness,
+      metall : this.house.walls.sideA * this.house.walls.sideB / parameters.metallStep * parameters.metallLayers
+    };
+  };
+}
+
+/**
+ * Calculation page controller
+ */
+router.get('/', function(req, res) {
   res.render('calculator', { title: 'Калькулятор' });
 });
 
-router.post('/', function(req, res) {
-  var houseParams = {
+/**
+ * Calculation interface
+ */
+router.post('/calculate.json', function(req, res) {
+  let houseData = {
     floors : req.body.floors,
     walls : req.body.walls,
     foundation : req.body.foundation,
     roof : req.body.roof,
     rooms : req.body.rooms
   };
-  console.log(houseParams);
-  var parsed = JSON.parse(houseParams);
-  console.log(parsed);
-  res.json(houseParams);
-  res.render('results', houseParams );
+  let house = new House(houseData);
+  let foundation = new FoundationCalculation(house);
+  let result = foundation.countFoundation();
+
+  res.json( {"error":null, "data":result} );
 });
 
 module.exports = router;
