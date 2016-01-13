@@ -1,31 +1,11 @@
 "use strict";
 var Calculation = require('./calculation');
-
-class FoundationCalculation extends Calculation{
-  constructor(house){
-    super(house);
-    this.stage = "Foundation";
-  };
-  countFoundation(){
-    let areas = super.countAreas();
-
-    return {
-      stage: this.stage,
-      beton : areas.foundation * parameters.foundationThickness,
-      metall : this.house.walls.sideA * this.house.walls.sideB / parameters.metallStep * parameters.metallLayers
-    };
-  };
-}
-
-module.exports = FoundationCalculation;
-
-"use strict";
-var Calculation = require('./calculation');
+var parameters = require('./parameters');
 
 class WallsCalculation extends Calculation{
   constructor(house){
     super(house);
-    this.stage = "Walls";
+    this.stage = "Стены";
   };
   countWalls(){
     let areas = super.countAreas();

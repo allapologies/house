@@ -2,65 +2,24 @@
 
 var express = require('express');
 var router = express.Router();
-
+var House = require('./../models/House');
+var FoundationCalculation = require('./../models/FoundationCalculation');
+var WallsCalculation = require('./../models/WallsCalculation');
+var directory = require('./../models/directory');
 /**
  * Parameters for house evaluation
  * @type {{foundationThickness: number, metallStep: number, metallLayers: number, roomtypes: string[]}}
  */
 const parameters = {
   foundationThickness: 0.3,
+  wallsThickness: 0.3,
+  glueConsumption : 25,
+  insulationThickness : 0.1,
+  plasterySpecificWeight: 8.5,
   metallStep : 0.2,
   metallLayers : 2,
   roomtypes : ["bedroom", "wc", "bathroom", "kitchen", "dining", "boiler"]
 };
-
-/**
- * House entity
- */
-class House{
-  constructor(data){
-    this.floors = data.floors;         // {1:{height:3}, 2: {height:1.2}}
-    this.walls = data.walls;           // {width:7, length:8}
-    this.foundation = data.foundation; // string
-    this.roof = data.roof;             // string
-    this.rooms=data.rooms;             // {   {floor, type, area, windows: {{id, width, height}} {}   }
-  }
-}
-
-/**
- * Calculation model
- */
-class Calculation{
-  constructor(house){
-    this.house = house;
-  };
-  countAreas(){
-    let perimeter   = (this.house.walls.sideA*this.house.walls.sideB)*2,
-        foundation  = this.house.walls.sideA*this.house.walls.sideB,
-        walls       = perimeter * 4;
-
-    return {"perimeter":perimeter,
-            "foundation": foundation,
-            "walls": walls
-    };
-  };
-}
-
-class FoundationCalculation extends Calculation{
-  constructor(house){
-    super(house);
-    this.stage = "Foundation";
-  };
-  countFoundation(){
-    let areas = super.countAreas();
-
-    return {
-      stage: this.stage,
-      beton : areas.foundation * parameters.foundationThickness,
-      metall : this.house.walls.sideA * this.house.walls.sideB / parameters.metallStep * parameters.metallLayers
-    };
-  };
-}
 
 /**
  * Calculation page controller
@@ -72,20 +31,26 @@ router.get('/', function(req, res) {
 /**
  * Calculation interface
  */
-router.post('/calculate.json', function(req, res) {
-  console.log(req.headers);
+router.post('/calculate', function(req, res) {
   let houseData = {
     floors : req.body.floors,
-    walls : req.body.walls,
+    walls : {
+      sideA: req.body.sideA,
+      sideB: req.body.sideB
+    },
     foundation : req.body.foundation,
     roof : req.body.roof,
     rooms : req.body.rooms
   };
   let house = new House(houseData);
   let foundation = new FoundationCalculation(house);
-  let result = foundation.countFoundation();
+  let resultFoundation = foundation.countFoundation();
+  let walls = new WallsCalculation(house);
+  let resultWall = walls.countWalls();
+  //let result = Object.assign(resultFoundation, resultWall);
 
-  res.json( {"error":null, "data":result} );
+  //res.json( {"error":null, "data":result} );
+  res.render('results', {results:{foundation:resultFoundation, walls:resultWall}, directory:{directory}});
 });
 
 module.exports = router;

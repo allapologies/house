@@ -1,5 +1,11 @@
 extends layout
 block content
     h1 Результаты рассчётов
-    p Крыша #{roof}
-    p Помещения #{rooms}
+        h2=results.foundation.stage
+          - for (var key in results.foundation)
+              - if(key!="stage")
+                    p #{key}&nbsp;&nbsp;#{results.foundation[key]}&nbsp;#{directory.directory[key].unit}
+        h2=results.walls.stage
+          - for (var key in results.walls)
+              - if(key!="stage")
+                    p #{key}&nbsp;&nbsp;#{results.walls[key]}&nbsp;#{directory.directory[key].unit}

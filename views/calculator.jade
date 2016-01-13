@@ -3,5 +3,45 @@ extends layout
 block content
   h1 Калькулятор
   .result
-  button.btn.foundation Foundation
-  button.btn.walls Walls
+  form.calculation(method='post', action='calculator/calculate')
+    .form-group
+        label Ширина дома
+          input.form-control(name='sideA', placeholder='8')
+    .form-group
+        label Длина дома
+          input.form-control(name='sideB', placeholder='12')
+    .form-group
+        label Этажей в доме
+          select.form-control(name='floors')
+            option(value='1') 1
+            option(value='2' selected) 2
+    .form-group
+        label Количество комнат
+          select.form-control(name='rooms')
+            option(value='1') 1
+            option(value='1') 2
+            option(value='3' selected) 3
+            option(value='4') 4
+    .form-group
+        label Фундамент
+        label.radio-inline
+          input#inlineRadio1(type='radio', name='foundation', value='plita' checked)
+          | Плитный
+        label.radio-inline
+          input#inlineRadio2(type='radio', name='foundation', value='lenta')
+          | Ленточный
+        label.radio-inline
+          input#inlineRadio3(type='radio', name='foundation', value='stolb')
+          | Столбчатый
+    .form-group
+        label Кровля
+        label.radio-inline
+          input#inlineRadio1(type='radio', name='roof', value='flat')
+          | Плоская
+        label.radio-inline
+          input#inlineRadio2(type='radio', name='roof', value='2skat' checked)
+          | 2-скатная
+        label.radio-inline
+          input#inlineRadio3(type='radio', name='roof', value='valma')
+          | Вальма
+     button.btn.btn-default(type='submit') Рассчитать

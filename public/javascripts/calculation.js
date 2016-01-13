@@ -1,6 +1,8 @@
 $( document ).ready(
-  $("button").click(function(){
+  $("form.calculation").submit(function(){
     "use strict";
+    event.preventDefault();
+    let formdata = $( this ).serialize();
     let data = {
         floors:{1:3},
         walls:{
@@ -27,7 +29,10 @@ $( document ).ready(
       url: "/calculator/calculate.json",
       data: JSON.stringify(data),
       success: function(result){
-        $(".result").html(JSON.stringify(result.data));
+        $(".result")
+            .html(JSON.stringify(result.data))
+            .show();
+        $("form").hide();
       },
       error: function(e){
         alert(e.message);
