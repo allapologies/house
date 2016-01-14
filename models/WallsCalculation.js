@@ -7,14 +7,14 @@ class WallsCalculation extends Calculation{
     super(house);
     this.stage = "Стены";
   };
-  countWalls(){
+  count(){
     let areas = super.countAreas();
     let bricks = areas.walls * parameters.wallsThickness;
     let glue = bricks * parameters.glueConsumption;
     let foamPlastic = areas.walls * parameters.insulationThickness;
     let plaster = areas.walls*parameters.plasterySpecificWeight;
+
     return {
-      stage: this.stage,
       bricks : bricks,
       glue: glue,
       foamPlastic: foamPlastic,

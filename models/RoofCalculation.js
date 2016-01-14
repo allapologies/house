@@ -3,46 +3,42 @@
 var Calculation = require('./calculation');
 var parameters = require('./parameters');
 
-class FoundationCalculation extends Calculation{
+class RoofCalculation extends Calculation{
   constructor(house){
     super(house);
-    this.stage = "Фундамент";
+    this.stage = "Кровля";
   };
-  countFoundation(){
+  count(){
     let areas = super.countAreas();
     var materials;
-    switch(this.house.foundation){
-      case "plita":
-        console.log("plita");
+    switch(this.house.roof){
+      case "flat":
+        console.log("flat");
         materials = {
           beton : areas.foundation * parameters.foundationThickness,
           metall : this.house.walls.sideA * this.house.walls.sideB / parameters.metallStep * parameters.metallLayers
         };
         break;
-      case "lenta":
-        console.log("lenta");
+      case "2skat":
+        console.log("2skat");
         materials = {
-          beton : areas.foundation * parameters.foundationThickness,
+          wood: this.house.walls.sideA * 25,
           metall : this.house.walls.sideA * this.house.walls.sideB / parameters.metallStep * parameters.metallLayers
         };
         break;
-      case "stolb":
-        console.log("stolb");
+      case "valma":
+        console.log("valma");
         materials = {
           svai : areas.foundation / parameters.svaiConsumption
         };
         break;
       default:
-        console.log("plita");
+        console.log("none");
         break;
     };
 
-    return {
-      stage: this.stage,
-      foundation: this.house.foundation,
-      materials: materials
-    };
+    return materials;
   };
 }
 
-module.exports = FoundationCalculation;
+module.exports = RoofCalculation;

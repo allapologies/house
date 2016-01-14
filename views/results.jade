@@ -1,11 +1,19 @@
 extends layout
+
 block content
-    h1 Результаты рассчётов
-        h2=results.foundation.stage
-          - for (var key in results.foundation)
-              - if(key!="stage")
-                    p #{key}&nbsp;&nbsp;#{results.foundation[key]}&nbsp;#{directory.directory[key].unit}
-        h2=results.walls.stage
-          - for (var key in results.walls)
-              - if(key!="stage")
-                    p #{key}&nbsp;&nbsp;#{results.walls[key]}&nbsp;#{directory.directory[key].unit}
+    h2 Результаты рассчётов
+    table.table
+        tr
+            th Материал
+            th Количество
+        - for (var i in results)
+            tr
+                td
+                    b
+                        i #{directory.directory[i].name}
+                td
+                    - for (var j in results[i])
+                        tr
+                            td #{directory.directory[j].name}
+                            td #{results[i][j]}&nbsp;#{directory.directory[j].unit}
+    button.btn.btn-primary Пересчитать

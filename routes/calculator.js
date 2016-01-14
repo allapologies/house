@@ -5,21 +5,8 @@ var router = express.Router();
 var House = require('./../models/House');
 var FoundationCalculation = require('./../models/FoundationCalculation');
 var WallsCalculation = require('./../models/WallsCalculation');
+var RoofCalculation = require('./../models/RoofCalculation');
 var directory = require('./../models/directory');
-/**
- * Parameters for house evaluation
- * @type {{foundationThickness: number, metallStep: number, metallLayers: number, roomtypes: string[]}}
- */
-const parameters = {
-  foundationThickness: 0.3,
-  wallsThickness: 0.3,
-  glueConsumption : 25,
-  insulationThickness : 0.1,
-  plasterySpecificWeight: 8.5,
-  metallStep : 0.2,
-  metallLayers : 2,
-  roomtypes : ["bedroom", "wc", "bathroom", "kitchen", "dining", "boiler"]
-};
 
 /**
  * Calculation page controller
@@ -44,13 +31,20 @@ router.post('/calculate', function(req, res) {
   };
   let house = new House(houseData);
   let foundation = new FoundationCalculation(house);
-  let resultFoundation = foundation.countFoundation();
+  let resultFoundation = foundation.count();
   let walls = new WallsCalculation(house);
-  let resultWall = walls.countWalls();
-  //let result = Object.assign(resultFoundation, resultWall);
+  let resultWall = walls.count();
+  let roof = new RoofCalculation(house);
+  let resultRoof = roof.count();
 
   //res.json( {"error":null, "data":result} );
-  res.render('results', {results:{foundation:resultFoundation, walls:resultWall}, directory:{directory}});
+  res.render('results', {
+      results:{ foundation:resultFoundation,
+                walls:resultWall,
+                roof:resultRoof
+      },
+      directory:{directory}
+  });
 });
 
 module.exports = router;

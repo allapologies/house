@@ -2,34 +2,53 @@
 
 var directory = {
   beton:{
-    unit: "m3",
-    consumption: "n/a",
+    name:"Бетон",
+    unit: "м3",
     price:"3500"
   },
   metall:{
-    unit: "meters",
-    consumption: "n/a",
+    name:"Арматура",
+    unit: "пог.м",
     price:"3500"
   },
   bricks:{
-    unit: "m3",
-    consumption: "n/a",
+    name:"Газоблоки",
+    unit: "м3",
     price:"3500"
   },
   glue:{
-    unit: "kg",
-    consumption: "n/a",
+    name:"Клей для газоблоков",
+    unit: "кг",
     price:"3500"
   },
   foamPlastic:{
-    unit: "m3",
-    consumption: 10,
+    name:"Пенополистирол",
+    unit: "м3",
     price:"3500"
   },
   plaster:{
-    unit: "kg",
-    consumption: "n/a",
-    price:"1000"
+    name:"Штукатурка",
+    unit: "кг",
+    price:1000
+  },
+  svai:{
+    name:"Винтовые сваи",
+    unit: "шт",
+    price:2600
+  },
+  wood:{
+    name:"Доска деревянная",
+    unit: "м3",
+    price:7000
+  },
+  foundation:{
+    name:"Фундамент"
+  },
+  roof:{
+    name:"Кровля"
+  },
+  walls:{
+    name:"Стены"
   }
 };
 

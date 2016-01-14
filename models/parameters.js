@@ -12,7 +12,8 @@ const parameters = {
   plasterySpecificWeight: 8.5,
   metallStep : 0.2,
   metallLayers : 2,
-  roomtypes : ["bedroom", "wc", "bathroom", "kitchen", "dining", "boiler"]
+  roomtypes : ["bedroom", "wc", "bathroom", "kitchen", "dining", "boiler"],
+  svaiConsumption: 4
 };
 
 module.exports = parameters;
