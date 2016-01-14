@@ -9,31 +9,27 @@ class FoundationCalculation extends Calculation{
     this.stage = "Фундамент";
   };
   count(){
-    let areas = super.countAreas();
+    var areas = super.countAreas();
     var materials;
     switch(this.house.foundation){
       case "plita":
-        console.log("plita");
         materials = {
-          beton : areas.foundation * parameters.foundationThickness,
-          metall : this.house.walls.sideA * this.house.walls.sideB / parameters.metallStep * parameters.metallLayers
+          beton : Math.round(areas.foundation * parameters.foundationThickness),
+          metall : Math.round(this.house.walls.sideA * this.house.walls.sideB / parameters.metallStep * parameters.metallLayers)
         };
         break;
       case "lenta":
-        console.log("lenta");
         materials = {
-          beton : areas.foundation * parameters.foundationThickness,
-          metall : this.house.walls.sideA * this.house.walls.sideB / parameters.metallStep * parameters.metallLayers
+          beton : Math.round(areas.foundation * parameters.foundationThickness),
+          metall : Math.round(this.house.walls.sideA * this.house.walls.sideB / parameters.metallStep * parameters.metallLayers)
         };
         break;
       case "stolb":
-        console.log("stolb");
         materials = {
-          svai : areas.foundation / parameters.svaiConsumption
+          svai : Math.round(areas.foundation / parameters.svaiConsumption)
         };
         break;
       default:
-        console.log("plita");
         break;
     };
 

@@ -9,10 +9,10 @@ class WallsCalculation extends Calculation{
   };
   count(){
     let areas = super.countAreas();
-    let bricks = areas.walls * parameters.wallsThickness;
-    let glue = bricks * parameters.glueConsumption;
-    let foamPlastic = areas.walls * parameters.insulationThickness;
-    let plaster = areas.walls*parameters.plasterySpecificWeight;
+    let bricks = Math.round(areas.walls * parameters.wallsThickness);
+    let glue = Math.round(bricks * parameters.glueConsumption);
+    let foamPlastic = Math.round(areas.walls * parameters.insulationThickness);
+    let plaster = Math.round(areas.walls*parameters.plasterySpecificWeight);
 
     return {
       bricks : bricks,

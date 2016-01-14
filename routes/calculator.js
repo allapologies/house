@@ -12,7 +12,7 @@ var directory = require('./../models/directory');
  * Calculation page controller
  */
 router.get('/', function(req, res) {
-  res.render('calculator', { title: 'Калькулятор' });
+  res.render('calculator', { title: 'myHouse - калькулятор строительства дома' });
 });
 
 /**
@@ -37,8 +37,8 @@ router.post('/calculate', function(req, res) {
   let roof = new RoofCalculation(house);
   let resultRoof = roof.count();
 
-  //res.json( {"error":null, "data":result} );
   res.render('results', {
+      title: 'myHouse - результат рассчёта',
       results:{ foundation:resultFoundation,
                 walls:resultWall,
                 roof:resultRoof

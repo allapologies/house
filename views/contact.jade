@@ -1,18 +1,22 @@
 extends layout
 
 block content
-  h1  Контакты
+  h2  Контакты
   form.form-horizontal(method='post', action='contact/send')
-    .form-group
-      label.col-lg-2.control-label(for='name') Имя:
-      .col-lg-6
-        input#name.form-control(type='text', name='name')
-    .form-group
-      label.col-lg-2.control-label(for='mail') E-mail:
-      .col-lg-6
-        input#mail.form-control(type='email', name='email')
-    .form-group
-      label.col-lg-2.control-label(for='msg') Сообщение:
-      .col-lg-6
-        textarea#msg.form-control(name='msg')
-    button.btn.btn-primary(type='submit') Отправить
+    .fieldset
+        legend Связь с нами
+        .form-group
+          label.col-lg-2.control-label(for='name') Имя:
+          .col-lg-4
+            input#name.form-control(type='text', name='name')
+        .form-group
+          label.col-lg-2.control-label(for='mail') E-mail:
+          .col-lg-4
+            input#mail.form-control(type='email', name='email')
+        .form-group
+          label.col-lg-2.control-label(for='msg') Сообщение:
+          .col-lg-4
+            textarea#msg.form-control(name='msg')
+        .form-group
+          .col-lg-4.col-lg-offset-2
+            button.btn.btn-default(type='submit') Отправить

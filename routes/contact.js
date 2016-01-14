@@ -3,7 +3,7 @@ var router = express.Router();
 var nodemailer = require("nodemailer");
 
 router.get('/', function(req, res, next) {
-  res.render('contact', { title: 'Контакты' });
+  res.render('contact', { title: 'myHouse - Контакты' });
 });
 
 router.post('/send', function(req, res, next) {

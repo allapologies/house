@@ -41,6 +41,16 @@ var directory = {
     unit: "м3",
     price:7000
   },
+  ruberoid:{
+    name:"Руберойд",
+    unit: "м2",
+    price:1200
+  },
+  tile:{
+    name:"Черепица",
+    unit: "м2",
+    price:300
+  },
   foundation:{
     name:"Фундамент"
   },
