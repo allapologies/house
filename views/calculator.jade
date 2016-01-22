@@ -1,56 +1,68 @@
 extends layout
 
 block content
-  h2 Калькулятор
-  form.form-horizontal.calculation(method='post', action='calculator/calculate')
-    fieldset
-        legend Рассчёт строительства дома
-        .form-group
-            label.col-lg-2.control-label Ширина дома
-            .col-lg-4
-              input.form-control(name='sideA', placeholder='8', value=8)
-        .form-group
-            label.col-lg-2.control-label Длина дома
-            .col-lg-4
-              input.form-control(name='sideB', placeholder='12', value=12)
-        .form-group
-            label.col-lg-2.control-label Этажей в доме
-            .col-lg-4
-              select.form-control(name='floors')
-                option(value='1') 1
-                option(value='2' selected) 2
-        .form-group
-            label.col-lg-2.control-label Количество комнат
-            .col-lg-4
-              select.form-control(name='rooms')
-                option(value='1') 1
-                option(value='1') 2
-                option(value='3' selected) 3
-                option(value='4') 4
-        .form-group
-            label.col-lg-2.control-label Фундамент
-            .col-lg-4
-                label.radio-inline
-                  input#inlineRadio1(type='radio', name='foundation', value='plita' checked)
-                  | Плитный
-                label.radio-inline
-                  input#inlineRadio2(type='radio', name='foundation', value='lenta')
-                  | Ленточный
-                label.radio-inline
-                  input#inlineRadio3(type='radio', name='foundation', value='stolb')
-                  | Столбчатый
-        .form-group
-            label.col-lg-2.control-label Кровля
-            .col-lg-4
-                label.radio-inline
-                  input#inlineRadio1(type='radio', name='roof', value='flat')
-                  | Плоская
-                label.radio-inline
-                  input#inlineRadio2(type='radio', name='roof', value='2skat' checked)
-                  | 2-скатная
-                label.radio-inline
-                  input#inlineRadio3(type='radio', name='roof', value='valma')
-                  | Вальма
-        .form-group
-            .col-lg-4.col-lg-offset-2
-                button.btn.btn-default(type='submit') Рассчитать
+  section.hgroup
+    .container
+      h1 Калькулятор
+      ul.breadcrumb.pull-right
+        li
+          a(href='/') Домой
+        li.active Калькулятор
+  section
+    .container
+      .row
+        .calculator_preview.col-sm-4.col-md-4
+          .team_member
+            h4 Preview Area
+            small Small Pic
+            br
+        .calculation.col-sm-8.col-md-8
+          form.form-horizontal.calculation(method='post', action='calculator/calculate')
+            fieldset
+              .row
+                .col-sm-6.col-md-6
+                      label Ширина дома
+                      input.form-control(name='sideA', placeholder='8', value=8)
+                .col-sm-6.col-md-6
+                      label Длина дома
+                      input.form-control(name='sideB', placeholder='12', value=12)
+              .row
+                .col-sm-6.col-md-6
+                      label Этажей в доме
+                      select.form-control(name='floors')
+                        option(value='1') 1
+                        option(value='2' selected) 2
+                .col-sm-6.col-md-6
+                    label.control-label Количество комнат
+                    select.form-control(name='rooms')
+                      option(value='1') 1
+                      option(value='1') 2
+                      option(value='3' selected) 3
+                      option(value='4') 4
+              .row
+                .col-sm-12.col-md-12
+                  label Фундамент
+                      label.radio-inline
+                        input#inlineRadio1(type='radio', name='foundation', value='plita' checked)
+                        | Плитный
+                      label.radio-inline
+                        input#inlineRadio2(type='radio', name='foundation', value='lenta')
+                        | Ленточный
+                      label.radio-inline
+                        input#inlineRadio3(type='radio', name='foundation', value='stolb')
+                        | Винтовой
+              .row
+                .col-sm-12.col-md-12
+                  label Кровля
+                      label.radio-inline
+                        input#inlineRadio1(type='radio', name='roof', value='flat')
+                        | Плоская
+                      label.radio-inline
+                        input#inlineRadio2(type='radio', name='roof', value='2skat' checked)
+                        | 2-скатная
+                      label.radio-inline
+                        input#inlineRadio3(type='radio', name='roof', value='valma')
+                        | Вальма
+                      br
+                      .col-lg-4.col-lg-offset-2
+                          button.btn.btn-primary(type='submit') Рассчитать

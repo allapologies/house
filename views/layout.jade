@@ -1,29 +1,136 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    title="myHouse. " + title
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,300italic', rel='stylesheet', type='text/css')
+    meta(charset='utf-8')
+    meta(name='apple-mobile-web-app-capable', content='yes')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(rel='shortcut icon', href='/favicon.ico', type='image/x-icon')
-    link(rel='icon', href='/favicon.ico', type='image/x-icon')
-  body
-    .container.jumbotron
-      nav.navbar.navbar-default.navbar-fixed-top
-            .container
-              .navbar-header
-                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
-                  span.sr-only Toggle navigation
-                  span.icon-bar
-                  span.icon-bar
-                  span.icon-bar
-                a.navbar-brand(href='/') myHouse
-              #bs-example-navbar-collapse-1.collapse.navbar-collapse
-                ul.nav.navbar-nav
-                  li(class=(title === 'Калькулятор' ? 'active' : ''))
-                    a(href='/calculator') Калькулятор
-                  li(class=(title === 'Контакты' ? 'active' : ''))
-                    a(href='/contact') Контакты
+    link(href='/stylesheets/animate.css', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', href='/javascripts/woothemes-FlexSlider-06b12f8/flexslider.css', type='text/css', media='screen')
+    link(rel='stylesheet', href='/javascripts/prettyPhoto_3.1.5/prettyPhoto.css', type='text/css', media='screen')
+    link(href='/stylesheets/style.css', rel='stylesheet', type='text/css')
+    link(rel='stylesheet', href='fonts/font-awesome/css/font-awesome.min.css', media='screen')
+    script(type='text/javascript', src='/javascripts/modernizr.custom.48287.js')
+    // Fav and touch icons
+    link(rel='apple-touch-icon-precomposed', sizes='114x114', href='apple-touch-icon-114x114-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', sizes='72x72', href='apple-touch-icon-72x72-precomposed.png')
+    link(rel='apple-touch-icon-precomposed', href='apple-touch-fa-57x57-precomposed.png')
+    link(rel='shortcut icon', href='favicon.png')
+  body.collapsing_header
+    header
+      .container
+        .navbar.navbar-default(role='navigation')
+          .navbar-header
+            a.navbar-brand(href='/')
+              img(src='/images/myhouse_logo.png', alt='optional logo', height='90', width='90')
+              span.logo_title
+                | my
+                strong House
+              span.logo_subtitle свой дом - это просто
+            a.btn.btn-navbar.btn-default.navbar-toggle(data-toggle='collapse', data-target='.navbar-collapse')
+              span.nb_left.pull-left
+                span.fa.fa-reorder
+              span.nb_right.pull-right menu
+          .collapse.navbar-collapse
+            ul.nav.pull-right.navbar-nav
+              li(class=(title === 'myHouse' ? 'active' : ''))
+                a(href='/') Домой
+              li(class=(title === 'myHouse. Калькулятор строительства дома' ? 'active' : ''))
+                a(href='/calculator') Калькулятор
+              li(class=(title === 'myHouse. Личный кабинет' ? 'active' : ''))
+                a(href='/dashboard') Личный кабинет
+              li(class=(title === 'myHouse. Контакты' ? 'active' : ''))
+                a(href='/contact') Контакты
+        #social_media_wrapper
+          a(href='https://www.facebook.com')
+            i.fa.fa-facebook
+          a(href='https://twitter.com')
+            i.fa.fa-twitter
+          a(href='#googleplus')
+            i.fa.fa-google-plus
+        #sign
+          a(href='/register')
+            i.fa.fa-user
+            span Войти / Регистрация
+
+    block slider
+    .main
       block content
-  script(src='/javascripts/jquery-2.1.4.min.js')
-  script(src='/javascripts/bootstrap.min.js')
+      footer
+        section.twitter_feed_wrapper
+          .container
+            .row.wow.animated.fadeInUp
+              .twitter_feed_icon.col-sm-1.col-md-1
+                a(href='#twitter')
+                  i.fa.fa-twitter
+              .col-sm-11.col-md-11
+                blockquote
+                  p
+                    | This Clean, Flexible, Multipurpose Bootstrap 3.1.1 HTML5 Template will soon become a Wordpress theme with great support!
+                    a(href='#') http://unhub.com/LIot
+                  |                                    — LeonArt (@leonartgr)
+                  a(href='https://twitter.com/plethorathemes/') April 4, 2014
+        section#footer_teasers_wrapper
+          .container
+            .row
+              .footer_teaser.col-sm-4.col-md-4
+                h3 About us
+                p
+                  | Fugiat dapibus, tellus ac cursus commodo, mauesris condime ntum nibh, ut fermentum mas justo sitters.
+                p
+                  i.fa.fa-map-marker
+                  |  3 Athens street
+                p
+                  i.fa.fa-phone
+                  |  (+30) 265-9987
+                p
+                  i.fa.fa-print
+                  |  (+30) 9854-7855
+                p
+                  i.fa.fa-envelope
+                  |  hello@restarttheme.com
+              .footer_teaser.col-sm-4.col-md-4
+                h3 Latest News
+                ul.media-list
+                  li.media
+                    a.media-photo(href='#', style='background-image:url(images/portfolio/t5.jpg)')
+                    a.media-date(href='#')
+                      | 19
+                      span FEB
+                    h5.media-heading
+                      a(href='#') Media heading, this is a title of a news...
+                    p Fugiat dapibus, tellus ac cursus commodo, ut fermentum...
+                  li.media
+                    a.media-photo(href='#', style='background-image:url(images/portfolio/t4.jpg)')
+                    a.media-date(href='#')
+                      | 18
+                      span FEB
+                    h5.media-heading
+                      a(href='#') Media heading, of a news item.
+                    p Fugiat dapibus, tellus ac cursus commodo, condime ntum nibh, ut fermentum...
+              #latest-flickr-images.footer_teaser.col-sm-4.col-md-4
+                h3 FlickrFeed
+                ul
+                p
+                  | All photos © by
+                  a(href='http://www.dimitragiannouka.com', target='_blank') Dimitra Giannouka
+                  | .
+        section.copyright
+          .container
+            .row
+              .col-sm-6.col-md-6  Copyright ©2014 all rights reserved
+              .text-right.col-sm-6.col-md-6
+                | Designed by
+                a(href='http://www.leonart.gr') LeonArt
+
+  script(src='http://code.jquery.com/jquery-latest.min.js')
+  script(src='/javascripts/twitter-bootstrap/js/bootstrap.min.js', type='text/javascript')
+  script(src='/javascripts/woothemes-FlexSlider-06b12f8/jquery.flexslider-min.js')
+  script(src='/javascripts/prettyPhoto_3.1.5/jquery.prettyPhoto.js', type='text/javascript', charset='utf-8')
+  script(src='/javascripts/isotope/jquery.isotope.min.js', type='text/javascript')
+  script(type='text/javascript', src='/javascripts/jquery.ui.totop.js')
+  script(type='text/javascript', src='/javascripts/easing.js')
+  script(type='text/javascript', src='/javascripts/wow.min.js')
+  script(type='text/javascript', src='/javascripts/snap.svg-min.js')
+  script(type='text/javascript', src='/javascripts/restart_theme.js')

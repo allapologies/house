@@ -1,8 +1,137 @@
 extends layout
 
+block slider
+  section#slider_wrapper.slider_wrapper.full_page_photo
+    #main_flexslider.flexslider
+      ul.slides
+        li.item(style='background-image: url(images/1.jpg)')
+          .container
+            .carousel-caption
+              h1
+                |  стоимость строительства
+                br
+                |  в режиме
+                strong
+                  |  Online
+              p.lead.skincolored
+                | my
+                strong House
+                |  позволяет оценить
+                strong  стоимость строительства дома
+                |  самостоятельно
+        li.item(style='background-image: url(images/2.jpg)')
+          .container
+            .carousel-caption
+              h1
+                | makes
+                strong real use
+                br
+                |                                        of the power of
+                strong {LESS}
+                |  syntax!
+              p.lead.skincolored
+                | Restart was built with heavy use of {less} technology, making the life of the web developer easier!
+        li.item(style='background-image: url(images/3.jpg)')
+          .container
+            .carousel-caption
+              h1.skincolored
+                strong учёт расходов
+                br
+                | на смартфоне, планшете или компьютере
+              p.lead
+                | Расходы моментально
+                strong учитываются в базе
+
 block content
-    .row
-        .col-xs-6.col-xs-offset-2.col-md-6.col-md-offset-4
-            p
-            img(src='images/smallhouse.png')
-            h1 myHouse
+  section.call_to_action
+    .container
+      h3 Сделайте первый шаг
+      h4 на пути к будущему дому
+      a.btn.btn-primary.btn-lg(href='/calculator') Начать
+  section.features_teasers_wrapper
+    .container
+      .row
+        .feature_teaser.col-sm-4.col-md-4
+          img(alt='responsive', src='images/fast.png')
+          h3 Быстро
+          p
+            | Расчёт в режиме
+            strong  Online
+            |  занимает считанные секунды после уточнения параметров дома
+        .feature_teaser.col-sm-4.col-md-4
+          img(alt='responsive', src='images/hammer.png')
+          h3 Удобно
+          p
+            | Контролируйте
+            strong  строителей
+            | и своевременно получайте информацию о материалах
+        .feature_teaser.col-sm-4.col-md-4
+          img(alt='responsive', src='images/responsive.png')
+          h3 Доступно
+          p
+            strong Любые типы устройств 
+            | с доступом в Интернет
+  section.portfolio_teasers_wrapper
+    .container
+      h2.section_header.fancy.centered
+        | Recent Work or Projects from Portfolio
+        small we take pride in our work
+      .portfolio_strict.row
+        .col-sm-4.col-md-4
+          .portfolio_item.wow.animated.flipInX
+            a(href='portfolio_item.html', data-path-hover='M 180,190 0,158 0,0 180,0 z')
+              figure(style='background-image:url(images/portfolio/p4.jpg)')
+                svg(viewbox='0 0 180 320', preserveaspectratio='none')
+                  path(d='M 180,0 0,0 0,0 180,0 z')
+                figcaption
+                  p
+                    | Description of the project dapibus, tellus ac cursus commodo, mauesris condime ntum nibh, ut fermentum....
+                  .view_button View
+            .portfolio_description
+              h3
+                a(href='portfolio_item.html') The {re}start Project
+              p Design
+        .col-sm-4.col-md-4
+          .portfolio_item.wow.animated.flipInX
+            a(href='portfolio_item.html', data-path-hover='M 180,190 0,158 0,0 180,0 z')
+              figure(style='background-image:url(images/portfolio/a5.jpg)')
+                svg(viewbox='0 0 180 320', preserveaspectratio='none')
+                  path(d='M 180,0 0,0 0,0 180,0 z')
+                figcaption
+                  p
+                    | Description of the project dapibus, tellus ac cursus commodo, mauesris condime ntum nibh, ut fermentum....
+                  .view_button View
+            .portfolio_description
+              h3
+                a(href='portfolio_item.html') Colorfull iOS Apps
+              p Development
+        .col-sm-4.col-md-4
+          .portfolio_item.wow.animated.flipInX
+            a(href='portfolio_item.html', data-path-hover='M 180,190 0,158 0,0 180,0 z')
+              figure(style='background-image:url(images/portfolio/p1.jpg)')
+                svg(viewbox='0 0 180 320', preserveaspectratio='none')
+                  path(d='M 180,0 0,0 0,0 180,0 z')
+                figcaption
+                  p
+                    | Description of the project dapibus, tellus ac cursus commodo, mauesris condime ntum nibh, ut fermentum....
+                  .view_button View
+            .portfolio_description
+              h3
+                a(href='portfolio_item.html') POETIC Magazine
+              p Illustrations
+  section.clients_section.wow.animated.fadeInUp
+    .container
+      h2.section_header.elegant.centered
+        | Our clients
+        small all of them are satisfied
+      .clients_list
+        a(href='#')
+          img(src='images/clients/wordpress.jpg', alt='client')
+        a(href='#')
+          img(src='images/clients/jquery.jpg', alt='client')
+        a(href='#')
+          img(src='images/clients/microlancer.jpg', alt='client')
+        a(href='#')
+          img(src='images/clients/bbpress.jpg', alt='client')
+        a(href='#')
+          img(src='images/clients/wpml.jpg', alt='client')
