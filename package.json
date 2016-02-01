@@ -1,6 +1,6 @@
 {
   "name": "House",
-  "version": "0.2",
+  "version": "0.0.2",
   "private": true,
   "description": "SPA version of application",
   "scripts": {
