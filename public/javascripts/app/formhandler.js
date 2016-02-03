@@ -9,7 +9,12 @@ define([
     var formData = $(this).serialize();
 
     $.post( "contact/send", formData, function( data ) {
-      alert( data );
+      if (!data.error){
+        $('.content').html("Ваш запрос успешно отправлен");
+      } else {
+        alert (data.error);
+      }
+
     }, "json");
 
   });

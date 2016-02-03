@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var nodemailer = require("nodemailer");
+var helpers = require('../handlers/helpers');
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Контакты' });
@@ -23,12 +24,10 @@ router.post('/send', function(req, res, next) {
   };
   transporter.sendMail(mailOptions, function(error, info){
     if (error){
-      console.log(error);
-      res.redirect("/");
+      helpers.send_failure(res, error.code, error);
     } else {
       console.log("Message sent "+ info.response);
-      //res.redirect("/");
-      res.json({"errors":"null"});
+      helpers.send_success(res, info.response);
     }
   });
 });
