@@ -12,7 +12,7 @@ var directory = require('./../models/directory');
  * Calculation page controller
  */
 router.get('/', function(req, res) {
-  res.render('calculator', { title: 'Калькулятор строительства дома' });
+  res.render('index', { title: 'Калькулятор строительства дома' });
 });
 
 /**

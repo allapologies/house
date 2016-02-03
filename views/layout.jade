@@ -34,13 +34,13 @@ html
               span.nb_right.pull-right меню
           .collapse.navbar-collapse
             ul.nav.pull-right.navbar-nav
-              li(class=(title === 'Расчёт строительства дома Online' ? 'active' : ''))
+              li(class='home '+(title === 'Расчёт строительства дома Online' ? 'active' : ''))
                 a(href='/') Домой
-              li(class=(title === 'Калькулятор строительства дома' ? 'active' : ''))
+              li(class='calculator '+(title === 'Калькулятор строительства дома' ? 'active' : ''))
                 a(href='/calculator') Калькулятор
               //li.disabled(class=(title === 'Личный кабинет' ? 'active' : ''))
               //  a Личный кабинет
-              li(class=(title === 'Контакты' ? 'active' : ''))
+              li(class='contact ' +(title === 'Контакты' ? 'active' : ''))
                 a(href='/contact') Контакты
         #social_media_wrapper
           a(href='https://www.facebook.com')

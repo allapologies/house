@@ -3,7 +3,7 @@ var router = express.Router();
 var nodemailer = require("nodemailer");
 
 router.get('/', function(req, res, next) {
-  res.render('contact', { title: 'Контакты' });
+  res.render('index', { title: 'Контакты' });
 });
 
 router.post('/send', function(req, res, next) {
@@ -27,7 +27,8 @@ router.post('/send', function(req, res, next) {
       res.redirect("/");
     } else {
       console.log("Message sent "+ info.response);
-      res.redirect("/");
+      //res.redirect("/");
+      res.json({"errors":"null"});
     }
   });
 });

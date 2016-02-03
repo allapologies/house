@@ -3,8 +3,10 @@ define([
 ], function ($) {
 
   function toggleView(source, target){
-    $('section.section.'+source).toggle("active");
-    $('section.section.'+target).toggle("active");
+    $('section.section.'+source).toggleClass("active");
+    $('section.section.'+target).toggleClass("active");
+    $('ul.nav li.'+source).toggleClass("active");
+    $('ul.nav li.'+target).toggleClass("active");
     $('body').data('current',target );
     window.history.pushState("object or string", "Title", target);
   };
@@ -23,6 +25,5 @@ define([
     if (source==target) return;
     console.log('going to '+ target);
     toggleView(source,target);
-
   });
 });
