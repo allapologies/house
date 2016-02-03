@@ -30,5 +30,6 @@ requirejs.config({
 requirejs(['jquery', 'bootstrap','modernizr'],
   function ($) {
     require(['app/restart'], function() {});
+    require(['app/navigation'], function() {});
   }
 );

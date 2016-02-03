@@ -7046,7 +7046,8 @@ header .container {
 (To use, assign "collapsing_header" class to the body tag)
 -------------------------------------------------------------- */
 .collapsing_header header {
-  position: fixed;
+  /*position: fixed;*/
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -7059,9 +7060,9 @@ header .container {
 .collapsing_header .full_page_photo {
   position: fixed;
 }
-.collapsing_header .main {
-  position: relative;
-}
+/*.collapsing_header .main {*/
+  /*position: relative;*/
+/*}*/
 /* =Main, Homepage
 -------------------------------------------------------------- */
 .main {
