@@ -19,12 +19,11 @@ requirejs.config({
     'bootstrap': ['jquery'],
     'flexslider':['jquery'],
     'prettyphoto':['jquery'],
-    'isotope':['jquery'],
     'totop':['jquery'],
     'easing': ['jquery'],
     'wow':['jquery'],
     'snapsvg':['jquery'],
-    'restart_theme':['jquery', 'snapsvg', 'wow']
+    'restart_theme':['jquery', 'snapsvg', 'wow', 'isotope']
   }
 });
 
