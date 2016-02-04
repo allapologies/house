@@ -14,7 +14,8 @@
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
-    "nodemailer": "*"
+    "nodemailer": "*",
+    "express-validator":"*"
   },
   "devDependencies": {
     "mochawesome": "^1.2.2"

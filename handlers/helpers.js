@@ -25,3 +25,8 @@ exports.invalid_resource = function() {
   return exports.make_error("invalid_resource",
     "the requested resource does not exist.");
 };
+
+exports.send_validation_failure = function(res, err) {
+  var output = { error: 400, message: err };
+  res.json(output);
+};
