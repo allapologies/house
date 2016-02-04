@@ -1,22 +1,16 @@
 define([
   'jquery'
 ], function ($) {
-
-
-  $("form").submit(function(e){
-    var apiURL= $(this).attr("action");
-    console.log('clicked');
+  $("form").submit(function(e) {
     e.preventDefault();
-    var formData = $(this).serialize();
-
-    $.post( apiURL, formData, function( data ) {
+    var apiURL= $(this).attr("action"),
+        formData = $(this).serialize();
+    $.post( apiURL, formData, function(data, status) {
       if (!data.error){
-        $('.content').html("Ваш запрос успешно отправлен");
+        alert ("Ответ получен: " + data);
       } else {
-        alert (data.error);
+        alert ("Ошибка: " + data.error);
       }
-
     }, "json");
-
   });
 });
