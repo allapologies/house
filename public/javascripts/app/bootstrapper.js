@@ -16,7 +16,7 @@ define([
 
     require(['app/restart'], function() {});
     require(['app/navigation'], function() {});
-    require(['app/formHandler'], function() {});
+    require(['app/formhandler'], function() {});
   });
 
 });
