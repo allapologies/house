@@ -1,0 +1,6 @@
+/*section.page {*/
+    /*display:none*/
+/*}*/
+section.page:not(.active) {
+    display:none
+}

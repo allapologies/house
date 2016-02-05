@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha --reporter mochawesome --reporter-options reportDir=public/tests"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -13,6 +14,11 @@
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
-    "nodemailer":"*"
+    "nodemailer": "*",
+    "express-validator":"*"
+  },
+  "devDependencies": {
+    "mochawesome": "^1.2.2"
   }
 }
+
