@@ -15,7 +15,8 @@ requirejs.config({
     modernizr:'modernizr.custom.48287',
     mustache:'mustache.min',
     jade:'jade/jade',
-    jade_runtime:'jade/runtime'
+    jade_runtime:'jade/runtime',
+    render: 'app/render'
   },
   shim: {
     'bootstrap': ['jquery'],
@@ -34,9 +35,6 @@ requirejs.config({
 
 requirejs(['jquery', 'bootstrap','modernizr'],
   function ($) {
-    require(['app/bootstrapper'], function() {});
-    //require(['app/restart'], function() {});
-    //require(['app/navigation'], function() {});
-    //require(['app/formHandler'], function() {});
+    require(['app/bootstrapper']);
   }
 );
