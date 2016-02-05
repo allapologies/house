@@ -13,13 +13,11 @@ define([
       render( template, {dadada:"test"}, "body" );
       body = template;
     });
+
+    require(['app/restart'], function() {});
+    require(['app/navigation'], function() {});
+    require(['app/formHandler'], function() {});
   });
 
-
-
-
-  require(['app/restart'], function() {});
-  require(['app/navigation'], function() {});
-  require(['app/formHandler'], function() {});
 });
 

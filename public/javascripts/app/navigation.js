@@ -2,7 +2,7 @@ define([
   'jquery', 'app/render'
 ], function ($, render) {
 
-  //render("/");
+  $('.home.page').toggleClass("active");
 
   $('ul.nav li').click(function(e){
     e.preventDefault();
@@ -23,10 +23,8 @@ define([
 
     var map = {
      "": function () {
-       $('section.page.home').toggleClass("active");
+       $('.page.home').toggleClass("active");
        $('ul.nav li.home').toggleClass("active");
-       $('section#slider_wrapper').toggleClass("active");
-
 
      },
       "calculator": function () {
