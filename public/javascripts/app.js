@@ -13,7 +13,9 @@ requirejs.config({
     snapsvg:'snap.svg-min',
     restart_theme:'restart_theme',
     modernizr:'modernizr.custom.48287',
-    mustache:'mustache.min'
+    mustache:'mustache.min',
+    jade:'jade/jade',
+    jade_runtime:'jade/runtime'
   },
   shim: {
     'bootstrap': ['jquery'],
@@ -23,14 +25,18 @@ requirejs.config({
     'easing': ['jquery'],
     'wow':['jquery'],
     'snapsvg':['jquery'],
-    'restart_theme':['jquery', 'snapsvg', 'wow', 'isotope']
+    'restart_theme':['jquery', 'snapsvg', 'wow', 'isotope'],
+    'jade': {
+      exports: 'jade'
+    }
   }
 });
 
 requirejs(['jquery', 'bootstrap','modernizr'],
   function ($) {
-    require(['app/restart'], function() {});
-    require(['app/navigation'], function() {});
-    require(['app/formHandler'], function() {});
+    require(['app/bootstrapper'], function() {});
+    //require(['app/restart'], function() {});
+    //require(['app/navigation'], function() {});
+    //require(['app/formHandler'], function() {});
   }
 );

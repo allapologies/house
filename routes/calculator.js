@@ -12,10 +12,10 @@ var validationRules = require('../handlers/calculatorValidationRules');
 
 /**
  * Calculation page controller
- */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Калькулятор строительства дома' });
-});
+// *
+//router.get('/', function(req, res) {
+//  res.render('layout', { title: 'Калькулятор строительства дома' });
+//});
 
 /**
  * Calculation interface

@@ -4,9 +4,9 @@ var nodemailer = require("nodemailer");
 var helpers = require('../handlers/helpers');
 var validationRules = require('../handlers/contactValidationRules');
 
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Контакты' });
-});
+//router.get('/', function(req, res, next) {
+//  res.render('layout', { title: 'Контакты' });
+//});
 
 router.post('/send', function(req, res, next) {
   req.checkBody(validationRules);
