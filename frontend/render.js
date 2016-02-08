@@ -1,3 +1,5 @@
+'use strict';
+
 define([
   'jquery','jade','jade_runtime'
 ], function ($, jade, jade_runtime) {
