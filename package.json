@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha --reporter mochawesome --reporter-options reportDir=public/tests"
+    "test": "mocha test/test_API.js --reporter mochawesome --reporter-options reportDir=public/tests"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -23,6 +23,8 @@
     "express-session": "^1.13.0",
     "mochawesome": "^1.2.2",
     "passport": "^0.3.2",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "should": "^8.2.2",
+    "supertest": "^1.1.0"
   }
 }
