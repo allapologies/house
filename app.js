@@ -20,18 +20,20 @@ app.use(validator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var routes = require('./routes/index');
+var index = require('./routes/index');
 var calculator = require('./routes/calculator');
 var contact = require('./routes/contact');
+var users = require('./routes/users');
 
-//app.use('/', routes);
+app.use('/', index);
 app.use('/calculator', calculator);
 app.use('/contact', contact);
+app.use('/users', users);
 
-app.get('/',function(req,res){
-  res.sendFile('index.html');
-  //It will find and locate index.html from View or Scripts
-});
+//app.get('/',function(req,res){
+//  res.sendFile('index.html');
+//  //It will find and locate index.html from View or Scripts
+//});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
