@@ -13,8 +13,7 @@ router.post('/', function(req, res) {
     login      : req.body.login,
     email      : req.body.email,
     password      : req.body.password
-  })
-  console.log(user.name);
+  });
 
   user.save(function (err) {
     if (!err) {
@@ -24,6 +23,15 @@ router.post('/', function(req, res) {
       helpers.send_failure(res,res.statusCode,err.message);
     }
   });
+});
+
+router.get('/', function(req, res) {
+  User.find(function (err, users) {
+    if (err) {
+      helpers.send_failure(res,res.statusCode,err.message);
+    };
+    helpers.send_success(res, users);
+  })
 });
 
 module.exports = router;
