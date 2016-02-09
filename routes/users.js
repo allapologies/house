@@ -34,4 +34,17 @@ router.get('/', function(req, res) {
   })
 });
 
+
+router.get('/:name', function(req, res) {
+  User.find({name: req.params.name}, function (err, users) {
+    if (err) {
+      helpers.send_failure(res, 500, err)
+    } else if(!users) {
+        helpers.send_failure(res,err,err);
+    } else {
+        helpers.send_success(res, users)
+    }
+  });
+});
+
 module.exports = router;
