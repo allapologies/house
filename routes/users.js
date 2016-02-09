@@ -20,7 +20,7 @@ router.post('/', function(req, res) {
       console.log("user created");
       helpers.send_success(res, user.username);
     } else {
-      helpers.send_failure(res,res.statusCode,err.message);
+      helpers.send_failure(res,401,err);
     }
   });
 });

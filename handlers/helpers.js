@@ -18,7 +18,7 @@ exports.send_success = function(res, data) {
 
 
 exports.send_failure = function(res, code, err) {
-  var code = (err.code) ? err.code : err.name;
+  var code = (err.code) ? err.code : code;
   var output = { error: code, message: err.message };
   res.json(output);
 };

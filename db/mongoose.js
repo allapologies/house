@@ -13,7 +13,7 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
   name     : String,
-  username : String,
+  username : {type:String, index: {unique: true, dropDups: true}},
   email    : String,
   password : String
 });
