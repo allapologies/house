@@ -13,10 +13,14 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
   name     : String,
-  login    : String,
+  username : String,
   email    : String,
   password : String
 });
+
+UserSchema.methods.validPassword = function( pwd ) {
+  return ( this.password === pwd );
+};
 
 var User = mongoose.model('User', UserSchema);
 

@@ -5,6 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var validator = require('express-validator');
+var passport = require('passport');
+var helpers = require('./handlers/helpers');
+var expressSession = require('express-session');
+var User = require('./db/mongoose');
 
 var app = express();
 
@@ -16,6 +20,9 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressSession({secret: 'mySecretKey', resave: true, saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(validator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -24,11 +31,13 @@ var index = require('./routes/index');
 var calculator = require('./routes/calculator');
 var contact = require('./routes/contact');
 var users = require('./routes/users');
+var login = require('./routes/login');
 
 app.use('/', index);
 app.use('/calculator', calculator);
 app.use('/contact', contact);
 app.use('/users', users);
+app.use('/login', login);
 
 //app.get('/',function(req,res){
 //  res.sendFile('index.html');
@@ -48,11 +57,12 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
+    //res.status(err.status || 500);
+    //res.render('error', {
+    //  message: err.message,
+    //  error: err
+    //});
+    helpers.send_failure(res,err.status || 500, err);
   });
 }
 

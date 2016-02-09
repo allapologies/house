@@ -10,7 +10,7 @@ console.log(typeof User);
 router.post('/', function(req, res) {
   var user = new User({
     name      : req.body.name,
-    login      : req.body.login,
+    username      : req.body.username,
     email      : req.body.email,
     password      : req.body.password
   });
@@ -18,7 +18,7 @@ router.post('/', function(req, res) {
   user.save(function (err) {
     if (!err) {
       console.log("user created");
-      helpers.send_success(res, user.login);
+      helpers.send_success(res, user.username);
     } else {
       helpers.send_failure(res,res.statusCode,err.message);
     }
@@ -35,8 +35,8 @@ router.get('/', function(req, res) {
 });
 
 
-router.get('/:name', function(req, res) {
-  User.find({name: req.params.name}, function (err, users) {
+router.get('/:username', function(req, res) {
+  User.find({username: req.params.username}, function (err, users) {
     if (err) {
       helpers.send_failure(res, 500, err)
     } else if(!users) {
