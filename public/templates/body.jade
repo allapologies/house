@@ -21,17 +21,21 @@ body.collapsing_header
               a(href='/calculator') Калькулятор
             li(class='contact ' +(title === 'Контакты' ? 'active' : ''))
               a(href='/contact') Контакты
-      #social_media_wrapper
-        a(href='https://www.facebook.com')
-          i.fa.fa-facebook
-        a(href='https://twitter.com')
-          i.fa.fa-twitter
-        a(href='#googleplus')
-          i.fa.fa-google-plus
-      #sign
-        a(href='/login')
-          i.fa.fa-user
-          span Войти / Регистрация
+      //TODO
+      //Implement after accounts creation in social media
+      //#social_media_wrapper
+      //  a(href='https://www.facebook.com')
+      //    i.fa.fa-facebook
+      //  a(href='https://twitter.com')
+      //    i.fa.fa-twitter
+      //  a(href='#googleplus')
+      //    i.fa.fa-google-plus
+      //TODO
+      //Implement sign in and sign up
+      //#sign
+      //  a(href='/login')
+      //    i.fa.fa-user
+      //    span Войти / Регистрация
   section#slider_wrapper.slider_wrapper.full_page_photo.home.page
     #main_flexslider.flexslider
       ul.slides
@@ -106,50 +110,51 @@ body.collapsing_header
             .portfolio_strict.row
               .col-sm-4.col-md-4
                 .portfolio_item.wow.animated.flipInX
-                  a(href='portfolio_item.html', data-path-hover='M 180,190 0,158 0,0 180,0 z')
-                    figure(style='background-image:url(images/portfolio/p4.jpg)')
-                      svg(viewbox='0 0 180 320', preserveaspectratio='none')
-                        path(d='M 180,0 0,0 0,0 180,0 z')
-                      figcaption
-                        p
-                          | Description of the project dapibus, tellus ac cursus commodo, mauesris condime ntum nibh, ut fermentum....
-                        .view_button View
-                  .portfolio_description
-                    h3
-                      a(href='portfolio_item.html') Кирилл, строит дом
-                    p Проектирование и оценка бюджета
-              .col-sm-4.col-md-4
-                .portfolio_item.wow.animated.flipInX
-                  a(href='portfolio_item.html', data-path-hover='M 180,190 0,158 0,0 180,0 z')
-                    figure(style='background-image:url(images/portfolio/a5.jpg)')
-                      svg(viewbox='0 0 180 320', preserveaspectratio='none')
-                        path(d='M 180,0 0,0 0,0 180,0 z')
-                      figcaption
-                        p
-                          | Description of the project dapibus, tellus ac cursus commodo, mauesris condime ntum nibh, ut fermentum....
-                        .view_button View
-                  .portfolio_description
-                    h3
-                      a(href='portfolio_item.html') Альбина, мечтает о даче
-                    p Учёт расходов и стройматериалов
-              .col-sm-4.col-md-4
-                .portfolio_item.wow.animated.flipInX
-                  a(href='portfolio_item.html', data-path-hover='M 180,190 0,158 0,0 180,0 z')
+                  a(href='#', data-path-hover='M 180,190 0,158 0,0 180,0 z')
                     figure(style='background-image:url(images/portfolio/p1.jpg)')
                       svg(viewbox='0 0 180 320', preserveaspectratio='none')
                         path(d='M 180,0 0,0 0,0 180,0 z')
                       figcaption
                         p
-                          | Description of the project dapibus, tellus ac cursus commodo, mauesris condime ntum nibh, ut fermentum....
-                        .view_button View
+                          | Если вы хотите вести учет и знать куда расходуются Ваши средства во время строительства дома ...
+                        .view_button Подробнее
                   .portfolio_description
                     h3
-                      a(href='portfolio_item.html') Максим, прораб
+                      a(href='#') Кирилл, строит дом
+                    p Учёт расходов и стройматериалов
+              .col-sm-4.col-md-4
+                .portfolio_item.wow.animated.flipInX
+                  a(href='#', data-path-hover='M 180,190 0,158 0,0 180,0 z')
+                    figure(style='background-image:url(images/portfolio/p2.jpg)')
+                      svg(viewbox='0 0 180 320', preserveaspectratio='none')
+                        path(d='M 180,0 0,0 0,0 180,0 z')
+                      figcaption
+                        p
+                          | Как спроектировать дом и не увеличить бюджет на строительство?
+                        .view_button Подробнее
+                  .portfolio_description
+                    h3
+                      a(href='#') Альбина, мечтает о даче
+                    p Проектирование и оценка бюджета
+              .col-sm-4.col-md-4
+                .portfolio_item.wow.animated.flipInX
+                  a(href='#', data-path-hover='M 180,190 0,158 0,0 180,0 z')
+                    figure(style='background-image:url(images/portfolio/p3.jpg)')
+                      svg(viewbox='0 0 180 320', preserveaspectratio='none')
+                        path(d='M 180,0 0,0 0,0 180,0 z')
+                      figcaption
+                        p
+                          | Максим ведёт online контроль за рабочими и использует прозрачную систему отчетности перед заказчиком
+                        .view_button Подробнее
+                  .portfolio_description
+                    h3
+                      a(href='#') Максим, прораб
                     p Оперативная связь с заказчиком
       section.page.calculator
         section.hgroup
           .container
             h1 Калькулятор
+            h2 Характеристики Вашего дома
             ul.breadcrumb.pull-right
               li
                 a(href='/') Домой
@@ -159,8 +164,7 @@ body.collapsing_header
             .row
               .calculator_preview.col-sm-4.col-md-4
                 .team_member
-                  h4 Preview Area
-                  small Small Pic
+                  img(src='/images/house_with_dimensions.png', width='200', height='132', alt='house calculator')
                   br
               .calculation.col-sm-8.col-md-8
                 form.form-horizontal.calculation(method='post', action='calculator/calculate')
@@ -179,39 +183,28 @@ body.collapsing_header
                           option(value='1') 1
                           option(value='2' selected) 2
                       .col-sm-6.col-md-6
-                        label.control-label Количество комнат
+                        label Количество комнат
                         select.form-control(name='rooms')
                           option(value='1') 1
                           option(value='1') 2
                           option(value='3' selected) 3
                           option(value='4') 4
                     .row
-                      .col-sm-12.col-md-12
+                      .col-sm-6.col-md-6
                         label Фундамент
-                          label.radio-inline
-                            input#inlineRadio1(type='radio', name='foundation', value='plita' checked)
-                            | Плитный
-                          label.radio-inline
-                            input#inlineRadio2(type='radio', name='foundation', value='lenta')
-                            | Ленточный
-                          label.radio-inline
-                            input#inlineRadio3(type='radio', name='foundation', value='stolb')
-                            | Винтовой
-                    .row
-                      .col-sm-12.col-md-12
+                        select.form-control(name='foundation')
+                          option(value='plita') Плитный
+                          option(value='lenta' selected) Ленточный
+                          option(value='stolb') Винтовой
+                      .col-sm-6.col-md-6
                         label Кровля
-                          label.radio-inline
-                            input#inlineRadio1(type='radio', name='roof', value='flat')
-                            | Плоская
-                          label.radio-inline
-                            input#inlineRadio2(type='radio', name='roof', value='2skat' checked)
-                            | 2-скатная
-                          label.radio-inline
-                            input#inlineRadio3(type='radio', name='roof', value='valma')
-                            | Вальма
-                          br
-                          .col-lg-4.col-lg-offset-2
-                            button#submit_btn.btn.btn-primary(type='submit') Отправить
+                        select.form-control(name='roof')
+                          option(value='flat') Плоская
+                          option(value='2skat' selected) 2-скатная
+                          option(value='valma') Вальма
+                    .row
+                      .col-sm-6.col-md-6
+                        button#submit_btn.btn.btn-primary(type='submit') Отправить
       section.page.contact
         section.hgroup
           .container
@@ -219,39 +212,34 @@ body.collapsing_header
             h2 Пожелания и предложения
             ul.breadcrumb.pull-right
               li
-                a(href='index.html') Домой
+                a(href='/') Домой
               li.active Контакты
         section
           .container
             .row
               .office_address.col-sm-4.col-md-4
                 .team_member
-                  img(src='/images/myhouse_logo.png', width='90', height='90', alt='logo')
-                  h5 {re}start, HTML
-                  small Web-Development Company
+                  a
+                    i.fa.fa-envelope.fa-4x
+                  h5 myHouse
+                  small Свободный проект
                   br
                   br
                   .team_social
-                    a(href='https://www.facebook.com')
+                    a(href='#')
                       i.fa.fa-facebook
-                    a(href='https://twitter.com/leonartgr')
+                    a(href='#')
                       i.fa.fa-twitter
-                    a(href='#pinterest')
+                    a(href='#')
                       i.fa.fa-linkedin
-                    a(href='https://github.com/PlethoraThemes')
-                      i.fa.fa-github-alt
                   address
                     strong
+                    |                               Россия
                     br
-                    |                               795 Folsom Ave, Suite 600
-                    br
-                    |                               San Francisco, CA 94107
-                    br
-                    abbr(title='Phone') P:
-                    |  (123) 456-7890
+                    |                               Москва
                   address
-                    abbr(title='Phone') E:
-                    a(href='mailto:#') first.last@example.com
+                    abbr(title='E-mail') E:&nbsp;
+                    a(href='mailto:myhouse@gmail.com') myhouse@gmail.com
               .contact_form.col-sm-8.col-md-8
                 form#contact_form(method='post', action='contact/send')
                   .row
@@ -273,7 +261,57 @@ body.collapsing_header
                       br
                       button#submit_btn.btn.btn-primary(type='submit') Отправить
     footer
+      section.twitter_feed_wrapper
+        .container
+          .row.wow.animated.fadeInUp
+            .twitter_feed_icon.col-sm-1.col-md-1
+              a
+                i.fa.fa-comments
+            .col-sm-11.col-md-11
+              blockquote
+                p
+                  | Иметь собственный дом, удобный и уютный, где можно почувствовать себя защищенным, любимым и счастливым, мечтает любое живое существо.
+                |                                    — Олег Рой “Ловушка для влюбленных”
+      section#footer_teasers_wrapper
+        .container
+          .row
+            .footer_teaser.col-sm-4.col-md-4
+              h3 О нас
+              p
+                | myHouse - свободный проект, который развивается за счёт людей, их мыслей и идей. Сделаем сервис лучше вместе!
+              p
+                i.fa.fa-map-marker
+                |  Москва, Россия
+              p
+                i.fa.fa-envelope
+                |  myHouse@gmail.com
+            .footer_teaser.col-sm-4.col-md-4
+              h3 Новости
+              ul.media-list
+                li.media
+                  a.media-photo(href='#', style='background-image:url(images/news1.jpg)')
+                  a.media-date(href='#')
+                    | 14
+                    span Января
+                  h5.media-heading
+                    a(href='#') Новостей пока нет
+                  p Совсем скоро ожидается релиз
+                li.media
+                  a.media-photo(href='#', style='background-image:url(images/news2.jpg)')
+                  a.media-date(href='#')
+                    | 15
+                    span Января
+                  h5.media-heading
+                    a(href='#') Новостей пока нет
+                  p Совсем скоро ожидается релиз
+            #latest-flickr-images.footer_teaser.col-sm-4.col-md-4
+              h3 Flickr
+              ul
+              p
+                | дом и стройка в ленте flickr
       section.copyright
         .container
           .row
-            .col-sm-6.col-md-6  Copyright © alex_ponti 2015 all rights reserved
+            .col-sm-6.col-md-6  Copyright ©2016 all rights reserved
+            .text-right.col-sm-6.col-md-6
+              | myHouse

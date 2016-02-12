@@ -6,24 +6,21 @@ exports.make_error = function(err, msg) {
   return e;
 };
 
+exports.invalid_resource = function() {
+  return exports.make_error("invalid_resource",
+    "the requested resource does not exist.");
+};
 
 exports.send_success = function(res, data) {
-  //res.writeHead(200, {"Content-Type": "application/json"});
   var output = { error: null, data: data };
   res.json(output);
 };
 
 
 exports.send_failure = function(res, code, err) {
-  var code = (err.code) ? err.code : err.name;
+  var code = (err.code) ? err.code : code;
   var output = { error: code, message: err.message };
   res.json(output);
-};
-
-
-exports.invalid_resource = function() {
-  return exports.make_error("invalid_resource",
-    "the requested resource does not exist.");
 };
 
 exports.send_validation_failure = function(res, err) {
