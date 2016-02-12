@@ -212,39 +212,34 @@ body.collapsing_header
             h2 Пожелания и предложения
             ul.breadcrumb.pull-right
               li
-                a(href='index.html') Домой
+                a(href='/') Домой
               li.active Контакты
         section
           .container
             .row
               .office_address.col-sm-4.col-md-4
                 .team_member
-                  img(src='/images/myhouse_logo.png', width='90', height='90', alt='logo')
-                  h5 {re}start, HTML
-                  small Web-Development Company
+                  a
+                    i.fa.fa-envelope.fa-4x
+                  h5 myHouse
+                  small Свободный проект
                   br
                   br
                   .team_social
-                    a(href='https://www.facebook.com')
+                    a(href='#')
                       i.fa.fa-facebook
-                    a(href='https://twitter.com/leonartgr')
+                    a(href='#')
                       i.fa.fa-twitter
-                    a(href='#pinterest')
+                    a(href='#')
                       i.fa.fa-linkedin
-                    a(href='https://github.com/PlethoraThemes')
-                      i.fa.fa-github-alt
                   address
                     strong
+                    |                               Россия
                     br
-                    |                               795 Folsom Ave, Suite 600
-                    br
-                    |                               San Francisco, CA 94107
-                    br
-                    abbr(title='Phone') P:
-                    |  (123) 456-7890
+                    |                               Москва
                   address
-                    abbr(title='Phone') E:
-                    a(href='mailto:#') first.last@example.com
+                    abbr(title='E-mail') E:&nbsp;
+                    a(href='mailto:myhouse@gmail.com') myhouse@gmail.com
               .contact_form.col-sm-8.col-md-8
                 form#contact_form(method='post', action='contact/send')
                   .row
