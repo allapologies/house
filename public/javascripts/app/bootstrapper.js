@@ -1,6 +1,6 @@
 define([
-  'jquery', 'app/render'
-], function ($, render) {
+  'jquery', 'app/render', 'app/formhandler'
+], function ($, render, Form) {
   $( document ).ready(function() {
 
     var head, body;
@@ -16,14 +16,15 @@ define([
 
     require(['app/restart'], function() {});
     require(['app/navigation'], function() {});
-    require(['app/formhandler'], function() {});
 
+    // When the page has loaded
     $(window).on("loaded", function() {
-      // When the page has loaded
-      $("body").fadeIn(500);
+      //Show app content
+      $("body").fadeIn(200);
+      //Forms init
+      var form = new Form('form');
+      form.init();
     });
-
   });
-
 });
 
