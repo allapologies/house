@@ -218,12 +218,8 @@ jQuery('.portfolio_item figcaption p').addClass('safari');
 }else {
     // Nope, it's another browser =(
 }
-
-
-
-
-
-	   
+    //Trigger for completeing load of page
+	   jQuery(window).trigger("loaded");
 });
 
 

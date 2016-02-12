@@ -17,6 +17,12 @@ define([
     require(['app/restart'], function() {});
     require(['app/navigation'], function() {});
     require(['app/formhandler'], function() {});
+
+    $(window).on("loaded", function() {
+      // When the page has loaded
+      $("body").fadeIn(500);
+    });
+
   });
 
 });
