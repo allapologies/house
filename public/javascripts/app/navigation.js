@@ -19,6 +19,10 @@ define([
     var page = url.split('/')[1];
     // Hide all elements
     $('.page').removeClass("active");
+    /**
+     * TODO
+     * Changing active menu class
+     */
     $('ul.nav li').removeClass("active");
 
     var map = {
@@ -39,7 +43,12 @@ define([
 
     if(map[page]){
       map[page]();
-      window.history.pushState("object or string", "title", page);
+      /**
+       * TODO
+       * History disabled
+       * history should be refactored
+       */
+      //window.history.pushState("object or string", "title", page);
     }
     // If the keyword isn't listed in the above - render the error page.
     else {

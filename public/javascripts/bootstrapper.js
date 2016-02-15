@@ -35,6 +35,6 @@ requirejs.config({
 
 requirejs(['jquery', 'bootstrap','modernizr'],
   function ($) {
-    require(['app/bootstrapper']);
+    require(['app/app']);
   }
 );
