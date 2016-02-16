@@ -6,7 +6,7 @@ var House = require('./../models/House');
 var FoundationCalculation = require('./../models/FoundationCalculation');
 var WallsCalculation = require('./../models/WallsCalculation');
 var RoofCalculation = require('./../models/RoofCalculation');
-var directory = require('./../models/directory');
+//var directory = require('./../models/directory');
 var helpers = require('../handlers/helpers');
 var validationRules = require('../handlers/calculatorValidationRules');
 
@@ -44,11 +44,11 @@ router.post('/calculate', function(req, res) {
     let resultWall = walls.count();
     let roof = new RoofCalculation(house);
     let resultRoof = roof.count();
-    var results ={
-        foundation: resultFoundation,
-        walls     : resultWall,
-        roof      : resultRoof
-    };
+    var results =[
+      {stage:'foundation', materials: resultFoundation},
+      {stage:'walls', materials: resultWall},
+      {stage:'roof', materials: resultRoof}
+    ];
     helpers.send_success(res, results);
   };
 });

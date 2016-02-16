@@ -2,7 +2,11 @@
     /*display:none*/
 /*}*/
 section.page:not(.active) {
-    display:none
+    display:none;
+}
+
+section.page section.form:not(.active) {
+    display:none;
 }
 
 label {

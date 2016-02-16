@@ -1,6 +1,6 @@
 {
   "name": "house",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
@@ -13,18 +13,17 @@
     "express": "~4.13.1",
     "express-session": "^1.13.0",
     "express-validator": "*",
-    "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "nodemailer": "*",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "express-session": "^1.13.0",
+    "mongoose": "^4.4.3",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "debug": "^2.2.0",
-    "express-session": "^1.13.0",
     "mochawesome": "^1.2.2",
-    "mongoose": "^4.4.3",
-    "passport": "^0.3.2",
-    "passport-local": "^1.0.0",
     "should": "^8.2.2",
     "supertest": "^1.1.0"
   }

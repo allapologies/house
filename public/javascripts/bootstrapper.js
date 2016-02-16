@@ -14,8 +14,6 @@ requirejs.config({
     restart_theme:'restart_theme',
     modernizr:'modernizr.custom.48287',
     mustache:'mustache.min',
-    jade:'jade/jade',
-    jade_runtime:'jade/runtime',
     render: 'app/render'
   },
   shim: {
@@ -27,14 +25,14 @@ requirejs.config({
     'wow':['jquery'],
     'snapsvg':['jquery'],
     'restart_theme':['jquery', 'snapsvg', 'wow', 'isotope'],
-    'jade': {
-      exports: 'jade'
+    'mustache': {
+      exports: 'Mustache'
     }
   }
 });
 
 requirejs(['jquery', 'bootstrap','modernizr'],
   function ($) {
-    require(['app/bootstrapper']);
+    require(['app/app']);
   }
 );

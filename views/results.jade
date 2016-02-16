@@ -1,19 +1,19 @@
 extends layout
 
 block content
-    h2 Результаты рассчётов
-    table.table.table-striped.table-hover
+h2 Результаты рассчётов
+table.table.table-striped.table-hover
+    tr
+      th Материал
+      th Количество
+    - for (var i in results)
         tr
-          th Материал
-          th Количество
-        - for (var i in results)
-            tr
-              td
-                b
-                  i #{directory.directory[i].name}
-                td
-                  - for (var j in results[i])
-                    tr
-                      td #{directory.directory[j].name}
-                      td #{results[i][j]}&nbsp;#{directory.directory[j].unit}
-    button.btn.btn-default.disabled Пересчитать
+          td
+            b
+              i #{directory.directory[i].name}
+            td
+              - for (var j in results[i])
+                tr
+                  td #{directory.directory[j].name}
+                  td #{results[i][j]}&nbsp;#{directory.directory[j].unit}
+button.btn.btn-default.disabled Пересчитать
