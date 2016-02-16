@@ -13,21 +13,21 @@ class FoundationCalculation extends Calculation{
     var materials;
     switch(this.house.foundation){
       case "plita":
-        materials = {
-          beton : Math.round(areas.foundation * parameters.foundationThickness),
-          metall : Math.round(this.house.walls.sideA * this.house.walls.sideB / parameters.metallStep * parameters.metallLayers)
-        };
+        materials = [
+          {name:"beton", quantity : Math.round(areas.foundation * parameters.foundationThickness)},
+          {name:"metall",quantity : Math.round(this.house.walls.sideA * this.house.walls.sideB / parameters.metallStep * parameters.metallLayers)}
+        ];
         break;
       case "lenta":
-        materials = {
-          beton : Math.round(areas.foundation * parameters.foundationThickness),
-          metall : Math.round(this.house.walls.sideA * this.house.walls.sideB / parameters.metallStep * parameters.metallLayers)
-        };
+        materials = [
+          {name:"beton", quantity : Math.round(areas.foundation * parameters.foundationThickness)},
+          {name:"metall",quantity : Math.round(this.house.walls.sideA * this.house.walls.sideB / parameters.metallStep * parameters.metallLayers)}
+        ];
         break;
       case "stolb":
-        materials = {
-          svai : Math.round(areas.foundation / parameters.svaiConsumption)
-        };
+        materials = [
+          {name:"svai",quantity : Math.round(areas.foundation / parameters.svaiConsumption)}
+        ];
         break;
       default:
         break;

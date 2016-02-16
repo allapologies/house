@@ -14,12 +14,15 @@ class WallsCalculation extends Calculation{
     let foamPlastic = Math.round(areas.walls * parameters.insulationThickness);
     let plaster = Math.round(areas.walls*parameters.plasterySpecificWeight);
 
-    return {
-      bricks : bricks,
-      glue: glue,
-      foamPlastic: foamPlastic,
-      plaster: plaster
-    };
+    let materials =[
+      {name:"bricks", quantity : bricks},
+      {name:"glue", quantity : glue},
+      {name:"foamPlastic", quantity : foamPlastic},
+      {name:"plaster", quantity : plaster}
+    ];
+
+    return materials;
+
   };
 }
 
