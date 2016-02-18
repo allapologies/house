@@ -6,7 +6,7 @@ define([
     var head, body,results_template;
 
     $.get( "templates/head.html", function( template ) {
-      render( template, {title:"Head"}, "head" );
+      render( template, {}, "head" );
       head = template;
     });
     $.get( "templates/body.html", function( template ) {

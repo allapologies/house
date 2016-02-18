@@ -1,22 +1,58 @@
-define([
-  'jquery', 'app/render'
-], function ($, render) {
+define(['jquery', 'app/routing', 'app/restart'], function ($, routing, restart) {
 
+  function checkPath(path) {
+    var routingPathRegex = Object.keys(routing).map(function (key) {
+      var path = routing[key].path;
+      var regex = new RegExp(path.replace(/:([^\/]+)/g, "([^\/]+)"));
+      return {
+        key : key,
+        path: regex
+      };
+    });
+
+    var route = null;
+
+    $.each(routing, function (key, value) {
+      if (! route) {
+        var regex = new RegExp("^" + value.path.replace(/:([^\/]+)/g, "([^/]+)") + "$");
+        var match = path.match(regex);
+        if (match) {
+          route = $.extend({}, value);
+          var data = match.slice(1);
+          ["data", "title"].forEach(function (key) {
+            if (typeof route[key] === "function") {
+              route[key] = route[key].apply(null, data);
+            }
+          });
+        }
+      }
+    });
+
+    return route;
+  }
+
+  /**
+   * move to render function
+   */
   $('.home.page').toggleClass("active");
 
-  $('ul.nav li').click(function(e){
+  $('a').click(function(e){
+    var $target = $(e.target);
+    if ($target.attr("target") === "_self") {
+      return;
+    };
+    //Prevent hyperlink opening
     e.preventDefault();
-    var target = e.target.pathname;
-    $(window).trigger('pagechange', [target]);
+    switchPage($target.attr("href"));
   });
 
-  $(window).on('pagechange', function(event, url){
-    switchPage(url);
-  });
+  function switchPage(href) {
+    var route = checkPath(href);
+    if (! route) {
+      console.error("%s does not match routing!!", href);
+      return;
+    };
 
-  function switchPage(url) {
-    // Get page name and invoke rendering
-    var page = url.split('/')[1];
     // Hide all elements
     $('.page').removeClass("active");
     /**
@@ -25,41 +61,11 @@ define([
      */
     $('ul.nav li').removeClass("active");
 
-    var map = {
-     "": function () {
-       $('.page.home').toggleClass("active");
-       $('ul.nav li.home').toggleClass("active");
+    route.render();
+    history.pushState("", route.title, href);
+    document.title = route.title;
+    //require(['app/restart'], function() {});
 
-     },
-      "calculator": function () {
-        $('section.page.calculator').toggleClass("active");
-        $('ul.nav li.calculator').toggleClass("active");
-      },
-      "contact": function () {
-        $('section.page.contact').toggleClass("active");
-        $('ul.nav li.contact').toggleClass("active");
-      }
-    };
-
-    if(map[page]){
-      map[page]();
-      /**
-       * TODO
-       * History disabled
-       * history should be refactored
-       */
-      //window.history.pushState("object or string", "title", page);
-    }
-    // If the keyword isn't listed in the above - render the error page.
-    else {
-      renderErrorPage();
-    }
-    require(['app/restart'], function() {});
-
-  };
-
-  function renderErrorPage(){
-    alert ("error page rendered");
   };
 
 });
