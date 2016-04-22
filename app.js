@@ -16,7 +16,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -38,11 +38,6 @@ app.use('/calculator', calculator);
 app.use('/contact', contact);
 app.use('/users', users);
 app.use('/login', login);
-
-//app.get('/',function(req,res){
-//  res.sendFile('index.html');
-//  //It will find and locate index.html from View or Scripts
-//});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
