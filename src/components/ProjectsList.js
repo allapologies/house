@@ -1,6 +1,6 @@
 'use strict';
 import React, { Component } from 'react';
-import ProjectItem from './ProjectItem';
+import ProjectsListItem from './ProjectsListItem';
 
 class ProjectsList extends Component {
   render() {
@@ -9,7 +9,7 @@ class ProjectsList extends Component {
     }
 
     const projects = this.props.projects.map( (project) => {
-      return <ProjectItem  key={project.projectId} project={project} />
+      return <ProjectsListItem  key={project.projectId} project={project} />
     });
 
     return (
