@@ -1,6 +1,8 @@
 'use strict';
 import React, { Component } from 'react';
-import ProjectsListItem from './ProjectsListItem';
+import { connect } from 'react-redux';
+import ProjectsListItem from '../components/ProjectsListItem';
+
 
 class ProjectsList extends Component {
   render() {
@@ -22,4 +24,8 @@ class ProjectsList extends Component {
   }
 }
 
-export default ProjectsList;
+function mapStateToProps({projects}) {
+  return { projects };
+};
+
+export default connect(mapStateToProps)(ProjectsList);
