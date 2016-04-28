@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router'
 
 export default (props) => {
-  const { id, title} = props.project;
+  const { projectId, title} = props.project;
+  const url = `/projects/${projectId}`;
   return (
-      <li className='list-group-item'>{title}
-        &nbsp;<button type="button" className="btn btn-sm btn-warning">править</button>
-        &nbsp;<button type="button" className="btn btn-sm btn-danger">удалить</button>
+      <li className='list-group-item'>
+        <Link to={url}>{title}</Link>
       </li>
     );
 }

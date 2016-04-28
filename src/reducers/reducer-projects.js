@@ -1,4 +1,4 @@
-import { GET_PROJECTS, CREATE_PROJECT } from '../actions/constants';
+import { GET_PROJECTS, CREATE_PROJECT, DELETE_PROJECT } from '../actions/constants';
 import defaultProjects from '../fixtures';
 
 export default function(state=defaultProjects, action){
@@ -6,7 +6,11 @@ export default function(state=defaultProjects, action){
     case GET_PROJECTS:
       return [ action.payload.data, ...state];
     case CREATE_PROJECT:
-      return [action.payload, ...state]
+      return [...state, action.payload];
+    case DELETE_PROJECT:
+      return state.filter((project) => {
+        return (project.projectId != action.payload);
+      });
   }
   return state;
 };
