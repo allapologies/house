@@ -1,6 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router'
 import ProjectsListItem from '../components/ProjectsListItem';
 
 
@@ -15,10 +16,13 @@ class ProjectsList extends Component {
     });
 
     return (
-      <div>
+      <div className='projectList'>
         <ul className='list-group'>
           {projects}
         </ul>
+        <Link to='/projects/new' className='btn btn-default'>
+            Создать проект
+        </Link>
       </div>
     );
   }
