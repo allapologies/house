@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --hot --inline"
+    "start": "concurrent --kill-others \"webpack-dev-server --hot --inline\" \"nodemon server.js\""
   },
   "dependencies": {
     "babel-preset-stage-1": "^6.1.18",
