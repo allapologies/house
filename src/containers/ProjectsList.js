@@ -13,7 +13,7 @@ class ProjectsList extends Component {
   }
   
   render() {
-    if (!this.props.projects) {
+    if (!this.props.projects.all) {
       return <div>Пожалуйста, подождите. Идёт загрузка</div>
     }
 

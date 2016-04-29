@@ -17,7 +17,7 @@ class ProjectDescription extends Component {
   };
 
   getData = () => {
-    const projects = this.props.projects;
+    const projects = this.props.projects.all;
     const id = this.state.id;
     var title, description;
     projects.forEach((project) => {

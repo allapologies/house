@@ -29,11 +29,20 @@ router.post('/projects', function (req, res, next) {
     res.json(project)
 });
 
+router.delete('/projects/:id', function (req, res, next) {
+    mocks.projects = (mocks.projects).filter(function (project) {
+        return project.projectId != req.params.id;
+    });
+    res.json(mocks.projects);
+    //TODO handle successful and error response
+    // res.status(404).json({error: "not found"});
+});
+
 router.get('/spendings', function (req, res, next) {
     var spendings = (mocks.spendings).map(function (spending) {
         return assign({}, spending)
     });
-    res.json(spendings)
+    res.json(spendings);
 });
 
 router.post('/spendings', function (req, res, next) {

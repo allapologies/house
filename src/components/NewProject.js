@@ -28,11 +28,9 @@ class NewProject extends Component {
     event.preventDefault();
     if (!this.state.projectName) return;
     this.props.createProject({
-      projectId: Date.now(),
       title: this.state.projectName,
       description: this.state.projectDescription
     });
-    this.setState({ projectName: '' });
     this.context.router.push('/projects')
   };
   

@@ -11,15 +11,22 @@ export function fetchProjects() {
 }
 
 export function createProject(data) {
+  const request = axios.post(`${ROOT_URL}/projects`, {
+    title: data.title,
+    description: data.description
+  });
+
   return {
     type: CREATE_PROJECT,
-    payload: data
+    payload: request
   };
 }
 
 export function deleteProject(id) {
+  const request = axios.delete(`${ROOT_URL}/projects/${id}`);
+
   return {
     type: DELETE_PROJECT,
-    payload: id
+    payload: request
   };
 }
