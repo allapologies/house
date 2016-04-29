@@ -1,17 +1,23 @@
 'use strict';
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router'
 import ProjectsListItem from '../components/ProjectsListItem';
+import { fetchProjects } from '../actions';
 
 
 class ProjectsList extends Component {
+  componentWillMount() {
+    this.props.fetchProjects();
+  }
+  
   render() {
     if (!this.props.projects) {
       return <div>Пожалуйста, подождите. Идёт загрузка</div>
     }
 
-    const projects = this.props.projects.map( (project) => {
+    const projects = this.props.projects.all.map( (project) => {
       return <ProjectsListItem  key={project.projectId} project={project} />
     });
 
@@ -28,8 +34,12 @@ class ProjectsList extends Component {
   }
 }
 
-function mapStateToProps({projects}) {
-  return { projects };
-};
+function mapStateToProps(state) {
+  return { projects: state.projects };
+}
 
-export default connect(mapStateToProps)(ProjectsList);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ fetchProjects }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectsList);

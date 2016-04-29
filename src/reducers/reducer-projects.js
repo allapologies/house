@@ -1,10 +1,11 @@
-import { GET_PROJECTS, CREATE_PROJECT, DELETE_PROJECT } from '../actions/constants';
-import defaultProjects from '../fixtures';
+import { FETCH_PROJECTS, CREATE_PROJECT, DELETE_PROJECT } from '../actions/constants';
 
-export default function(state=defaultProjects, action){
+const INITIAL_STATE ={ all: [] };
+
+export default function(state=INITIAL_STATE, action){
   switch (action.type) {
-    case GET_PROJECTS:
-      return [ action.payload.data, ...state];
+    case FETCH_PROJECTS:
+      return { ...state, all: action.payload.data};
     case CREATE_PROJECT:
       return [...state, action.payload];
     case DELETE_PROJECT:

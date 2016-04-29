@@ -6,9 +6,10 @@ import { Router, browserHistory} from 'react-router';
 import routes from './routes';
 import reducers from './reducers';
 import DevTools from './containers/DevTools';
+import promise from 'redux-promise';
 
 const enhancer = compose(
-  applyMiddleware(),
+  applyMiddleware(promise),
   DevTools.instrument()
 );
 const store = createStore(reducers, {}, enhancer);
