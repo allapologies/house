@@ -23,14 +23,20 @@ class SpendsInput extends Component {
     let nextState = {};
     nextState[event.target.name] = event.target.value;
     this.setState(nextState);
-    console.log(this.state[event.target.name]);
+  };
+
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state.stage);
   };
 
   render() {
     return (
       <div>
         <h2>Название проекта</h2>
-        <form className='form-horizontal'>
+        <form
+          className='form-horizontal'
+          onSubmit={this.onFormSubmit}>
           <select
             className='form-control'
             name='stage'
