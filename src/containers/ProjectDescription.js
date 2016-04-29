@@ -41,7 +41,7 @@ class ProjectDescription extends Component {
   };
   
   render() {
-    const url = `/projects/${this.props.params.id}/spends/new`;
+    const url = `/projects/${this.props.params.id}/spendings/new`;
     return (
       <div>
         <h1>{this.state.projectId}</h1>

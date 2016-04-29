@@ -1,18 +1,22 @@
 'use strict';
 import React, { Component, PropTypes } from 'react';
+import {connect} from 'react-redux';
+import { submitSpendings } from '../actions';
 
 class SpendsInput extends Component {
   constructor(props) {
     super(props);
     this.state= {
-      id: props.params.id,
-      stage:'',
-      subStage:'',
-      material:'',
-      supplier:'',
-      quantity:'',
-      price:'',
-      comments:''
+      spendings: {
+        id: props.params.id,
+        stage: '',
+        subStage: '',
+        material: '',
+        supplier: '',
+        quantity: '',
+        price: '',
+        comments: ''
+      }
     };
   }
   static propTypes = {
@@ -27,7 +31,8 @@ class SpendsInput extends Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.stage);
+    console.log(this.state.spendings);
+    this.props.submitSpendings(this.state.spendings);
   };
 
   render() {
@@ -101,4 +106,4 @@ class SpendsInput extends Component {
   }
 }
 
-export default SpendsInput;
+export default connect(null, { submitSpendings })(SpendsInput);

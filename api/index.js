@@ -38,14 +38,14 @@ router.delete('/projects/:id', function (req, res, next) {
     // res.status(404).json({error: "not found"});
 });
 
-router.get('/spendings', function (req, res, next) {
+router.get('/projects/:id/spendings', function (req, res, next) {
     var spendings = (mocks.spendings).map(function (spending) {
         return assign({}, spending)
     });
     res.json(spendings);
 });
 
-router.post('/spendings', function (req, res, next) {
+router.post('/projects/:id/spendings', function (req, res, next) {
     var body = req.body;
     var spending = {
         id: mocks.spendings.length + 1,

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CREATE_PROJECT, DELETE_PROJECT,ROOT_URL, FETCH_PROJECTS } from './constants';
+import { CREATE_PROJECT, DELETE_PROJECT,ROOT_URL, FETCH_PROJECTS,SUBMIT_SPENDING } from './constants';
 
 export function fetchProjects() {
   const request = axios.get(`${ROOT_URL}/projects`);
@@ -27,6 +27,24 @@ export function deleteProject(id) {
 
   return {
     type: DELETE_PROJECT,
+    payload: request
+  };
+}
+
+export function submitSpendings(spendings) {
+  const request = axios.post(`${ROOT_URL}/projects/${spendings.id}/spendings`, {
+    projectId:spendings.id,
+    stage:    spendings.stage,
+    subStage: spendings.subStage,
+    material: spendings.material,
+    supplier: spendings.supplier,
+    comments: spendings.comments,
+    price:    spendings.price,
+    quantity: spendings.quantity
+  });
+
+  return {
+    type: SUBMIT_SPENDING,
     payload: request
   };
 }

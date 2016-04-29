@@ -12,6 +12,6 @@ export default (
     <Route path='projects' component={ProjectList} />
     <Route path='projects/new' component={NewProject} />
     <Route path='projects/:id' component={ProjectDescription} />
-    <Route path='projects/:id/spends/new' component={SpendsInput} />
+    <Route path='projects/:id/spendings/new' component={SpendsInput} />
   </Route>
 );
