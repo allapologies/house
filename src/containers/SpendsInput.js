@@ -19,8 +19,8 @@ class SpendsInput extends Component {
       }
     };
   }
-  static propTypes = {
-
+  static contextTypes = {
+    router: PropTypes.object
   };
 
   onInputChange = (event)=> {
@@ -33,6 +33,8 @@ class SpendsInput extends Component {
     event.preventDefault();
     console.log(this.state.spendings);
     this.props.submitSpendings(this.state.spendings);
+    let url = `/projects/${this.state.spendings.id}`;
+    this.context.router.push(url);
   };
 
   render() {

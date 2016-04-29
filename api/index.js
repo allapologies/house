@@ -39,8 +39,8 @@ router.delete('/projects/:id', function (req, res, next) {
 });
 
 router.get('/projects/:id/spendings', function (req, res, next) {
-    var spendings = (mocks.spendings).map(function (spending) {
-        return assign({}, spending)
+    var spendings = (mocks.spendings).filter(function (spending) {
+        return spending.id ==req.params.id
     });
     res.json(spendings);
 });

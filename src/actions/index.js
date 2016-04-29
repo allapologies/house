@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CREATE_PROJECT, DELETE_PROJECT,ROOT_URL, FETCH_PROJECTS,SUBMIT_SPENDING } from './constants';
+import { CREATE_PROJECT, DELETE_PROJECT,ROOT_URL, FETCH_PROJECTS,SUBMIT_SPENDING, FETCH_SPENDINGS } from './constants';
 
 export function fetchProjects() {
   const request = axios.get(`${ROOT_URL}/projects`);
@@ -45,6 +45,15 @@ export function submitSpendings(spendings) {
 
   return {
     type: SUBMIT_SPENDING,
+    payload: request
+  };
+}
+
+export function fetchSpendings(id) {
+  const request = axios.get(`${ROOT_URL}/projects/${id}/spendings`);
+
+  return {
+    type: FETCH_SPENDINGS,
     payload: request
   };
 }
