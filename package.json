@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
-    "start": "concurrent --kill-others \"webpack-dev-server --hot --inline\" \"nodemon server.js\""
+    "start": "concurrently --kill-others \"webpack-dev-server --hot --inline\" \"nodemon server.js\""
   },
   "dependencies": {
     "axios": "^0.11.0",
