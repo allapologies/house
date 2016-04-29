@@ -2,6 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { deleteProject } from '../actions';
+import { Link } from 'react-router';
 
 class ProjectDescription extends Component {
   constructor(props) {
@@ -40,11 +41,12 @@ class ProjectDescription extends Component {
   };
   
   render() {
+    const url = `/projects/${this.props.params.id}/spends/new`;
     return (
       <div>
         <h1>{this.state.projectId}</h1>
         {this.getData()}
-        <p>Внести затраты</p>
+        <Link to={url}>Внести затраты</Link>
         <p>Редактировать затраты</p>
         <p onClick={ this.onDeleteHandler }>Удалить проект</p>
       </div>

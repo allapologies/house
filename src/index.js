@@ -12,7 +12,7 @@ const enhancer = compose(
   DevTools.instrument()
 );
 const store = createStore(reducers, {}, enhancer);
-
+window.store = store;
 
 ReactDOM.render(
   <Provider store={ store }>
