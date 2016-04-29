@@ -7,7 +7,6 @@ class SpendsInput extends Component {
   constructor(props) {
     super(props);
     this.state= {
-      spendings: {
         id: props.params.id,
         stage: '',
         subStage: '',
@@ -16,7 +15,6 @@ class SpendsInput extends Component {
         quantity: '',
         price: '',
         comments: ''
-      }
     };
   }
   static contextTypes = {
@@ -32,8 +30,9 @@ class SpendsInput extends Component {
   onFormSubmit = (event) => {
     event.preventDefault();
     console.log(this.state.spendings);
-    this.props.submitSpendings(this.state.spendings);
-    let url = `/projects/${this.state.spendings.id}`;
+    this.props.submitSpendings(this.state);
+    console.log(this.state);
+    let url = `/projects/${this.state.id}`;
     this.context.router.push(url);
   };
 
@@ -58,27 +57,27 @@ class SpendsInput extends Component {
             name='subStage'
             value={this.state.subStage}
             onChange={this.onInputChange}>
-              <option>подэтап1</option>
-              <option>подэтап2</option>
-              <option>подэтап3</option>
+              <option value="1">подэтап1</option>
+              <option value="1">подэтап2</option>
+              <option value="1">подэтап3</option>
           </select>
           <select
             className='form-control'
             name='material'
             value={this.state.material}
             onChange={this.onInputChange}>
-              <option>Материал1</option>
-              <option>Материал2</option>
-              <option>создать</option>
+              <option value="1">Материал1</option>
+              <option value="1">Материал2</option>
+              <option value="1">создать</option>
             </select>
           <select
             className='form-control'
             name='supplier'
             value={this.state.supplier}
             onChange={this.onInputChange}>
-            <option>Поставщик1</option>
-            <option>Поставщик2</option>
-            <option>создать</option>
+            <option value="1">Поставщик1</option>
+            <option value="1">Поставщик2</option>
+            <option value="1">создать</option>
           </select>
           <input
             type='text'
