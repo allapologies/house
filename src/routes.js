@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route , IndexRoute} from 'react-router';
+import { Route , IndexRoute, IndexRedirect } from 'react-router';
 import SpendsInput from './containers/SpendsInput';
 
 import App from './components/app';
@@ -9,6 +9,7 @@ import ProjectDescription from './containers/ProjectDescription';
 
 export default (
   <Route path='/' component={App}>
+    <IndexRedirect to='projects' />
     <Route path='projects' component={ProjectList} />
     <Route path='projects/new' component={NewProject} />
     <Route path='projects/:id' component={ProjectDescription} />
