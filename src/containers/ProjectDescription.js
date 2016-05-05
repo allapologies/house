@@ -1,7 +1,7 @@
 'use strict';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchProject, deleteProject, fetchSpendings } from '../actions';
+import { fetchProject, deleteProject, fetchSpendings, fetchDictionaries } from '../actions';
 import { Link } from 'react-router';
 
 class ProjectDescription extends Component {
@@ -12,6 +12,7 @@ class ProjectDescription extends Component {
   componentWillMount() {
     this.props.fetchProject(this.props.params.id);
     this.props.fetchSpendings(this.props.params.id);
+    this.props.fetchDictionaries();
   }
 
 
@@ -20,14 +21,25 @@ class ProjectDescription extends Component {
     this.context.router.push('/projects/');
   };
 
+  getRelation = (arr, term) => {
+    let result;
+    arr.forEach((element)=>{
+      if (element.id == term ) {
+        result=element.name;
+      }
+    });
+    return result;
+  }
+
   renderSpendingsTable = ()=>{
+    const { stages, subStages, materials, units } = this.props.dictionaries;
     const content = this.props.spendings.all.map((spending)=>{
       return (
         <tr key={spending.id}>
-          <td>{spending.stage}</td>
-          <td>{spending.subStage}</td>
-          <td>{spending.material}</td>
-          <td>{spending.quantity}</td>
+          <td>{this.getRelation(stages, spending.stage)}</td>
+          <td>{this.getRelation(subStages, spending.subStage)}</td>
+          <td>{this.getRelation(materials, spending.material)}</td>
+          <td>{spending.quantity}{this.getRelation(units, spending.unit)}</td>
           <td>{spending.price}</td>
           <td>{spending.supplier}</td>
           <td>{spending.comments}</td>
@@ -42,7 +54,7 @@ class ProjectDescription extends Component {
           <th>Этап</th>
           <th>Подэтап</th>
           <th>Материал</th>
-          <th>Количество</th>
+          <th>Количество,ед.изм</th>
           <th>Цена</th>
           <th>Поставщик</th>
           <th>Комментарии</th>
@@ -72,11 +84,12 @@ class ProjectDescription extends Component {
   }
 }
 
-function mapStateToProps({projects, spendings}) {
+function mapStateToProps({projects, spendings, dictionaries }) {
   return {
     projects,
-    spendings
+    spendings,
+    dictionaries
   };
 }
 
-export default connect(mapStateToProps, { fetchProject, deleteProject, fetchSpendings })(ProjectDescription);
+export default connect(mapStateToProps, { fetchProject, deleteProject, fetchSpendings, fetchDictionaries })(ProjectDescription);

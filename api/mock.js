@@ -7,14 +7,17 @@ var projects = [
 ];
 
 var spendings = [
-  { id:1, projectId: 1, stage: 1, subStage: 1, material: 'Обои',
+  { id:1, projectId: 1, stage: 1, subStage: 1, material: 1, unit: 1,
     supplier:'Петрович', quantity:10, price:500, comments: 'Без комментариев' 
   },
-  { id:2, projectId: 1, stage: 2, subStage: 2, material: 'Дерево',
+  { id:2, projectId: 1, stage: 2, subStage: 2, material: 2, unit: 2,
     supplier:'Петрович', quantity:10, price:500, comments: 'Быстрая доставка'
   },
-  { id:3, projectId: 2, stage: 1, subStage: 1, material: 'Бетон',
+  { id:3, projectId: 2, stage: 1, subStage: 1, material: 3, unit: 3,
     supplier:'Бетон-Люкс', quantity:5, price:3000, comments: 'С доставкой'
+  },
+  { id:4, projectId: 3, stage: 1, subStage: 1, material: 2, unit: 1,
+    supplier:'Магента', quantity:5, price:3000, comments: 'С доставкой'
   }
 ];
 

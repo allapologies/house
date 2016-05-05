@@ -1,5 +1,8 @@
 import axios from 'axios';
-import { CREATE_PROJECT, DELETE_PROJECT,ROOT_URL, FETCH_PROJECT, FETCH_PROJECTS,SUBMIT_SPENDING, FETCH_SPENDINGS } from './constants';
+import { 
+  CREATE_PROJECT, DELETE_PROJECT,ROOT_URL, FETCH_PROJECT, FETCH_PROJECTS,
+  SUBMIT_SPENDING, FETCH_SPENDINGS, FETCH_DICTIONARIES
+} from './constants';
 
 export function fetchProjects() {
   const request = axios.get(`${ROOT_URL}/projects`);
@@ -41,7 +44,6 @@ export function deleteProject(id) {
 }
 
 export function submitSpendings(spendings) {
-  console.log('id is---', spendings);
   const request = axios.post(`${ROOT_URL}/projects/${spendings.id}/spendings`, {
     projectId:spendings.id,
     stage:    spendings.stage,
@@ -64,6 +66,15 @@ export function fetchSpendings(id) {
 
   return {
     type: FETCH_SPENDINGS,
+    payload: request
+  };
+}
+
+export function fetchDictionaries() {
+  const request = axios.get(`${ROOT_URL}/dictionaries`);
+
+  return {
+    type: FETCH_DICTIONARIES,
     payload: request
   };
 }
