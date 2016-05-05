@@ -29,7 +29,15 @@ class ProjectDescription extends Component {
       }
     });
     return result;
-  }
+  };
+
+  countAllSpends = () => {
+    let sum =0;
+    this.props.spendings.all.forEach((spending) => {
+      sum += spending.price * spending.quantity;
+    });
+    return sum;
+  };
 
   renderSpendingsTable = ()=>{
     const { stages, subStages, materials, units } = this.props.dictionaries;
@@ -75,6 +83,7 @@ class ProjectDescription extends Component {
         <Link to='/projects'>Назад</Link>
         <h2>{title}</h2>
         <h3>{description}</h3>
+        <h4>Текущие затраты: {this.countAllSpends()}</h4>
         <Link to={url}>Внести затраты</Link>
         <p>Редактировать затраты</p>
         <p onClick={ this.onDeleteHandler }>Удалить проект</p>
