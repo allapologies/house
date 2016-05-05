@@ -1,11 +1,20 @@
 import axios from 'axios';
-import { CREATE_PROJECT, DELETE_PROJECT,ROOT_URL, FETCH_PROJECTS,SUBMIT_SPENDING, FETCH_SPENDINGS } from './constants';
+import { CREATE_PROJECT, DELETE_PROJECT,ROOT_URL, FETCH_PROJECT, FETCH_PROJECTS,SUBMIT_SPENDING, FETCH_SPENDINGS } from './constants';
 
 export function fetchProjects() {
   const request = axios.get(`${ROOT_URL}/projects`);
 
   return {
     type: FETCH_PROJECTS,
+    payload: request
+  };
+}
+
+export function fetchProject(id) {
+  const request = axios.get(`${ROOT_URL}/projects/${id}`);
+
+  return {
+    type: FETCH_PROJECT,
     payload: request
   };
 }
