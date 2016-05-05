@@ -18,7 +18,39 @@ var spendings = [
   }
 ];
 
+var stages = [
+  { id:1, name: 'фундамент'},
+  { id:2, name: 'стены'},
+  { id:3, name: 'кровля'},
+  { id:4, name: 'отмостка'},
+];
+
+var subStages = [
+  { id:1, name: 'пол'},
+  { id:2, name: 'обои'},
+  { id:3, name: 'обрешетка'},
+  { id:4, name: 'канализация'}
+];
+
+var materials = [
+  { id:1, name: 'гвозди'},
+  { id:2, name: 'бетон'},
+  { id:3, name: 'брус'},
+  { id:4, name: 'черепица'}
+];
+
+var units = [
+  { id:1, name: 'м'},
+  { id:2, name: 'шт'},
+  { id:3, name: 'кг'},
+  { id:4, name: 'м3'}
+];
+
 module.exports = {
     projects: projects,
-    spendings: spendings
+    spendings: spendings,
+    stages: stages,
+    subStages: subStages,
+    materials: materials,
+    units: units
 };

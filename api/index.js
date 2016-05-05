@@ -62,4 +62,26 @@ router.post('/projects/:id/spendings', function (req, res, next) {
     res.json(spending)
 });
 
+router.get('/stages', function (req, res, next) {
+    let stages = (mocks.stages).map(function (stage) {
+        return assign({}, stage)
+    });
+    let subStages = (mocks.subStages).map(function (sub) {
+        return assign({}, sub)
+    });
+    
+    res.json({stages,subStages});
+});
+
+router.get('/materials', function (req, res, next) {
+    let materials = (mocks.materials).map(function (material) {
+        return assign({}, material)
+    });
+    let units = (mocks.units).map(function (unit) {
+        return assign({}, unit)
+    });
+
+    res.json({ materials, units });
+});
+
 module.exports = router;
