@@ -56,20 +56,23 @@ class ProjectDescription extends Component {
     });
 
     return (
-      <table className="table table-hover">
-        <tbody>
-        <tr>
-          <th>Этап</th>
-          <th>Подэтап</th>
-          <th>Материал</th>
-          <th>Количество,ед.изм</th>
-          <th>Цена</th>
-          <th>Поставщик</th>
-          <th>Комментарии</th>
-        </tr>
-        {content}
-        </tbody>
-      </table>
+      <div>
+        <table className="table table-hover">
+          <tbody>
+          <tr>
+            <th>Этап</th>
+            <th>Подэтап</th>
+            <th>Материал</th>
+            <th>Количество,ед.изм</th>
+            <th>Цена</th>
+            <th>Поставщик</th>
+            <th>Комментарии</th>
+          </tr>
+          {content}
+          </tbody>
+        </table>
+
+      </div>
     )
   };
 
@@ -79,15 +82,19 @@ class ProjectDescription extends Component {
     if (!project) return <div>Loading project data</div>
     const { title, description } = project;
     return (
-      <div>
-        <Link to='/projects'>Назад</Link>
-        <h2>{title}</h2>
-        <h3>{description}</h3>
-        <h4>Текущие затраты: {this.countAllSpends()}</h4>
-        <Link to={url}>Внести затраты</Link>
-        <p>Редактировать затраты</p>
-        <p onClick={ this.onDeleteHandler }>Удалить проект</p>
-        {this.renderSpendingsTable()}
+      <div className='row'>
+        <div className='col-sm-6 col-sm-offset-3'>
+          <Link to='/projects'>Назад</Link>
+          <h3>{title}</h3>
+          <h3>{description}</h3>
+          <h4>Текущие затраты: {this.countAllSpends()}</h4>
+          <Link to={url}>Внести затраты</Link>
+          <p>Редактировать затраты</p>
+          <p onClick={ this.onDeleteHandler }>Удалить проект</p>
+        </div>
+        <div className='col-sm-6 col-sm-offset-3'>
+          {this.renderSpendingsTable()}
+        </div>
       </div>
     );
   }

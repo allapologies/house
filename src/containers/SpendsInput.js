@@ -1,7 +1,7 @@
 'use strict';
 import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
-import { submitSpendings } from '../actions';
+import { submitSpendings, fetchDictionaries } from '../actions';
 
 class SpendsInput extends Component {
   constructor(props) {
@@ -13,12 +13,17 @@ class SpendsInput extends Component {
         material: '',
         supplier: '',
         quantity: '',
+        unit: '',
         price: '',
         comments: ''
     };
   }
   static contextTypes = {
     router: PropTypes.object
+  };
+
+  componentWillMount() {
+    this.props.fetchDictionaries();
   };
 
   onInputChange = (event)=> {
@@ -29,17 +34,23 @@ class SpendsInput extends Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.spendings);
     this.props.submitSpendings(this.state);
-    console.log(this.state);
     let url = `/projects/${this.state.id}`;
     this.context.router.push(url);
   };
 
+  getOptions = (property) => {
+    return this.props.dictionaries[property].map((obj)=> {
+      return <option key={obj.id} value={obj.id}>{obj.name}</option>
+    });
+  }
+
   render() {
+    if (!this.props.dictionaries.stages) return <div>loading...</div>
     return (
       <div>
-        <h2>Название проекта</h2>
+        <h2>
+        </h2>
         <form
           className='form-horizontal'
           onSubmit={this.onFormSubmit}>
@@ -48,27 +59,24 @@ class SpendsInput extends Component {
             name='stage'
             value={this.state.stage}
             onChange={this.onInputChange}>
-              <option value="1">Фундамент</option>
-              <option value="2">Стены</option>
-              <option value="3">Кровля</option>
+            <option value='stage' disabled>Категория</option>
+            {this.getOptions('stages')}
           </select>
           <select
             className='form-control'
             name='subStage'
             value={this.state.subStage}
             onChange={this.onInputChange}>
-              <option value="1">подэтап1</option>
-              <option value="1">подэтап2</option>
-              <option value="1">подэтап3</option>
+            <option value='subStages' disabled>Подкатегория</option>
+            {this.getOptions('subStages')}
           </select>
           <select
             className='form-control'
             name='material'
             value={this.state.material}
             onChange={this.onInputChange}>
-              <option value="1">Материал1</option>
-              <option value="1">Материал2</option>
-              <option value="1">создать</option>
+            <option value='materials' disabled>Материалы</option>
+            {this.getOptions('materials')}
             </select>
           <select
             className='form-control'
@@ -86,6 +94,14 @@ class SpendsInput extends Component {
             placeholder='количество'
             value={this.state.quantity}
             onChange={this.onInputChange}/>
+          <select
+            className='form-control'
+            name='unit'
+            value={this.state.unit}
+            onChange={this.onInputChange}>
+            <option value='units' disabled>Ед.изм</option>
+            {this.getOptions('units')}
+          </select>
           <input
             type='text'
             name='price'
@@ -107,4 +123,10 @@ class SpendsInput extends Component {
   }
 }
 
-export default connect(null, { submitSpendings })(SpendsInput);
+function mapStateToProps({dictionaries}) {
+  return {
+    dictionaries
+  };
+}
+
+export default connect(mapStateToProps, { submitSpendings, fetchDictionaries })(SpendsInput);

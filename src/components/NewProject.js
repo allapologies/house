@@ -36,25 +36,37 @@ class NewProject extends Component {
   
   render() {
     return (
-      <div>
-        <h2>новый проект</h2>
-        <form onSubmit={this.onFormSubmit} className='form-inline'>
-          <div className='form-group'>
-            <input
-              value={this.state.projectName}
-              placeholder='введите имя нового проекта'
-              onChange={this.onNameInputChange}
-              className='form-control'
-            />
-            <input
-              value={this.state.projectDescription}
-              placeholder='введите описание проекта'
-              onChange={this.onDescriptionInputChange}
-              className='form-control'
-            />
-          </div>
-          <button type='submit' className='btn btn-default'>Создать</button>
-        </form>
+      <div className='row'>
+        <div className='col-sm-6 col-sm-offset-3'>
+          <h2>новый проект</h2>
+          <form onSubmit={this.onFormSubmit} className='form-horizontal'>
+            <div className='form-group'>
+              <div className='col-sm-6'>
+                <input
+                  value={this.state.projectName}
+                  placeholder='введите имя нового проекта'
+                  onChange={this.onNameInputChange}
+                  className='form-control'
+                />
+              </div>
+            </div>
+            <div className='form-group'>
+              <div className='col-sm-6'>
+                <input
+                  value={this.state.projectDescription}
+                  placeholder='введите описание проекта'
+                  onChange={this.onDescriptionInputChange}
+                  className='form-control'
+                />
+              </div>
+            </div>
+            <div className='form-group'>
+              <div className='col-sm-6'>
+                <button type='submit' className='btn btn-default'>Создать</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

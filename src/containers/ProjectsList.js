@@ -22,13 +22,15 @@ class ProjectsList extends Component {
     });
 
     return (
-      <div className='projectList'>
-        <ul className='list-group'>
-          {projects}
-        </ul>
-        <Link to='/projects/new' className='btn btn-default'>
+      <div className='projectList row'>
+        <div className='col-sm-6 col-sm-offset-3'>
+          <ul className='list-group'>
+            {projects}
+          </ul>
+          <Link to='/projects/new' className='btn btn-default'>
             Создать проект
-        </Link>
+          </Link>
+        </div>
       </div>
     );
   }
