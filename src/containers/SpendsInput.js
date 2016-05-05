@@ -48,76 +48,95 @@ class SpendsInput extends Component {
   render() {
     if (!this.props.dictionaries.stages) return <div>loading...</div>
     return (
-      <div>
-        <h2>
-        </h2>
-        <form
-          className='form-horizontal'
-          onSubmit={this.onFormSubmit}>
-          <select
-            className='form-control'
-            name='stage'
-            value={this.state.stage}
-            onChange={this.onInputChange}>
-            <option value='stage' disabled>Категория</option>
-            {this.getOptions('stages')}
-          </select>
-          <select
-            className='form-control'
-            name='subStage'
-            value={this.state.subStage}
-            onChange={this.onInputChange}>
-            <option value='subStages' disabled>Подкатегория</option>
-            {this.getOptions('subStages')}
-          </select>
-          <select
-            className='form-control'
-            name='material'
-            value={this.state.material}
-            onChange={this.onInputChange}>
-            <option value='materials' disabled>Материалы</option>
-            {this.getOptions('materials')}
-            </select>
-          <select
-            className='form-control'
-            name='supplier'
-            value={this.state.supplier}
-            onChange={this.onInputChange}>
-            <option value="1">Поставщик1</option>
-            <option value="1">Поставщик2</option>
-            <option value="1">создать</option>
-          </select>
-          <input
-            type='text'
-            name='quantity'
-            className='form-control'
-            placeholder='количество'
-            value={this.state.quantity}
-            onChange={this.onInputChange}/>
-          <select
-            className='form-control'
-            name='unit'
-            value={this.state.unit}
-            onChange={this.onInputChange}>
-            <option value='units' disabled>Ед.изм</option>
-            {this.getOptions('units')}
-          </select>
-          <input
-            type='text'
-            name='price'
-            className='form-control'
-            placeholder='цена'
-            value={this.state.price}
-            onChange={this.onInputChange}/>
-          <textarea
-            className='form-control'
-            name='comments'
-            rows="3"
-            placeholder='комментарии'
-            value={this.state.comments}
-            onChange={this.onInputChange}/>
-          <button type='submit' className='btn btn-default'>Сохранить</button>
-        </form>
+      <div className='row'>
+        <div className='col-sm-6 col-md-8 col-sm-offset-3 col-md-offset-2'>
+          <h2></h2>
+          <form
+            className='form-horizontal'
+            onSubmit={this.onFormSubmit}>
+            <div className='form-group'>
+              <select
+                className='form-control'
+                name='stage'
+                value={this.state.stage}
+                onChange={this.onInputChange}>
+                <option value='stage' disabled>Категория</option>
+                {this.getOptions('stages')}
+              </select>
+            </div>
+            <div className='form-group'>
+              <select
+                className='form-control'
+                name='subStage'
+                value={this.state.subStage}
+                onChange={this.onInputChange}>
+                <option value='subStages' disabled>Подкатегория</option>
+                {this.getOptions('subStages')}
+              </select>
+            </div>
+            <div className='form-group'>
+              <select
+                className='form-control'
+                name='material'
+                value={this.state.material}
+                onChange={this.onInputChange}>
+                <option value='materials' disabled>Материалы</option>
+                {this.getOptions('materials')}
+              </select>
+            </div>
+            <div className='form-group'>
+              <select
+                className='form-control'
+                name='supplier'
+                value={this.state.supplier}
+                onChange={this.onInputChange}>
+                <option value="1">Поставщик1</option>
+                <option value="1">Поставщик2</option>
+                <option value="1">создать</option>
+              </select>
+            </div>
+            <div className='form-group'>
+              <input
+                type='text'
+                name='quantity'
+                className='form-control'
+                placeholder='количество'
+                value={this.state.quantity}
+                onChange={this.onInputChange}/>
+            </div>
+            <div className='form-group'>
+              <select
+                className='form-control'
+                name='unit'
+                value={this.state.unit}
+                onChange={this.onInputChange}>
+                <option value='units' disabled>Ед.изм</option>
+                {this.getOptions('units')}
+              </select>
+            </div>
+            <div className='form-group'>
+              <input
+                type='text'
+                name='price'
+                className='form-control'
+                placeholder='цена'
+                value={this.state.price}
+                onChange={this.onInputChange}/>
+            </div>
+            <div className='form-group'>
+              <textarea
+              className='form-control'
+              name='comments'
+              rows="3"
+              placeholder='комментарии'
+              value={this.state.comments}
+              onChange={this.onInputChange}/>
+            </div>
+            <div className='form-group'>
+              <button type='submit' className='btn btn-default'>Сохранить</button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
