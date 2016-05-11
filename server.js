@@ -10,7 +10,7 @@ var host = process.env.IP || '0.0.0.0';
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
-app.use('/api', api)
+app.use('/api', api);
 
 app.listen(port, host, function (err) {
     if (err) {
