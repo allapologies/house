@@ -18,6 +18,42 @@ var spendings = [
   },
   { id:4, projectId: 3, stage: 1, subStage: 1, material: 2, unit: 1,
     supplier:'Магента', quantity:5, price:3000, comments: 'С доставкой'
+  },
+  { id:5, projectId: 1, stage: 1, subStage: 1, material: 1, unit: 1,
+    supplier:'Петрович', quantity:10, price:500, comments: 'Без комментариев'
+  },
+  { id:6, projectId: 1, stage: 2, subStage: 2, material: 2, unit: 2,
+    supplier:'Петрович', quantity:10, price:500, comments: 'Быстрая доставка'
+  },
+  { id:7, projectId: 1, stage: 1, subStage: 1, material: 3, unit: 3,
+    supplier:'Бетон-Люкс', quantity:5, price:3000, comments: 'С доставкой'
+  },
+  { id:8, projectId: 1, stage: 1, subStage: 1, material: 2, unit: 1,
+    supplier:'Магента', quantity:5, price:3000, comments: 'С доставкой'
+  },
+  { id:9, projectId: 2, stage: 1, subStage: 1, material: 1, unit: 1,
+    supplier:'Петрович', quantity:10, price:500, comments: 'Без комментариев'
+  },
+  { id:10, projectId: 2, stage: 2, subStage: 2, material: 2, unit: 2,
+    supplier:'Петрович', quantity:10, price:500, comments: 'Быстрая доставка'
+  },
+  { id:11, projectId: 2, stage: 1, subStage: 1, material: 3, unit: 3,
+    supplier:'Бетон-Люкс', quantity:5, price:3000, comments: 'С доставкой'
+  },
+  { id:12, projectId: 2, stage: 1, subStage: 1, material: 2, unit: 1,
+    supplier:'Магента', quantity:5, price:3000, comments: 'С доставкой'
+  },
+  { id:13, projectId: 2, stage: 1, subStage: 1, material: 1, unit: 1,
+    supplier:'Петрович', quantity:10, price:500, comments: 'Без комментариев'
+  },
+  { id:14, projectId: 2, stage: 2, subStage: 2, material: 2, unit: 2,
+    supplier:'Петрович', quantity:10, price:500, comments: 'Быстрая доставка'
+  },
+  { id:15, projectId: 2, stage: 1, subStage: 1, material: 3, unit: 3,
+    supplier:'Бетон-Люкс', quantity:5, price:3000, comments: 'С доставкой'
+  },
+  { id:16, projectId: 2, stage: 1, subStage: 1, material: 2, unit: 1,
+    supplier:'Магента', quantity:5, price:3000, comments: 'С доставкой'
   }
 ];
 

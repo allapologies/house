@@ -46,8 +46,8 @@ class ProjectDescription extends Component {
         <tr key={spending.id}>
           <td>{this.getRelation(materials, spending.material)}</td>
           <td>{spending.quantity}{this.getRelation(units, spending.unit)}</td>
+          <td>{spending.price}</td>
           <td>{spending.price * spending.quantity}</td>
-          <td className='hidden-xs'>{spending.price}</td>
           <td className='hidden-xs'>{this.getRelation(stages, spending.stage)}</td>
           <td className='hidden-xs'>{this.getRelation(subStages, spending.subStage)}</td>
           <td className='hidden-xs'>{spending.supplier}</td>
@@ -59,13 +59,13 @@ class ProjectDescription extends Component {
 
     return (
       <div>
-        <table className="table table-hover">
+        <table className="spendings table table-hover">
           <tbody>
           <tr>
             <th>Материал</th>
             <th>Количество</th>
+            <th>Цена</th>
             <th>Сумма</th>
-            <th className='hidden-xs'>Цена</th>
             <th className='hidden-xs'>Этап</th>
             <th className='hidden-xs'>Подэтап</th>
             <th className='hidden-xs'>Поставщик</th>
@@ -91,17 +91,22 @@ class ProjectDescription extends Component {
           <div className='col-xs-10'>
             <Link to='/projects'>проекты</Link>
             <span> > {title}</span>
-            <p>{description}</p>
+            <h3>{description}</h3>
           </div>
           <div className='col-xs-2'>
-            {this.countAllSpends()}
+            {this.countAllSpends()} р.
           </div>
         </div>
         <div className='row'>
           <div className='col-xs-12'>
-            <Link to={url}><span className='glyphicon glyphicon-plus'></span></Link>
-            <p>Редактировать затраты</p>
-            <p onClick={ this.onDeleteHandler }>Удалить проект</p>
+            <Link to={url}>
+              <button type="button" className="btn btn-success btn-sm">
+                <span className="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить расходы
+              </button>
+            </Link>
+            <button onClick={ this.onDeleteHandler } type="button" className="btn btn-danger btn-sm">
+              <span className="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Удалить проект
+            </button>
           </div>
         </div>
         <div>
