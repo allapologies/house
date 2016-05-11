@@ -4,7 +4,7 @@ var path = require('path');
 var express = require('express');
 var api = require('./api');
 var bodyParser = require('body-parser');
-var port = 3001;
+var port = process.env.PORT || 3001;
 var host = 'localhost'
 
 var app = express();
