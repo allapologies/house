@@ -8,10 +8,9 @@ var port = process.env.PORT || 3001;
 var host = process.env.IP || '0.0.0.0';
 
 var app = express();
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use('/api', api);
-
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.listen(port, host, function (err) {
     if (err) {
         console.log(err);
