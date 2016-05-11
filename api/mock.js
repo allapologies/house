@@ -1,3 +1,5 @@
+"use strict";
+
 var projects = [
   { projectId: 1, title: 'Дом в Барвихе', description: 'Трехэтажный дом с верандой' },
   { projectId: 2, title: 'Баня в Репино', description: 'Баня из оцелиндрованного бревно' },
