@@ -30,7 +30,9 @@
     "react-router": "^2.3.0",
     "redux": "^3.0.4",
     "redux-promise": "^0.5.3",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "webpack": "^1.12.9"
+
   },
   "devDependencies": {
     "babel-core": "^6.2.1",
@@ -50,7 +52,6 @@
     "redux-devtools-log-monitor": "^1.0.9",
     "should": "^8.2.2",
     "supertest": "^1.1.0",
-    "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
   }
 }
