@@ -44,13 +44,15 @@ class ProjectDescription extends Component {
     const content = this.props.spendings.all.map((spending)=>{
       return (
         <tr key={spending.id}>
-          <td>{this.getRelation(stages, spending.stage)}</td>
-          <td>{this.getRelation(subStages, spending.subStage)}</td>
           <td>{this.getRelation(materials, spending.material)}</td>
           <td>{spending.quantity}{this.getRelation(units, spending.unit)}</td>
-          <td>{spending.price}</td>
-          <td>{spending.supplier}</td>
-          <td>{spending.comments}</td>
+          <td>{spending.price * spending.quantity}</td>
+          <td className='hidden-xs'>{spending.price}</td>
+          <td className='hidden-xs'>{this.getRelation(stages, spending.stage)}</td>
+          <td className='hidden-xs'>{this.getRelation(subStages, spending.subStage)}</td>
+          <td className='hidden-xs'>{spending.supplier}</td>
+          <td className='hidden-xs'>{spending.comments}</td>
+          <td><span className='glyphicon glyphicon-remove'></span></td>
         </tr>
         )
     });
@@ -60,13 +62,15 @@ class ProjectDescription extends Component {
         <table className="table table-hover">
           <tbody>
           <tr>
-            <th>Этап</th>
-            <th>Подэтап</th>
             <th>Материал</th>
-            <th>Количество,ед.изм</th>
-            <th>Цена</th>
-            <th>Поставщик</th>
-            <th>Комментарии</th>
+            <th>Количество</th>
+            <th>Сумма</th>
+            <th className='hidden-xs'>Цена</th>
+            <th className='hidden-xs'>Этап</th>
+            <th className='hidden-xs'>Подэтап</th>
+            <th className='hidden-xs'>Поставщик</th>
+            <th className='hidden-xs'>Комментарии</th>
+            <th></th>
           </tr>
           {content}
           </tbody>
@@ -82,18 +86,30 @@ class ProjectDescription extends Component {
     if (!project) return <div>Loading project data</div>
     const { title, description } = project;
     return (
-      <div className='row'>
-        <div className='col-sm-6 col-sm-offset-3'>
-          <Link to='/projects'>Назад</Link>
-          <h3>{title}</h3>
-          <h3>{description}</h3>
-          <h4>Текущие затраты: {this.countAllSpends()}</h4>
-          <Link to={url}>Внести затраты</Link>
-          <p>Редактировать затраты</p>
-          <p onClick={ this.onDeleteHandler }>Удалить проект</p>
+      <div>
+        <div className='row'>
+          <div className='col-xs-10'>
+            <Link to='/projects'>проекты</Link>
+            <span> > {title}</span>
+            <p>{description}</p>
+          </div>
+          <div className='col-xs-2'>
+            {this.countAllSpends()}
+          </div>
         </div>
-        <div className='col-sm-6 col-sm-offset-3'>
-          {this.renderSpendingsTable()}
+        <div className='row'>
+          <div className='col-xs-12'>
+            <Link to={url}><span className='glyphicon glyphicon-plus'></span></Link>
+            <p>Редактировать затраты</p>
+            <p onClick={ this.onDeleteHandler }>Удалить проект</p>
+          </div>
+        </div>
+        <div>
+          <div className='row'>
+            <div className='col-xs-12'>
+              {this.renderSpendingsTable()}
+            </div>  
+          </div>
         </div>
       </div>
     );
