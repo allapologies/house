@@ -1,4 +1,7 @@
-export const ROOT_URL = 'http://127.0.0.1:8080/api';
+var port = process.env.PORT || 3001;
+var host = process.env.IP || '127.0.0.1';
+
+export const ROOT_URL = `http://${host}:${port}/api`;
 
 export const FETCH_PROJECT = 'FETCH_PROJECT';
 export const FETCH_PROJECTS = 'FETCH_PROJECTS';

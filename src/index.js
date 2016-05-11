@@ -7,6 +7,7 @@ import routes from './routes';
 import reducers from './reducers';
 import DevTools from './containers/DevTools';
 import promise from 'redux-promise';
+import css from "./../style/style.css";
 
 const enhancer = compose(
   applyMiddleware(promise),

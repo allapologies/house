@@ -34,6 +34,8 @@ module.exports = {
       { test: /\.js?$/,
         loader: 'babel',
         exclude: /node_modules/ },
+      { test: /\.css$/,
+        loader: "style-loader!css-loader"},
       { test: /\.scss?$/,
         loader: 'style!css!sass',
         include: path.join(__dirname, 'src', 'styles') },
