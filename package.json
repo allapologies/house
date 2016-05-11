@@ -3,28 +3,49 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "test": "mocha test/test_API.js --reporter mochawesome --reporter-options reportDir=public/tests"
+    "start": "concurrently --kill-others \"webpack-dev-server --hot --inline\" \"nodemon server.js\""
   },
   "dependencies": {
+    "axios": "^0.11.0",
+    "babel-preset-stage-1": "^6.1.18",
     "body-parser": "~1.13.2",
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "express-session": "^1.13.0",
     "express-validator": "*",
+    "mongoose": "^4.4.3",
     "morgan": "~1.6.1",
     "nodemailer": "*",
-    "serve-favicon": "~2.3.0",
-    "express-session": "^1.13.0",
-    "mongoose": "^4.4.3",
     "passport": "^0.3.2",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-redux": "^4.0.0",
+    "react-router": "^2.3.0",
+    "redux": "^3.0.4",
+    "redux-promise": "^0.5.3",
+    "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "body-parser": "^1.15.0",
+    "chai": "^3.5.0",
+    "chai-jquery": "^2.0.0",
     "debug": "^2.2.0",
+    "jsdom": "^8.1.0",
+    "mocha": "^2.4.5",
     "mochawesome": "^1.2.2",
+    "react-addons-test-utils": "^0.14.7",
+    "redux-devtools": "^3.2.0",
+    "redux-devtools-dock-monitor": "^1.1.1",
+    "redux-devtools-log-monitor": "^1.0.9",
     "should": "^8.2.2",
-    "supertest": "^1.1.0"
+    "supertest": "^1.1.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
   }
 }
