@@ -1,9 +1,14 @@
 {
   "name": "house",
   "version": "1.0.1",
+  "engines": {
+    "node": "6.0.0"
+  },
   "private": true,
   "scripts": {
-    "start": "concurrently --kill-others \"webpack-dev-server --hot --inline\" \"nodemon server.js\""
+    "start": "node server.js",
+    "postinstall": "webpack",
+    "test": "concurrently --kill-others \"webpack-dev-server --hot --inline\" \"nodemon server.js\""
   },
   "dependencies": {
     "axios": "^0.11.0",
