@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "postinstall": "webpack",
+    "postinstall":  "webpack",
     "test": "concurrently --kill-others \"webpack-dev-server --hot --inline\" \"nodemon server.js\""
   },
   "dependencies": {
