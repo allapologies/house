@@ -40,8 +40,9 @@ class ProjectDescription extends Component {
   };
 
   renderSpendingsTable = ()=>{
-    const { stages, subStages, materials, units } = this.props.dictionaries;
-    const content = this.props.spendings.all.map((spending)=>{
+    const { dictionaries: {stages, subStages, materials, units}, spendings } = this.props;
+    if (!materials || !spendings.all) return <div>Loading project data</div>;
+    const content = spendings.all.map((spending)=>{
       return (
         <tr key={spending.id}>
           <td>{this.getRelation(materials, spending.material)}</td>
