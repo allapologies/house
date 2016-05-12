@@ -7,7 +7,7 @@ export default class App extends Component {
     return (
       <div>
         {this.props.children}
-        <DevTools />
+        {/*<DevTools />*/}
       </div>
     );
   }
