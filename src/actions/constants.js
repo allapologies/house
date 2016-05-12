@@ -1,7 +1,7 @@
-var port = process.env.PORT || 80;
-var host = process.env.IP || 'cbv-tec.herokuapp.com';
-// var port = process.env.PORT || 3001;
-// var host = process.env.IP || '127.0.0.1';
+// var port = process.env.PORT || 80;
+// var host = process.env.IP || 'cbv-tec.herokuapp.com';
+var port = process.env.PORT || 8080;
+var host = process.env.IP || '127.0.0.1';
 
 export const ROOT_URL = `http://${host}:${port}/api`;
 
