@@ -1,3 +1,6 @@
+const path = require('path');
+const webpack = require('webpack');
+
 module.exports = {
   entry: [
     './src/index.js'
@@ -8,10 +11,20 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [{
-      exclude: /node_modules/,
-      loader: 'babel'
-    }]
+    loaders: [
+      { test: /\.js?$/,
+        loader: 'babel',
+        exclude: /node_modules/ },
+      { test: /\.css$/,
+        loader: "style-loader!css-loader"},
+      { test: /\.scss?$/,
+        loader: 'style!css!sass',
+        include: path.join(__dirname, 'src', 'styles') },
+      { test: /\.png$/,
+        loader: 'file' },
+      { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        loader: 'file'}
+    ]
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
