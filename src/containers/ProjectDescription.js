@@ -18,7 +18,7 @@ class ProjectDescription extends Component {
 
   onDeleteHandler = () => {
     this.props.deleteProject(this.props.params.id);
-    this.context.router.push('/projects/');
+    this.context.router.push('/');
   };
 
   getRelation = (arr, term) => {
@@ -89,7 +89,7 @@ class ProjectDescription extends Component {
       <div>
         <div className='row'>
           <div className='col-xs-10'>
-            <Link to='/projects'>проекты</Link>
+            <Link to='/'>проекты</Link>
             <span> > {title}</span>
             <h3>{description}</h3>
           </div>

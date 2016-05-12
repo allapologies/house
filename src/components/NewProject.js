@@ -31,7 +31,7 @@ class NewProject extends Component {
       title: this.state.projectName,
       description: this.state.projectDescription
     });
-    this.context.router.push('/projects')
+    this.context.router.push('/')
   };
   
   render() {
