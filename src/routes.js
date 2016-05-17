@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route , IndexRoute, IndexRedirect } from 'react-router';
-import SpendsInput from './containers/SpendsInput';
+import SpendsInput from './containers/NewSpends';
 import App from './components/app';
 import ProjectList from './containers/ProjectsList';
 import NewProject from './components/NewProject';
