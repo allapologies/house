@@ -3,8 +3,16 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchProject, deleteProject, fetchSpendings, fetchDictionaries } from '../actions';
 import { Link } from 'react-router';
+import Modal from '../components/modal';
 
 class ProjectDescription extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      toBeDeleted: false
+    }
+  }
+
   static contextTypes = {
     router: PropTypes.object
   };
@@ -17,6 +25,7 @@ class ProjectDescription extends Component {
 
 
   onDeleteHandler = () => {
+    this.setState ({ toBeDeleted : !this.state.toBeDeleted });
     this.props.deleteProject(this.props.params.id);
     this.context.router.push('/');
   };
@@ -57,7 +66,7 @@ class ProjectDescription extends Component {
         </tr>
         )
     });
-
+        
     return (
       <div>
         <table className="spendings table table-hover">
@@ -82,6 +91,7 @@ class ProjectDescription extends Component {
   };
 
   render() {
+    if (this.state.toBeDeleted) return <Modal />;
     const url = `/projects/${this.props.params.id}/spendings/new`;
     const project = this.props.projects.current;
     if (!project) return <div>Loading project data</div>
