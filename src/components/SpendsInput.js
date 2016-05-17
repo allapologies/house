@@ -1,13 +1,11 @@
 'use strict';
 import React, { Component, PropTypes } from 'react';
-import {connect} from 'react-redux';
-import { submitSpendings, fetchDictionaries } from '../actions';
 
 class SpendsInput extends Component {
   constructor(props) {
     super(props);
     this.state= {
-        id: props.params.id,
+        id: props.id,
         stage: '',
         subStage: '',
         material: '',
@@ -18,12 +16,9 @@ class SpendsInput extends Component {
         comments: ''
     };
   }
+
   static contextTypes = {
     router: PropTypes.object
-  };
-
-  componentWillMount() {
-    this.props.fetchDictionaries();
   };
 
   onInputChange = (event)=> {
@@ -31,26 +26,23 @@ class SpendsInput extends Component {
     nextState[event.target.name] = event.target.value;
     this.setState(nextState);
   };
-
-  onFormSubmit = (event) => {
-    event.preventDefault();
-    this.props.submitSpendings(this.state);
-    let url = `/projects/${this.state.id}`;
-    this.context.router.push(url);
-  };
-
+  
   getOptions = (property) => {
     return this.props.dictionaries[property].map((obj)=> {
       return <option key={obj.id} value={obj.id}>{obj.name}</option>
     });
-  }
+  };
+
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    this.props.submitSpendings(this.state);
+    this.context.router.push(`/projects/${this.state.id}`);
+  };
 
   render() {
-    if (!this.props.dictionaries.stages) return <div>loading...</div>
     return (
       <div className='row'>
         <div className='col-sm-6 col-md-8 col-sm-offset-3 col-md-offset-2'>
-          <h2></h2>
           <form
             className='form-horizontal'
             onSubmit={this.onFormSubmit}>
@@ -142,10 +134,4 @@ class SpendsInput extends Component {
   }
 }
 
-function mapStateToProps({dictionaries}) {
-  return {
-    dictionaries
-  };
-}
-
-export default connect(mapStateToProps, { submitSpendings, fetchDictionaries })(SpendsInput);
+export default SpendsInput;
