@@ -5,13 +5,13 @@ class SpendsInput extends Component {
   constructor(props) {
     super(props);
     this.state= {
-        id: props.id,
-        stage: '',
-        subStage: '',
-        material: '',
-        supplier: '',
+        id: parseInt(props.id),
+        stage: 0,
+        subStage: 0,
+        material: 0,
+        supplier: 0,
         quantity: '',
-        unit: '',
+        unit: 0,
         price: '',
         comments: ''
     };
@@ -52,7 +52,7 @@ class SpendsInput extends Component {
                 name='stage'
                 value={this.state.stage}
                 onChange={this.onInputChange}>
-                <option value='stage' disabled>Категория</option>
+                <option value={0} disabled>Категория</option>
                 {this.getOptions('stages')}
               </select>
             </div>
@@ -62,7 +62,7 @@ class SpendsInput extends Component {
                 name='subStage'
                 value={this.state.subStage}
                 onChange={this.onInputChange}>
-                <option value='subStages' disabled>Подкатегория</option>
+                <option value={0} disabled>Подкатегория</option>
                 {this.getOptions('subStages')}
               </select>
             </div>
@@ -72,19 +72,19 @@ class SpendsInput extends Component {
                 name='material'
                 value={this.state.material}
                 onChange={this.onInputChange}>
-                <option value='materials' disabled>Материалы</option>
+                <option value={0} disabled>Материалы</option>
                 {this.getOptions('materials')}
               </select>
             </div>
             <div className='form-group'>
               <select
                 className='form-control'
-                name='supplier'
+                name='suppliers'
                 value={this.state.supplier}
                 onChange={this.onInputChange}>
-                <option value="1">Поставщик1</option>
-                <option value="1">Поставщик2</option>
-                <option value="1">создать</option>
+                <option value={0}>Поставщик</option>
+                <option value="1">Первый</option>
+                <option value="1">Второй</option>
               </select>
             </div>
             <div className='form-group'>
@@ -102,7 +102,7 @@ class SpendsInput extends Component {
                 name='unit'
                 value={this.state.unit}
                 onChange={this.onInputChange}>
-                <option value='units' disabled>Ед.изм</option>
+                <option value={0} disabled>Ед.изм</option>
                 {this.getOptions('units')}
               </select>
             </div>
