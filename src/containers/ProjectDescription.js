@@ -18,7 +18,7 @@ class ProjectDescription extends Component {
 
   onDeleteHandler = () => {
     this.props.deleteProject(this.props.params.id);
-    this.context.router.push('/projects/');
+    this.context.router.push('/');
   };
 
   getRelation = (arr, term) => {
@@ -40,8 +40,9 @@ class ProjectDescription extends Component {
   };
 
   renderSpendingsTable = ()=>{
-    const { stages, subStages, materials, units } = this.props.dictionaries;
-    const content = this.props.spendings.all.map((spending)=>{
+    const { dictionaries: {stages, subStages, materials, units}, spendings } = this.props;
+    if (!materials || !spendings.all) return <div>Loading project data</div>;
+    const content = spendings.all.map((spending)=>{
       return (
         <tr key={spending.id}>
           <td>{this.getRelation(materials, spending.material)}</td>
@@ -89,7 +90,7 @@ class ProjectDescription extends Component {
       <div>
         <div className='row'>
           <div className='col-xs-10'>
-            <Link to='/projects'>проекты</Link>
+            <Link to='/'>проекты</Link>
             <span> > {title}</span>
             <h3>{description}</h3>
           </div>

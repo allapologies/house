@@ -1,29 +1,24 @@
 'use strict';
 import React, { Component, PropTypes } from 'react';
-import {connect} from 'react-redux';
-import { submitSpendings, fetchDictionaries } from '../actions';
 
 class SpendsInput extends Component {
   constructor(props) {
     super(props);
     this.state= {
-        id: props.params.id,
-        stage: '',
-        subStage: '',
-        material: '',
-        supplier: '',
+        id: parseInt(props.id),
+        stage: 0,
+        subStage: 0,
+        material: 0,
+        supplier: 0,
         quantity: '',
-        unit: '',
+        unit: 0,
         price: '',
         comments: ''
     };
   }
+
   static contextTypes = {
     router: PropTypes.object
-  };
-
-  componentWillMount() {
-    this.props.fetchDictionaries();
   };
 
   onInputChange = (event)=> {
@@ -31,26 +26,23 @@ class SpendsInput extends Component {
     nextState[event.target.name] = event.target.value;
     this.setState(nextState);
   };
-
-  onFormSubmit = (event) => {
-    event.preventDefault();
-    this.props.submitSpendings(this.state);
-    let url = `/projects/${this.state.id}`;
-    this.context.router.push(url);
-  };
-
+  
   getOptions = (property) => {
     return this.props.dictionaries[property].map((obj)=> {
       return <option key={obj.id} value={obj.id}>{obj.name}</option>
     });
-  }
+  };
+
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    this.props.submitSpendings(this.state);
+    this.context.router.push(`/projects/${this.state.id}`);
+  };
 
   render() {
-    if (!this.props.dictionaries.stages) return <div>loading...</div>
     return (
       <div className='row'>
         <div className='col-sm-6 col-md-8 col-sm-offset-3 col-md-offset-2'>
-          <h2></h2>
           <form
             className='form-horizontal'
             onSubmit={this.onFormSubmit}>
@@ -60,7 +52,7 @@ class SpendsInput extends Component {
                 name='stage'
                 value={this.state.stage}
                 onChange={this.onInputChange}>
-                <option value='stage' disabled>Категория</option>
+                <option value={0} disabled>Категория</option>
                 {this.getOptions('stages')}
               </select>
             </div>
@@ -70,7 +62,7 @@ class SpendsInput extends Component {
                 name='subStage'
                 value={this.state.subStage}
                 onChange={this.onInputChange}>
-                <option value='subStages' disabled>Подкатегория</option>
+                <option value={0} disabled>Подкатегория</option>
                 {this.getOptions('subStages')}
               </select>
             </div>
@@ -80,19 +72,19 @@ class SpendsInput extends Component {
                 name='material'
                 value={this.state.material}
                 onChange={this.onInputChange}>
-                <option value='materials' disabled>Материалы</option>
+                <option value={0} disabled>Материалы</option>
                 {this.getOptions('materials')}
               </select>
             </div>
             <div className='form-group'>
               <select
                 className='form-control'
-                name='supplier'
+                name='suppliers'
                 value={this.state.supplier}
                 onChange={this.onInputChange}>
-                <option value="1">Поставщик1</option>
-                <option value="1">Поставщик2</option>
-                <option value="1">создать</option>
+                <option value={0}>Поставщик</option>
+                <option value="1">Первый</option>
+                <option value="1">Второй</option>
               </select>
             </div>
             <div className='form-group'>
@@ -110,7 +102,7 @@ class SpendsInput extends Component {
                 name='unit'
                 value={this.state.unit}
                 onChange={this.onInputChange}>
-                <option value='units' disabled>Ед.изм</option>
+                <option value={0} disabled>Ед.изм</option>
                 {this.getOptions('units')}
               </select>
             </div>
@@ -142,10 +134,4 @@ class SpendsInput extends Component {
   }
 }
 
-function mapStateToProps({dictionaries}) {
-  return {
-    dictionaries
-  };
-}
-
-export default connect(mapStateToProps, { submitSpendings, fetchDictionaries })(SpendsInput);
+export default SpendsInput;
