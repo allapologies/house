@@ -1,10 +1,19 @@
 'use strict';
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchProject, deleteProject, fetchSpendings, fetchDictionaries } from '../actions';
 import { Link } from 'react-router';
+import Modal from '../components/Modal';
 
 class ProjectDescription extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      toBeDeleted: false
+    }
+  }
+
   static contextTypes = {
     router: PropTypes.object
   };
@@ -16,7 +25,11 @@ class ProjectDescription extends Component {
   }
 
 
-  onDeleteHandler = () => {
+  onDeleteClickHandler = () => {
+    this.setState ({ toBeDeleted : !this.state.toBeDeleted });
+  };
+
+  onConfirmedDelete = () => {
     this.props.deleteProject(this.props.params.id);
     this.context.router.push('/');
   };
@@ -57,7 +70,7 @@ class ProjectDescription extends Component {
         </tr>
         )
     });
-
+        
     return (
       <div>
         <table className="spendings table table-hover">
@@ -82,12 +95,18 @@ class ProjectDescription extends Component {
   };
 
   render() {
+    const modal = (this.state.toBeDeleted) ?
+      <Modal
+        onConfirm={this.onConfirmedDelete}
+        onCancel={this.onDeleteClickHandler}
+        id={this.props.params.id} /> : "";
     const url = `/projects/${this.props.params.id}/spendings/new`;
     const project = this.props.projects.current;
     if (!project) return <div>Loading project data</div>
     const { title, description } = project;
     return (
       <div>
+        {modal}
         <div className='row'>
           <div className='col-xs-10'>
             <Link to='/'>проекты</Link>
@@ -105,7 +124,7 @@ class ProjectDescription extends Component {
                 <span className="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить расходы
               </button>
             </Link>
-            <button onClick={ this.onDeleteHandler } type="button" className="btn btn-danger btn-sm">
+            <button onClick={ this.onDeleteClickHandler } type="button" className="btn btn-danger btn-sm">
               <span className="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Удалить проект
             </button>
           </div>
@@ -130,4 +149,13 @@ function mapStateToProps({projects, spendings, dictionaries }) {
   };
 }
 
-export default connect(mapStateToProps, { fetchProject, deleteProject, fetchSpendings, fetchDictionaries })(ProjectDescription);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    fetchProject,
+    deleteProject,
+    fetchSpendings,
+    fetchDictionaries
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectDescription);
