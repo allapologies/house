@@ -1,5 +1,6 @@
 'use strict';
 import React, { Component, PropTypes } from 'react';
+import onInputChange from '../HOC/onInputChange';
 
 class SpendsInput extends Component {
   constructor(props) {
@@ -20,12 +21,7 @@ class SpendsInput extends Component {
   static contextTypes = {
     router: PropTypes.object
   };
-
-  onInputChange = (event)=> {
-    let nextState = {};
-    nextState[event.target.name] = event.target.value;
-    this.setState(nextState);
-  };
+  
   
   getOptions = (property) => {
     return this.props.dictionaries[property].map((obj)=> {
@@ -51,7 +47,7 @@ class SpendsInput extends Component {
                 className='form-control'
                 name='stage'
                 value={this.state.stage}
-                onChange={this.onInputChange}>
+                onChange={this.props.onInputChange}>
                 <option value={0} disabled>Категория</option>
                 {this.getOptions('stages')}
               </select>
@@ -61,7 +57,7 @@ class SpendsInput extends Component {
                 className='form-control'
                 name='subStage'
                 value={this.state.subStage}
-                onChange={this.onInputChange}>
+                onChange={this.props.onInputChange}>
                 <option value={0} disabled>Подкатегория</option>
                 {this.getOptions('subStages')}
               </select>
@@ -71,7 +67,7 @@ class SpendsInput extends Component {
                 className='form-control'
                 name='material'
                 value={this.state.material}
-                onChange={this.onInputChange}>
+                onChange={this.props.onInputChange}>
                 <option value={0} disabled>Материалы</option>
                 {this.getOptions('materials')}
               </select>
@@ -81,7 +77,7 @@ class SpendsInput extends Component {
                 className='form-control'
                 name='suppliers'
                 value={this.state.supplier}
-                onChange={this.onInputChange}>
+                onChange={this.props.onInputChange}>
                 <option value={0}>Поставщик</option>
                 <option value="1">Первый</option>
                 <option value="1">Второй</option>
@@ -94,14 +90,14 @@ class SpendsInput extends Component {
                 className='form-control'
                 placeholder='количество'
                 value={this.state.quantity}
-                onChange={this.onInputChange}/>
+                onChange={this.props.onInputChange}/>
             </div>
             <div className='form-group'>
               <select
                 className='form-control'
                 name='unit'
                 value={this.state.unit}
-                onChange={this.onInputChange}>
+                onChange={this.props.onInputChange}>
                 <option value={0} disabled>Ед.изм</option>
                 {this.getOptions('units')}
               </select>
@@ -113,7 +109,7 @@ class SpendsInput extends Component {
                 className='form-control'
                 placeholder='цена'
                 value={this.state.price}
-                onChange={this.onInputChange}/>
+                onChange={this.props.onInputChange}/>
             </div>
             <div className='form-group'>
               <textarea
@@ -122,7 +118,7 @@ class SpendsInput extends Component {
               rows="3"
               placeholder='комментарии'
               value={this.state.comments}
-              onChange={this.onInputChange}/>
+              onChange={this.props.onInputChange}/>
             </div>
             <div className='form-group'>
               <button type='submit' className='btn btn-default'>Сохранить</button>
@@ -134,4 +130,4 @@ class SpendsInput extends Component {
   }
 }
 
-export default SpendsInput;
+export default onInputChange(SpendsInput);
