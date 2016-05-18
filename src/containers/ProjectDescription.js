@@ -108,25 +108,25 @@ class ProjectDescription extends Component {
       <div>
         {modal}
         <div className='row'>
-          <div className='col-xs-10'>
+          <div className='col-xs-12'>
             <Link to='/'>проекты</Link>
             <span> > {title}</span>
-            <h3>{description}</h3>
-          </div>
-          <div className='col-xs-2'>
-            {this.countAllSpends()} р.
-          </div>
+            <span onClick={ this.onDeleteClickHandler } className="glyphicon glyphicon-remove-circle delete"></span>
+          </div>  
         </div>
         <div className='row'>
           <div className='col-xs-12'>
-            <Link to={url}>
-              <button type="button" className="btn btn-success btn-sm">
-                <span className="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить расходы
-              </button>
+            <h4>{description}</h4>
+            <h5>Потрачено:
+              <span className="total">
+                <strong>
+                  {this.countAllSpends()} р.
+                </strong>
+              </span>
+            </h5>
+            <Link to={url} className="btn btn-success btn-sm">
+              <span className="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить расходы
             </Link>
-            <button onClick={ this.onDeleteClickHandler } type="button" className="btn btn-danger btn-sm">
-              <span className="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Удалить проект
-            </button>
           </div>
         </div>
         <div>

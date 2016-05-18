@@ -32,3 +32,17 @@ table.spendings{margin-top:20px;border-radius:10px}
 div.inner button {
     margin: 5px;
 }
+
+span.delete {
+    margin-left: 5px;
+}
+span.total {
+    color: #23b526;
+    margin-left:5px;
+}
+
+.addSpendings {
+    position: absolute;
+    top:20px;
+    display: block;
+}
