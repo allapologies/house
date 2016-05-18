@@ -1,1 +1,34 @@
-table.spendings{margin-top:20px;border-radius:10px}.container{margin-top:10px}
+table.spendings{margin-top:20px;border-radius:10px}
+.container{margin-top:10px}
+.modal_confirm_delete {
+    position: fixed;
+    left: 0;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.46);
+}
+
+.modal_confirm_delete div.window {
+    position: relative;
+}
+
+.modal_confirm_delete .window div.inner{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width:300px;
+    height:150px;
+    margin-top: -75px;
+    margin-left: -150px;
+    border: 1px solid #2e2e2e;
+    border-radius: 10px;
+    padding: 0 20px 20px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+div.inner button {
+    margin: 5px;
+}
