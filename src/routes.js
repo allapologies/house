@@ -6,12 +6,14 @@ import ProjectList from './containers/ProjectsList';
 import NewProject from './components/NewProject';
 import ProjectDescription from './containers/ProjectDescription';
 import NotFound from './components/NotFound';
+import LoginPage from './containers/LoginPage';
 
 export default (
   <Route path='/' component={App}>
-    <IndexRoute component={ProjectList} />
-      <Route path='projects'>
-          <Route path='new' component={NewProject} />
+    <IndexRoute component={LoginPage} />
+    <Route path='projects'>
+      <IndexRoute component={ProjectList} />
+      <Route path='new' component={NewProject} />
           <Route path=':id' component={ProjectDescription} />
           <Route path=':id/spendings/new' component={SpendsInput} />
       </Route>
