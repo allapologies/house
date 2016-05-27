@@ -1,5 +1,6 @@
 'use strict';
 import React, { Component, PropTypes } from 'react';
+import translate from '../HOC/Translate';
 
 class LoginPage extends Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class LoginPage extends Component {
   };
   
   render() {
+    const { translate } = this.props;
     return (
       <div>
         <div className='loginBox'>
@@ -55,7 +57,7 @@ class LoginPage extends Component {
             </div>
             <div className='form-group'>
               <div className='col-xs-12'>
-                <button type='submit' className='btn btn-success'>Войти</button>
+                <button type='submit' className='btn btn-success'>{translate('login')}</button>
               </div>
             </div>
           </form>
@@ -65,4 +67,4 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+export default translate(LoginPage);
