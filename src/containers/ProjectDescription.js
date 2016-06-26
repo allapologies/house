@@ -35,11 +35,13 @@ class ProjectDescription extends Component {
     };
     
     getRelation = (arr, term) => {
+        let result
         arr.forEach((element)=>{
           if (element.id == term ) {
-              return element.name;
+              result = element.name;
           }
         });
+        return result
     };
     
     countAllSpends = () => {
