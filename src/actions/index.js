@@ -39,6 +39,7 @@ export function deleteProject(id) {
 
   return {
     type: DELETE_PROJECT,
+    id: id,
     payload: request
   };
 }

@@ -13,11 +13,12 @@ export default function (state=INITIAL_STATE, action){
     case FETCH_PROJECTS:
       return state.setIn(['all'], List(action.payload.data))
     case CREATE_PROJECT:
-      return state.all.push(action.payload.data)
-      // return { ...state, all: [...state.all, action.payload.data] };
+      return state.updateIn(['all'], arr => arr.push(action.payload.data))
     //TODO Prevent additional data fetching after deleting an item
     case DELETE_PROJECT:
-      return { ...state, all: action.payload.data };
+      return state.updateIn(['all'],
+          arr => arr.filter(project=> project.projectId != action.id)
+      )
     }
   return state;
 };

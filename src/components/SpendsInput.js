@@ -50,8 +50,8 @@ class SpendsInput extends Component {
               <select
                 className='form-control'
                 { ... stage}>
-                <option value={0} disabled>Категория</option>
-                {this.getOptions('stages')}
+                  <option value={0} disabled>Категория</option>
+                  {this.getOptions('stages')}
               </select>
             </div>
             <div className='form-group'>
@@ -66,8 +66,8 @@ class SpendsInput extends Component {
               <select
                 className='form-control'
                 {...material}>
-                <option value={0} disabled>Материалы</option>
-                {this.getOptions('materials')}
+                    {this.getOptions('materials')}
+                    <option value={0} disabled>Материалы</option>
               </select>
             </div>
             <div className='form-group'>
