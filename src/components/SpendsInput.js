@@ -24,7 +24,7 @@ class SpendsInput extends Component {
   
   
   getOptions = (property) => {
-    return this.props.dictionaries[property].map((obj)=> {
+    return this.props.dictionaries.get(property).map((obj)=> {
       return <option key={obj.id} value={obj.id}>{obj.name}</option>
     });
   };
