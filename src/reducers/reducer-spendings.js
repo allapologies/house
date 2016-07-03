@@ -10,7 +10,7 @@ export default function(state=INITIAL_STATE, action){
     case FETCH_SPENDINGS:
       return state.setIn(['all'], List(action.payload.data))
     case SUBMIT_SPENDING:
-      return { ...state, all: [...state.all, action.payload.data] };
+      return state.updateIn(['all'], spending => spending.push(action.payload.data))
   }
   return state;
 };
