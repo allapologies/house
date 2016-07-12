@@ -44,9 +44,9 @@ export function deleteProject(id) {
   };
 }
 
-export function submitSpendings(spendings) {
-  const request = axios.post(`${ROOT_URL}/projects/${spendings.id}/spendings`, {
-    projectId:spendings.id,
+export function submitSpendings(id,spendings) {
+  const request = axios.post(`${ROOT_URL}/projects/${id}/spendings`, {
+    projectId: id,
     stage:    spendings.stage,
     subStage: spendings.subStage,
     material: spendings.material,
