@@ -2,7 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { fetchProject, deleteProject, fetchSpendings, fetchDictionaries } from '../actions';
+import { fetchProject, deleteProject, fetchSpendings, fetchDictionaries, deleteSpending } from '../actions';
 import { Link } from 'react-router';
 import Modal from '../components/Modal';
 import Immutable from 'immutable'
@@ -68,7 +68,7 @@ class ProjectDescription extends Component {
                   <td className='hidden-xs'>{this.getRelation(dicts.subStages, spending.subStage)}</td>
                   <td className='hidden-xs'>{spending.supplier}</td>
                   <td className='hidden-xs'>{spending.comments}</td>
-                  <td><span className='glyphicon glyphicon-remove'></span></td>
+                  <td><span onClick={()=>this.props.deleteSpending(spending.id)} className='glyphicon glyphicon-remove'></span></td>
                 </tr>
             )
         });
@@ -157,7 +157,8 @@ function mapDispatchToProps(dispatch) {
         fetchProject,
         deleteProject,
         fetchSpendings,
-        fetchDictionaries
+        fetchDictionaries,
+        deleteSpending
     }, dispatch);
 }
 
