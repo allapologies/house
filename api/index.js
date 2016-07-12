@@ -61,7 +61,6 @@ router.post('/projects/:id/spendings', function (req, res, next) {
         comments: body.comments
     };
     mocks.spendings.push(spending);
-    console.log(mocks.spendings)
     res.json(spending)
 });
 
