@@ -1,6 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import {reduxForm} from 'redux-form';
 
+const fields = ['stage', 'subStage', 'material', 'supplier', 'quantity', 'unit', 'price', 'comments']
+
+
 class spendsInputForm extends Component {
     static contextTypes = {
         router: PropTypes.object
@@ -36,15 +39,17 @@ class spendsInputForm extends Component {
                             <select
                                 className='form-control'
                                 { ... stage}>
-                                <option value={0} disabled>Категория</option>
+                                <option value="" disabled>Категория</option>
                                 {this.getOptions('stages')}
                             </select>
                         </div>
                         <div className='form-group'>
                             <select
                                 className='form-control'
-                                {...subStage}>
-                                <option value={0} disabled>Подкатегория</option>
+                                {...subStage}
+                                value={subStage.value || ''}
+                            >
+                                <option value="" disabled>Подкатегория</option>
                                 {this.getOptions('subStages')}
                             </select>
                         </div>
@@ -52,15 +57,15 @@ class spendsInputForm extends Component {
                             <select
                                 className='form-control'
                                 {...material}>
+                                <option value="" disabled>Материалы</option>
                                 {this.getOptions('materials')}
-                                <option value={0} disabled>Материалы</option>
                             </select>
                         </div>
                         <div className='form-group'>
                             <select
                                 className='form-control'
                                 {...supplier}>
-                                <option value={0}>Поставщик</option>
+                                <option value="">Поставщик</option>
                                 <option value="1">Первый</option>
                                 <option value="1">Второй</option>
                             </select>
@@ -69,13 +74,14 @@ class spendsInputForm extends Component {
                             <input
                                 type='text'
                                 className='form-control'
+                                placeholder='Количество'
                                 {...quantity} />
                         </div>
                         <div className='form-group'>
                             <select
                                 className='form-control'
                                 {...unit}>
-                                <option value={0} disabled>Ед.изм</option>
+                                <option value="" disabled>Ед.изм</option>
                                 {this.getOptions('units')}
                             </select>
                         </div>
@@ -83,6 +89,7 @@ class spendsInputForm extends Component {
                             <input
                                 type='text'
                                 className='form-control'
+                                placeholder='Цена'
                                 {...price}
                             />
                         </div>
@@ -90,7 +97,10 @@ class spendsInputForm extends Component {
               <textarea
                   className='form-control'
                   rows="3"
-                  {...comments}/>
+                  {...comments}
+                  placeholder='Комментарии'
+                  value={comments.value || ''}
+              />
                         </div>
                         <div className='form-group'>
                             <button type='submit' className='btn btn-default'>Сохранить</button>
@@ -105,5 +115,5 @@ class spendsInputForm extends Component {
 
 export default reduxForm({
     form: 'spendsInput',
-    fields: ['stage', 'subStage', 'material', 'supplier', 'quantity', 'unit', 'price', 'comments']
+    fields: fields
 })(spendsInputForm);
