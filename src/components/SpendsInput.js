@@ -31,7 +31,7 @@ class spendsInputForm extends Component {
         } = this.props
         return (
             <div className='row'>
-                <div className='col-sm-6 col-md-8 col-sm-offset-3 col-md-offset-2'>
+                <div className='col-sm-6 col-md-8'>
                     <form
                         className='form-horizontal'
                         onSubmit={handleSubmit(this.handleSubmit)}>
@@ -71,13 +71,13 @@ class spendsInputForm extends Component {
                                 <option value="1">Второй</option>
                             </select>
                         </div>
-                        <div className='form-group'>
+                        <div className={`form-group ${quantity.touched && quantity.invalid ? 'has-error' : ''}`}>
                             <input
                                 type='text'
                                 className='form-control'
                                 placeholder='Количество'
                                 {...quantity} />
-                            {quantity.touched && quantity.error && <div>{quantity.error}</div>}
+                            <span className='help-block'>{quantity.touched ? quantity.error : ''}</span>
                         </div>
                         <div className='form-group'>
                             <select
@@ -87,7 +87,7 @@ class spendsInputForm extends Component {
                                 {this.getOptions('units')}
                             </select>
                         </div>
-                        <div className='form-group'>
+                        <div className={`form-group ${price.touched && price.invalid ? 'has-error' : ''}`}>
                             <input
                                 type='text'
                                 className='form-control'
@@ -97,13 +97,13 @@ class spendsInputForm extends Component {
                             {price.touched && price.error && <div>{price.error}</div>}
                         </div>
                         <div className='form-group'>
-              <textarea
-                  className='form-control'
-                  rows="3"
-                  {...comments}
-                  placeholder='Комментарии'
-                  value={comments.value || ''}
-              />
+                            <textarea
+                                className='form-control'
+                                rows="3"
+                                {...comments}
+                                placeholder='Комментарии'
+                                value={comments.value || ''}
+                            />
                         </div>
                         <div className='form-group'>
                             <button type='submit' className='btn btn-default'>Сохранить</button>
