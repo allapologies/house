@@ -13,11 +13,11 @@ class ProjectsList extends Component {
   }
   
   render() {
-    if (!this.props.projects.all) {
+    if (!this.props.projects.get('all')) {
       return <div>Пожалуйста, подождите. Идёт загрузка</div>
     }
 
-    const projects = this.props.projects.all.map( (project) => {
+    const projects = this.props.projects.get('all').map( (project) => {
       return <ProjectsListItem  key={project.projectId} project={project} />
     });
 

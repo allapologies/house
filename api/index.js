@@ -64,6 +64,13 @@ router.post('/projects/:id/spendings', function (req, res, next) {
     res.json(spending)
 });
 
+router.delete('/projects/:id/spendings/:spendingId', function (req, res, next) {
+    mocks.spendings = (mocks.spendings).filter(function (spending) {
+        return spending.id != req.params.spendingId
+    });
+    res.json(mocks.spendings);
+});
+
 router.get('/dictionaries', function (req, res, next) {
     let stages = (mocks.stages).map(function (stage) {
         return assign({}, stage)

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route , IndexRoute, IndexRedirect } from 'react-router';
+import { Route , IndexRoute } from 'react-router';
 import SpendsInput from './containers/NewSpends';
 import App from './components/app';
 import ProjectList from './containers/ProjectsList';
@@ -10,8 +10,8 @@ import NotFound from './components/NotFound';
 export default (
   <Route path='/' component={App}>
     <IndexRoute component={ProjectList} />
-      <Route path='projects'>
-          <Route path='new' component={NewProject} />
+    <Route path='projects'>
+      <Route path='new' component={NewProject} />
           <Route path=':id' component={ProjectDescription} />
           <Route path=':id/spendings/new' component={SpendsInput} />
       </Route>
