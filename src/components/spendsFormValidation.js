@@ -1,6 +1,7 @@
 const isRequired = 'Обязательно для заполнения';
 const isNotANumber = 'Поле должно содержать число';
 const notEmpty = 'Выберите значение';
+const lessThanZero = 'Значение должно быть больше 0';
 
 export const validate = values => {
     const errors = {}
@@ -13,6 +14,10 @@ export const validate = values => {
     } else {
         if (isNaN(Number(values.quantity))) {
             errors.quantity = isNotANumber
+        } else {
+            if (Number(values.quantity) <= 0) {
+                errors.quantity = lessThanZero
+            }
         }
     }
     if (!values.price) {
@@ -20,6 +25,10 @@ export const validate = values => {
     } else {
         if (isNaN(Number(values.price))) {
             errors.price = isNotANumber
+        } else {
+            if (Number(values.quantity) <= 0) {
+                errors.price = lessThanZero
+            }
         }
     }
     return errors

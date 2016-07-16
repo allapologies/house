@@ -42,7 +42,7 @@ class spendsInputForm extends Component {
                                 <option value="" disabled>Категория</option>
                                 {this.getOptions('stages')}
                             </select>
-                            {stage.touched && stage.error && <div>{stage.error}</div>}
+                            <span className='help-block'>{stage.touched ? stage.error : ''}</span>
                         </div>
                         <div className='form-group'>
                             <select
@@ -94,7 +94,7 @@ class spendsInputForm extends Component {
                                 placeholder='Цена'
                                 {...price}
                             />
-                            {price.touched && price.error && <div>{price.error}</div>}
+                            <span className='help-block'>{price.touched ? price.error : ''}</span>
                         </div>
                         <div className='form-group'>
                             <textarea
