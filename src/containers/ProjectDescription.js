@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { fetchProject, deleteProject, fetchSpendings, fetchDictionaries, deleteSpending } from '../actions';
 import { Link } from 'react-router';
 import Modal from '../components/Modal';
-import Immutable from 'immutable'
+
+const spendsLimit = 5
 
 class ProjectDescription extends Component {
     constructor(props) {
@@ -56,7 +57,19 @@ class ProjectDescription extends Component {
         event.preventDefault()
         this.props.deleteSpending(this.props.params.id, event.target.id)
     }
-    
+
+    renderPagination() {
+        const spends = this.props.spendings.get('items')
+        const paginationBar = spends.map((spending)=> {
+            return <span key={spending.id}> {spending.id} </span>
+        })
+        return (
+            <div>
+                {paginationBar}
+            </div>
+        )
+    }
+
     renderSpendingsTable () {
         let { dictionaries, spendings } = this.props
         if (!dictionaries.size || !spendings.size) return <div>Loading project data</div>
@@ -96,7 +109,7 @@ class ProjectDescription extends Component {
               {content}
               </tbody>
             </table>
-        
+              {this.renderPagination()}
           </div>
         )
     }
