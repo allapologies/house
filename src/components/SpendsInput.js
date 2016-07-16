@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {reduxForm} from 'redux-form';
-
+import {validate} from './spendsFormValidation'
 const fields = ['stage', 'subStage', 'material', 'supplier', 'quantity', 'unit', 'price', 'comments']
 
 
@@ -42,6 +42,7 @@ class spendsInputForm extends Component {
                                 <option value="" disabled>Категория</option>
                                 {this.getOptions('stages')}
                             </select>
+                            {stage.touched && stage.error && <div>{stage.error}</div>}
                         </div>
                         <div className='form-group'>
                             <select
@@ -76,6 +77,7 @@ class spendsInputForm extends Component {
                                 className='form-control'
                                 placeholder='Количество'
                                 {...quantity} />
+                            {quantity.touched && quantity.error && <div>{quantity.error}</div>}
                         </div>
                         <div className='form-group'>
                             <select
@@ -92,6 +94,7 @@ class spendsInputForm extends Component {
                                 placeholder='Цена'
                                 {...price}
                             />
+                            {price.touched && price.error && <div>{price.error}</div>}
                         </div>
                         <div className='form-group'>
               <textarea
@@ -115,5 +118,6 @@ class spendsInputForm extends Component {
 
 export default reduxForm({
     form: 'spendsInput',
-    fields: fields
+    fields: fields,
+    validate
 })(spendsInputForm);
