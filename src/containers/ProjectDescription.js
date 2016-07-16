@@ -46,7 +46,7 @@ class ProjectDescription extends Component {
     
     countAllSpends = () => {
         let sum =0;
-        this.props.spendings.get('all').forEach((spending) => {
+        this.props.spendings.get('items').forEach((spending) => {
             sum += spending.price * spending.quantity;
         });
         return sum;
@@ -54,7 +54,7 @@ class ProjectDescription extends Component {
 
     spendingDeleteHandler = (event) => {
         event.preventDefault()
-        this.props.deleteSpending(event.target.id)
+        this.props.deleteSpending(this.props.params.id, event.target.id)
     }
     
     renderSpendingsTable () {
@@ -62,7 +62,7 @@ class ProjectDescription extends Component {
         if (!dictionaries.size || !spendings.size) return <div>Loading project data</div>
         let dicts = dictionaries.toJS()
         let spends = spendings.toJS()
-        const content = spends.all.map((spending)=>{
+        const content = spends.items.map((spending)=>{
             return (
                 <tr key={spending.id}>
                   <td>{this.getRelation(dicts.materials, spending.material)}</td>

@@ -71,10 +71,12 @@ export function fetchSpendings(id) {
     };
 }
 
-export function deleteSpending(id) {
+export function deleteSpending(projectId, spendingId) {
+    axios.delete(`${ROOT_URL}/projects/${projectId}/spendings/${spendingId}`)
+
     return {
         type: DELETE_SPENDING,
-        id
+        id: spendingId
     }
 }
 
