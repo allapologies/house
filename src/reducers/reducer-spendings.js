@@ -12,11 +12,7 @@ export default function(state=INITIAL_STATE, action){
     case SUBMIT_SPENDING:
       return state.updateIn(['all'], spending => spending.push(action.payload.data))
     case DELETE_SPENDING:
-      return state
-    /*
-    TODO
-    finish delete reducer
-    * */
+      return state.updateIn(['all'], arr => arr.filter( spending => spending.id != action.id))
   }
   return state;
 };

@@ -14,11 +14,10 @@ export default function (state=INITIAL_STATE, action){
       return state.setIn(['all'], List(action.payload.data))
     case CREATE_PROJECT:
       return state.updateIn(['all'], arr => arr.push(action.payload.data))
-    //TODO Prevent additional data fetching after deleting an item
     case DELETE_PROJECT:
       return state.updateIn(['all'],
           arr => arr.filter(project=> project.projectId != action.id)
-      )
-    }
+      );
+    };
   return state;
 };

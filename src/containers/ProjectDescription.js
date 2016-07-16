@@ -52,6 +52,11 @@ class ProjectDescription extends Component {
         return sum;
     };
 
+    spendingDeleteHandler = (event) => {
+        event.preventDefault()
+        this.props.deleteSpending(event.target.id)
+    }
+    
     renderSpendingsTable () {
         let { dictionaries, spendings } = this.props
         if (!dictionaries.size || !spendings.size) return <div>Loading project data</div>
@@ -68,7 +73,7 @@ class ProjectDescription extends Component {
                   <td className='hidden-xs'>{this.getRelation(dicts.subStages, spending.subStage)}</td>
                   <td className='hidden-xs'>{spending.supplier}</td>
                   <td className='hidden-xs'>{spending.comments}</td>
-                  <td><span onClick={()=>this.props.deleteSpending(spending.id)} className='glyphicon glyphicon-remove'></span></td>
+                  <td><span id={spending.id} onClick={this.spendingDeleteHandler} className='glyphicon glyphicon-remove'></span></td>
                 </tr>
             )
         });
