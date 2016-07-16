@@ -10,7 +10,7 @@ export default function (state = INITIAL_STATE, action) {
         case FETCH_SPENDINGS:
             return state.setIn(['items'], List(action.payload.data))
         case SUBMIT_SPENDING:
-            return state.updateIn(['items   '], spending => spending.push(action.payload.data))
+            return state.updateIn(['items'], spending => spending.push(action.payload.data))
         case DELETE_SPENDING:
             return state.updateIn(['items'], arr => arr.filter(spending => spending.id != action.id))
     }
