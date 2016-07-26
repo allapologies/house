@@ -1,5 +1,6 @@
 import * as actions from '../actions/constants'
 import {Map, List} from 'immutable'
+import _ from 'lodash'
 
 const INITIAL_STATE = Map({
     items: List(),
@@ -16,7 +17,7 @@ export default function (state = INITIAL_STATE, action) {
             return state.updateIn(['items'], arr => arr.push(action.payload.data))
         case actions.DELETE_PROJECT:
             return state.updateIn(['items'],
-                arr => arr.filter(project => project.projectId !== action.id)
+                arr => arr.filter(project => project.projectId !== _.toNumber(action.id))
             )
         default:
             return state
