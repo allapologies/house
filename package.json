@@ -46,7 +46,6 @@
     "redux-devtools": "^3.2.0",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.0.9",
-    "redux-promise": "^0.5.3",
     "redux-slider-monitor": "^1.0.7",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.9",
