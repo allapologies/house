@@ -11,7 +11,8 @@ export default (
   <Route path='/' component={App}>
     <IndexRoute component={ProjectList} />
     <Route path='projects'>
-      <Route path='new' component={NewProject} />
+        <IndexRoute component={ProjectList} />
+        <Route path='new' component={NewProject} />
           <Route path=':id' component={ProjectDescription} />
           <Route path=':id/spendings/new' component={SpendsInput} />
       </Route>
