@@ -11,7 +11,7 @@ export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case actions.FETCH_PROJECT:
             return state.set('current', action.payload.data)
-        case actions.FETCH_PROJECTS:
+        case actions.FETCH_PROJECTS_LIST:
             return state.setIn(['items'], List(action.payload.data))
         case actions.CREATE_PROJECT:
             return state.updateIn(['items'], arr => arr.push(action.payload.data))

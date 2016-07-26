@@ -4,17 +4,17 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import ProjectsListItem from '../components/ProjectsListItem' 
-import { fetchProjects } from '../actions'
+import { fetchProjectsList } from '../actions'
 
 
 class ProjectsList extends Component {
     static propTypes = {
         projects: React.PropTypes.object.isRequired,
-        fetchProjects: React.PropTypes.func
+        fetchProjectsList: React.PropTypes.func
     }
 
     componentWillMount() {
-        this.props.fetchProjects() 
+        this.props.fetchProjectsList()
     }
 
     render() {
@@ -46,7 +46,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchProjects}, dispatch) 
+    return bindActionCreators({fetchProjectsList}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectsList) 
