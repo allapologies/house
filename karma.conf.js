@@ -1,6 +1,14 @@
 // Karma configuration
 // Generated on Fri Jul 29 2016 23:45:58 GMT+0300 (MSK)
 
+var webpackConfig = require('./webpack.config')
+webpackConfig.devtool = 'inline-source-map'
+webpackConfig.externals = {
+    'react/lib/ReactContext': 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'cheerio': 'window'
+}
+
 module.exports = function(config) {
   config.set({
 
@@ -15,7 +23,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'tests/*Spec.js'
+      'tests.bundle.js'
     ],
 
 
@@ -23,10 +31,17 @@ module.exports = function(config) {
     exclude: [
     ],
 
-
+    plugins: [
+      'karma-jasmine',
+      'karma-chrome-launcher',
+      'karma-sourcemap-loader',
+      'karma-webpack'
+    ],
+    
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'tests.bundle.js': [ 'webpack', 'sourcemap' ]
     },
 
 
@@ -64,6 +79,8 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    webpack: webpackConfig
   })
 }
