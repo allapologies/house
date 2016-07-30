@@ -17,6 +17,8 @@ module.exports = {
         exclude: /node_modules/ },
       { test: /\.css$/,
         loader: "style-loader!css-loader"},
+      { test: /\.json$/,
+        loader: "json-loader" },
       { test: /\.scss?$/,
         loader: 'style!css!sass',
         include: path.join(__dirname, 'src', 'styles') },
