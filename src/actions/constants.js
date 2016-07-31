@@ -1,7 +1,7 @@
 const port = process.env.PORT || 8080
-const host = process.env.IP || 'localhost'
+const host = 'localhost'
 
-export const ROOT_URL = `http://${host}:${port}/api`
+export const ROOT_URL = `/api`
 
 export const FETCH_PROJECT = 'FETCH_PROJECT'
 export const FETCH_PROJECTS_LIST = 'FETCH_PROJECTS_LIST'
