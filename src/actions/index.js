@@ -1,51 +1,49 @@
 import axios from 'axios';
-import {
-    CREATE_PROJECT, DELETE_PROJECT, ROOT_URL, FETCH_PROJECT, FETCH_PROJECTS,
-    SUBMIT_SPENDING, FETCH_SPENDINGS, FETCH_DICTIONARIES, DELETE_SPENDING
-} from './constants';
+import * as actions from './constants';
 
-export function fetchProjects() {
-    const request = axios.get(`${ROOT_URL}/projects`);
-
-    return {
-        type: FETCH_PROJECTS,
-        payload: request
-    };
+export function fetchProjectsList() {
+    return dispatch => axios.get(`${actions.ROOT_URL}/projects`).then((data) =>
+        dispatch({
+            type: actions.FETCH_PROJECTS_LIST,
+            payload: data
+        })
+    )
 }
 
 export function fetchProject(id) {
-    const request = axios.get(`${ROOT_URL}/projects/${id}`);
-
-    return {
-        type: FETCH_PROJECT,
-        payload: request
-    };
+    return dispatch => axios.get(`${actions.ROOT_URL}/projects/${id}`).then((data) =>
+        dispatch({
+            type: actions.FETCH_PROJECT,
+            payload: data
+        })
+    )
 }
 
 export function createProject(data) {
-    const request = axios.post(`${ROOT_URL}/projects`, {
+    const params = {
         title: data.title,
         description: data.description
-    });
-
-    return {
-        type: CREATE_PROJECT,
-        payload: request
-    };
+    }
+    return dispatch => axios.post(`${actions.ROOT_URL}/projects`, params).then((data) =>
+        dispatch({
+            type: actions.CREATE_PROJECT,
+            payload: data
+        })
+    )
 }
 
 export function deleteProject(id) {
-    const request = axios.delete(`${ROOT_URL}/projects/${id}`);
-
-    return {
-        type: DELETE_PROJECT,
-        id: id,
-        payload: request
-    };
+    return dispatch => axios.delete(`${actions.ROOT_URL}/projects/${id}`).then((data)=>
+        dispatch({
+            type: actions.DELETE_PROJECT,
+            id: id,
+            payload: data
+        })
+    )
 }
 
 export function submitSpendings(id, spendings) {
-    const request = axios.post(`${ROOT_URL}/projects/${id}/spendings`, {
+    const params = {
         projectId: id,
         stage: spendings.stage,
         subStage: spendings.subStage,
@@ -54,37 +52,40 @@ export function submitSpendings(id, spendings) {
         comments: spendings.comments,
         price: spendings.price,
         quantity: spendings.quantity
-    });
+    }
+    return dispatch => axios.post(`${actions.ROOT_URL}/projects/${id}/spendings`, params).then((data) => {
+        dispatch({
+            type: actions.SUBMIT_SPENDING,
+            payload: data
+        })
+    })
 
-    return {
-        type: SUBMIT_SPENDING,
-        payload: request
-    };
 }
 
 export function fetchSpendings(id) {
-    const request = axios.get(`${ROOT_URL}/projects/${id}/spendings`);
+    return dispatch => axios.get(`${actions.ROOT_URL}/projects/${id}/spendings`).then((data) => {
+        dispatch({
+            type: actions.FETCH_SPENDINGS,
+            payload: data
+        })
+    })
 
-    return {
-        type: FETCH_SPENDINGS,
-        payload: request
-    };
 }
 
 export function deleteSpending(projectId, spendingId) {
-    axios.delete(`${ROOT_URL}/projects/${projectId}/spendings/${spendingId}`)
-
-    return {
-        type: DELETE_SPENDING,
-        id: spendingId
-    }
+    return dispatch => axios.delete(`${actions.ROOT_URL}/projects/${projectId}/spendings/${spendingId}`).then((data) => {
+        dispatch({
+            type: actions.DELETE_SPENDING,
+            id: spendingId
+        })
+    })
 }
 
 export function fetchDictionaries() {
-    const request = axios.get(`${ROOT_URL}/dictionaries`);
-
-    return {
-        type: FETCH_DICTIONARIES,
-        payload: request
-    };
+    return dispatch => axios.get(`${actions.ROOT_URL}/dictionaries`).then((data) =>
+        dispatch({
+            type: actions.FETCH_DICTIONARIES,
+            payload: data
+        })
+    )
 }

@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {reduxForm} from 'redux-form';
-
+import {validate} from './spendsFormValidation'
 const fields = ['stage', 'subStage', 'material', 'supplier', 'quantity', 'unit', 'price', 'comments']
 
 
@@ -31,7 +31,7 @@ class spendsInputForm extends Component {
         } = this.props
         return (
             <div className='row'>
-                <div className='col-sm-6 col-md-8 col-sm-offset-3 col-md-offset-2'>
+                <div className='col-sm-6 col-md-8'>
                     <form
                         className='form-horizontal'
                         onSubmit={handleSubmit(this.handleSubmit)}>
@@ -42,6 +42,7 @@ class spendsInputForm extends Component {
                                 <option value="" disabled>Категория</option>
                                 {this.getOptions('stages')}
                             </select>
+                            <span className='help-block'>{stage.touched ? stage.error : ''}</span>
                         </div>
                         <div className='form-group'>
                             <select
@@ -70,12 +71,13 @@ class spendsInputForm extends Component {
                                 <option value="1">Второй</option>
                             </select>
                         </div>
-                        <div className='form-group'>
+                        <div className={`form-group ${quantity.touched && quantity.invalid ? 'has-error' : ''}`}>
                             <input
                                 type='text'
                                 className='form-control'
                                 placeholder='Количество'
                                 {...quantity} />
+                            <span className='help-block'>{quantity.touched ? quantity.error : ''}</span>
                         </div>
                         <div className='form-group'>
                             <select
@@ -85,22 +87,23 @@ class spendsInputForm extends Component {
                                 {this.getOptions('units')}
                             </select>
                         </div>
-                        <div className='form-group'>
+                        <div className={`form-group ${price.touched && price.invalid ? 'has-error' : ''}`}>
                             <input
                                 type='text'
                                 className='form-control'
                                 placeholder='Цена'
                                 {...price}
                             />
+                            <span className='help-block'>{price.touched ? price.error : ''}</span>
                         </div>
                         <div className='form-group'>
-              <textarea
-                  className='form-control'
-                  rows="3"
-                  {...comments}
-                  placeholder='Комментарии'
-                  value={comments.value || ''}
-              />
+                            <textarea
+                                className='form-control'
+                                rows="3"
+                                {...comments}
+                                placeholder='Комментарии'
+                                value={comments.value || ''}
+                            />
                         </div>
                         <div className='form-group'>
                             <button type='submit' className='btn btn-default'>Сохранить</button>
@@ -115,5 +118,6 @@ class spendsInputForm extends Component {
 
 export default reduxForm({
     form: 'spendsInput',
-    fields: fields
+    fields: fields,
+    validate
 })(spendsInputForm);

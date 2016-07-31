@@ -1,23 +1,25 @@
-import { FETCH_PROJECTS, CREATE_PROJECT, DELETE_PROJECT, FETCH_PROJECT } from '../actions/constants';
-import { Map, List } from 'immutable'
+import * as actions from '../actions/constants'
+import {Map, List} from 'immutable'
+import _ from 'lodash'
 
 const INITIAL_STATE = Map({
-    all: List(),
+    items: List(),
     current: null
 })
 
-export default function (state=INITIAL_STATE, action){
-  switch (action.type) {
-    case FETCH_PROJECT:
-      return state.set('current', action.payload.data)
-    case FETCH_PROJECTS:
-      return state.setIn(['all'], List(action.payload.data))
-    case CREATE_PROJECT:
-      return state.updateIn(['all'], arr => arr.push(action.payload.data))
-    case DELETE_PROJECT:
-      return state.updateIn(['all'],
-          arr => arr.filter(project=> project.projectId != action.id)
-      );
-    };
-  return state;
-};
+export default function (state = INITIAL_STATE, action) {
+    switch (action.type) {
+        case actions.FETCH_PROJECT:
+            return state.set('current', action.payload.data)
+        case actions.FETCH_PROJECTS_LIST:
+            return state.setIn(['items'], List(action.payload.data))
+        case actions.CREATE_PROJECT:
+            return state.updateIn(['items'], arr => arr.push(action.payload.data))
+        case actions.DELETE_PROJECT:
+            return state.updateIn(['items'],
+                arr => arr.filter(project => project.projectId !== _.toNumber(action.id))
+            )
+        default:
+            return state
+    }
+}

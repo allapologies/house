@@ -1,21 +1,15 @@
-"use strict";
+const path = require('path');
+const express = require('express');
+const api = require('./api');
+const bodyParser = require('body-parser')
+const port = process.env.PORT || 8080
 
-var path = require('path');
-var express = require('express');
-var api = require('./api');
-var bodyParser = require('body-parser');
-var port = process.env.PORT || 3001;
-var host = process.env.IP || '0.0.0.0';
-
-var app = express();
-app.use(bodyParser.json());
-app.use('/api', api);
-app.use(express.static(path.join(__dirname, 'public')));
-app.listen(port, host, function (err) {
-    if (err) {
-        console.log(err);
-        return;
-    }
-
-    console.log('Listening at http://'+host+':' + port);
-});
+const app = express()
+app.use(bodyParser.json())
+app.use('/api', api)
+app.use(express.static(path.join(__dirname, 'public')))
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'index.html'))
+})
+app.listen(port)
+console.log("Server started")
