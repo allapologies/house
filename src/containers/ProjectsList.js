@@ -5,14 +5,14 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { ProjectsListItem } from '../components/ProjectsListItem'
 import { fetchProjectsList } from '../actions'
-
+import { bindActionCreators } from 'redux'
 
 @connect(
     (state) => {
         return { projects: state.projects }
     },
     (dispatch) => {
-        return { fetchProjectsList: dispatch(fetchProjectsList)}
+        return { fetchProjectsList: bindActionCreators(fetchProjectsList, dispatch)}
     }
 )
 export default class ProjectsList extends Component {
