@@ -1,31 +1,38 @@
-'use strict' 
+'use strict'
+
 import React, { Component, PropTypes } from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import ProjectsListItem from '../components/ProjectsListItem' 
+import { ProjectsListItem } from '../components/ProjectsListItem'
 import { fetchProjectsList } from '../actions'
 
 
-class ProjectsList extends Component {
+@connect(
+    (state) => {
+        return { projects: state.projects }
+    },
+    (dispatch) => {
+        return { fetchProjectsList: dispatch(fetchProjectsList)}
+    }
+)
+export default class ProjectsList extends Component {
     static propTypes = {
         projects: React.PropTypes.object.isRequired,
         fetchProjectsList: React.PropTypes.func
     }
 
-    componentWillMount() {
+    componentWillMount () {
         this.props.fetchProjectsList()
     }
 
-    render() {
+    render () {
         const projects = this.props.projects.get('items')
         if (!projects) {
             return <div>Пожалуйста, подождите. Идёт загрузка</div>
         }
-        const projectsList = projects.map((project) => {
-            return <ProjectsListItem key={project.projectId} project={project}/>
-        }) 
-
+        const projectsList = projects.map((project) =>
+            <ProjectsListItem key={project.projectId} project={project} />
+        )
         return (
             <div className='projectList row'>
                 <div className='col-sm-6 col-sm-offset-3'>
@@ -37,16 +44,6 @@ class ProjectsList extends Component {
                     </Link>
                 </div>
             </div>
-        ) 
+        )
     }
 }
-
-function mapStateToProps(state) {
-    return {projects: state.projects} 
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchProjectsList}, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectsList) 
