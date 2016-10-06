@@ -1,5 +1,5 @@
 const port = process.env.PORT || 8080
-const host = process.env.IP || '127.0.0.1'
+const host = 'localhost'
 
 export const ROOT_URL = `http://${host}:${port}/api`
 
