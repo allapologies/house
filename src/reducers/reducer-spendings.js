@@ -1,5 +1,5 @@
 import * as actions from '../actions/constants'
-import {Map, List} from 'immutable'
+import { Map, List } from 'immutable'
 import _ from 'lodash'
 
 const INITIAL_STATE = Map({
