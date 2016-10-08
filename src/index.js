@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Provider} from 'react-redux'
-import {createStore, compose, applyMiddleware} from 'redux'
-import {Router, browserHistory} from 'react-router'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import { createStore, compose, applyMiddleware } from 'redux'
+import { Router, browserHistory } from 'react-router'
 import routes from './routes'
 import reducers from './reducers'
-import DevTools from './containers/DevTools'
-import thunk from 'redux-thunk'
+import { DevTools } from './containers'
 import css from "./../style/style.css"
 
 const enhancer = compose(
