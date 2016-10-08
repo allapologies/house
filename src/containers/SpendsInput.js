@@ -1,10 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import {reduxForm} from 'redux-form';
-import {validate} from './spendsFormValidation'
+import React, { Component, PropTypes } from 'react'
+import { reduxForm } from 'redux-form'
+import { validate } from '../utils/spendsFormValidation'
+
 const fields = ['stage', 'subStage', 'material', 'supplier', 'quantity', 'unit', 'price', 'comments']
 
-
-class spendsInputForm extends Component {
+class SpendsInput extends Component {
     static contextTypes = {
         router: PropTypes.object
     }
@@ -12,17 +12,17 @@ class spendsInputForm extends Component {
     getOptions = (property) => {
         return this.props.dictionaries.get(property).map((obj)=> {
             return <option key={obj.id} value={obj.id}>{obj.name}</option>
-        });
-    };
+        })
+    }
 
     handleSubmit = (formData) => {
         const { id } = this.props
-        this.props.submitSpendings(id, formData);
-        this.context.router.push(`/projects/${id}`);
-    };
+        this.props.submitSpendings(id, formData)
+        this.context.router.push(`/projects/${id}`)
+    }
 
 
-    render() {
+    render () {
         const {
             fields: {
                 stage, subStage, material, supplier,
@@ -107,12 +107,12 @@ class spendsInputForm extends Component {
                         </div>
                         <div className='form-group'>
                             <button type='submit' className='btn btn-default'>Сохранить</button>
-                            <button type='reset' className='btn btn-default' onClick={resetForm} >Сбросить</button>
+                            <button type='reset' className='btn btn-default' onClick={resetForm}>Сбросить</button>
                         </div>
                     </form>
                 </div>
             </div>
-        );
+        )
     }
 }
 
@@ -120,4 +120,4 @@ export default reduxForm({
     form: 'spendsInput',
     fields: fields,
     validate
-})(spendsInputForm);
+})(spendsInputForm)

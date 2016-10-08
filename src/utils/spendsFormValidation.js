@@ -3,7 +3,7 @@ const isNotANumber = 'Поле должно содержать число';
 const notEmpty = 'Выберите значение';
 const lessThanZero = 'Значение должно быть больше 0';
 
-export const validate = values => {
+export const validate = (values) => {
     const errors = {}
     if (!values.stage) {
         errors.stage = notEmpty

@@ -1,6 +1,6 @@
 'use strict'
 
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { ProjectsListItem } from '../components/ProjectsListItem'
@@ -12,10 +12,10 @@ import { bindActionCreators } from 'redux'
         return { projects: state.projects }
     },
     (dispatch) => {
-        return { fetchProjectsList: bindActionCreators(fetchProjectsList, dispatch)}
+        return { fetchProjectsList: bindActionCreators(fetchProjectsList, dispatch) }
     }
 )
-export default class ProjectsList extends Component {
+export class ProjectsList extends Component {
     static propTypes = {
         projects: React.PropTypes.object.isRequired,
         fetchProjectsList: React.PropTypes.func
