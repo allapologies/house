@@ -1,5 +1,6 @@
+'use strict'
 import React from 'react'
-import DevTools from '../containers/DevTools'
+import { DevTools } from '../containers'
 
 export default class App extends React.Component {
     render () {

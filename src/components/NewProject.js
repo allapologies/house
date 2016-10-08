@@ -1,10 +1,10 @@
 'use strict'
-
 import React from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { createProject } from '../actions'
 
-@connect(null, { createProject })
+@connect(null, (dispatch)=> bindActionCreators({ createProject }, dispatch))
 export class NewProject extends React.Component {
     constructor (props) {
         super(props)

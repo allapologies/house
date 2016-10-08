@@ -1,25 +1,22 @@
-'use strict';
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {submitSpendings, fetchDictionaries} from '../actions';
-import SpendsInput from '../components/SpendsInput';
+'use strict'
+import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { submitSpendings, fetchDictionaries } from '../actions'
+import { SpendsInput } from '../components'
 
-class NewSpends extends Component {
-    render() {
-        const {dictionaries, submitSpendings} = this.props;
+@connect(
+    ({ dictionaries }) => ({ dictionaries }),
+    (dispatch) => bindActionCreators({ submitSpendings, fetchDictionaries }, dispatch)
+)
+export class NewSpends extends React.Component {
+    render () {
         return (
             <SpendsInput
                 id={this.props.params.id}
-                dictionaries={dictionaries}
-                submitSpendings={submitSpendings}/>
-        );
+                dictionaries={this.props.dictionaries}
+                submitSpendings={this.props.submitSpendings}
+            />
+        )
     }
 }
-
-function mapStateToProps({dictionaries}) {
-    return {
-        dictionaries
-    };
-}
-
-export default connect(mapStateToProps, {submitSpendings, fetchDictionaries})(NewSpends);

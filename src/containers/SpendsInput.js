@@ -1,12 +1,19 @@
-import React, { Component, PropTypes } from 'react'
+'use strict'
+
+import React from 'react'
 import { reduxForm } from 'redux-form'
 import { validate } from '../utils/spendsFormValidation'
 
 const fields = ['stage', 'subStage', 'material', 'supplier', 'quantity', 'unit', 'price', 'comments']
 
-class SpendsInput extends Component {
+@reduxForm({
+    form: 'spendsInput',
+    fields,
+    validate
+})
+export class SpendsInput extends React.Component {
     static contextTypes = {
-        router: PropTypes.object
+        router: React.PropTypes.object
     }
 
     getOptions = (property) => {
@@ -116,8 +123,3 @@ class SpendsInput extends Component {
     }
 }
 
-export default reduxForm({
-    form: 'spendsInput',
-    fields: fields,
-    validate
-})(spendsInputForm)

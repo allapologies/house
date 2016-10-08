@@ -1,21 +1,16 @@
 'use strict'
-
-import React, { Component } from 'react'
+import React from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import { ProjectsListItem } from '../components/ProjectsListItem'
+import { ProjectsListItem } from '../components'
 import { fetchProjectsList } from '../actions'
-import { bindActionCreators } from 'redux'
 
 @connect(
-    (state) => {
-        return { projects: state.projects }
-    },
-    (dispatch) => {
-        return { fetchProjectsList: bindActionCreators(fetchProjectsList, dispatch) }
-    }
+    ({ projects }) => ({ projects }),
+    (dispatch) => bindActionCreators({ fetchProjectsList }, dispatch)
 )
-export class ProjectsList extends Component {
+export class ProjectsList extends React.Component {
     static propTypes = {
         projects: React.PropTypes.object.isRequired,
         fetchProjectsList: React.PropTypes.func
@@ -34,12 +29,12 @@ export class ProjectsList extends Component {
             <ProjectsListItem key={project.projectId} project={project} />
         )
         return (
-            <div className='projectList row'>
-                <div className='col-sm-6 col-sm-offset-3'>
-                    <ul className='list-group'>
+            <div className="projectList row">
+                <div className="col-sm-6 col-sm-offset-3">
+                    <ul className="list-group">
                         {projectsList}
                     </ul>
-                    <Link to='/projects/new' className='btn btn-default'>
+                    <Link to="/projects/new" className="btn btn-default">
                         Создать проект
                     </Link>
                 </div>
