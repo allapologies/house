@@ -1,10 +1,11 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-import { App, NewProject, NotFound } from './components'
+import { Layout } from './layouts'
+import { NewProject, NotFound } from './components'
 import { ProjectsList, ProjectDescription, SpendsInput } from './containers'
 
 export default (
-    <Route path="/" component={App}>
+    <Route path="/" component={Layout}>
         <IndexRoute component={ProjectsList}/>
         <Route path="projects">
             <IndexRoute component={ProjectsList}/>
