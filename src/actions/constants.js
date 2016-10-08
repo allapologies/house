@@ -1,5 +1,5 @@
 const port = 8080
-const host = 'localhost'
+const host = '127.0.0.1'
 
 export const ROOT_URL = `http://${host}:${port}/api`
 
