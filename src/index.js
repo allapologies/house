@@ -6,15 +6,12 @@ import { createStore, compose, applyMiddleware } from 'redux'
 import { Router, browserHistory } from 'react-router'
 import routes from './routes'
 import reducers from './reducers'
-import { DevTools } from './containers'
 import css from "./../style/style.css"
 
-const enhancer = compose(
-    applyMiddleware(thunk),
-    DevTools.instrument()
-)
-const store = createStore(reducers, {}, enhancer)
-window.store = store
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const store = createStore(reducers, {}, composeEnhancers(
+    applyMiddleware(thunk)
+))
 
 ReactDOM.render(
     <Provider store={ store }>
