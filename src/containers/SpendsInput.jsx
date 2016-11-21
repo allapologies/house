@@ -4,7 +4,10 @@ import React from 'react'
 import { reduxForm } from 'redux-form'
 import { validate } from '../utils/spendsFormValidation'
 
-const fields = ['stage', 'subStage', 'material', 'supplier', 'quantity', 'unit', 'price', 'comments']
+const fields = [
+    'stage', 'subStage', 'material', 'supplier',
+    'quantity', 'unit', 'price', 'comments'
+]
 
 @reduxForm({
     form: 'spendsInput',
