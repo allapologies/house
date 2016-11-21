@@ -1,86 +1,96 @@
-// Karma configuration
-// Generated on Fri Jul 29 2016 23:45:58 GMT+0300 (MSK)
+/* eslint-disable */
 
-var webpackConfig = require('./webpack.config')
-webpackConfig.devtool = 'inline-source-map'
-webpackConfig.externals = {
-    'react/lib/ReactContext': 'window',
-    'react/lib/ExecutionEnvironment': true,
-    'cheerio': 'window'
-}
+const webpack = require('webpack')
+const path = require('path')
 
-module.exports = function(config) {
-  config.set({
+module.exports = function (config) {
+    'use strict'
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    const testFiles = [
+        './tests/*.spec.jsx',
+        './tests/*.spec.js',
+        './src/**/tests/*.spec.jsx',
+        './src/**/tests/*.spec.js'
+    ]
 
+    config.set({
+        basePath: '',
+        frameworks: ['jasmine'],
 
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+        port: 9876,
+        colors: true,
+        logLevel: config.LOG_INFO,
+        autoWatch: true,
+        browsers: ['Chrome'],
+        singleRun: false,
+        autoWatchBatchDelay: 300,
 
+        files: testFiles,
 
-    // list of files / patterns to load in the browser
-    files: [
-      'tests.bundle.js'
-    ],
+        preprocessors: {
+            './tests/*.spec.jsx': ['webpack'],
+            './tests/*.spec.js': ['webpack'],
+            './src/**/tests/*.spec.jsx': ['webpack'],
+            './src/**/tests/*.spec.js': ['webpack']
+        },
 
+        webpack: {
+            module: {
+                loaders: [
+                    {
+                        test: /\.jsx?$/,
+                        exclude: [/node_modules/, /\.spec\.jsx?$/],
+                        loaders: ['babel-loader?plugins=istanbul']
+                    },
+                    {
+                        test: /\.jsx?$/,
+                        include: [
+                            /node_modules[\\\/]sbtsbol-.*(?!([\\\/]node_modules))/
+                        ],
+                        loaders: ['babel-loader']
+                    },
+                    {
+                        test: /\.spec\.jsx?$/,
+                        exclude: /node_modules/,
+                        loaders: ['babel-loader']
+                    },
+                    {
+                        test: /\.css$/,
+                        loaders: ['style-loader', 'css-loader?modules&importLoaders=1&camelCase&localIdentName=[hash:base64:5]']
+                    },
+                    {
+                        test: /\.(?:jpg|png|gif)$/,
+                        loaders: ['file-loader?name=img/[name]--[hash:base64:5].[ext]']
+                    },
+                    {
+                        test: /\.json$/,
+                        loaders: ['json-loader']
+                    }
+                ]
+            },
 
-    // list of files to exclude
-    exclude: [
-    ],
+            resolve: {
+                extensions: ['', '.jsx', '.js', '.json']
+            },
+            plugins: [
+                new webpack.DefinePlugin({
+                    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+                })
+            ]
+        },
 
-    plugins: [
-      'karma-jasmine',
-      'karma-chrome-launcher',
-      'karma-sourcemap-loader',
-      'karma-webpack'
-    ],
-    
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      'tests.bundle.js': [ 'webpack', 'sourcemap' ]
-    },
+        webpackMiddleware: {
+            noInfo: true
+        },
 
-
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
-
-
-    // web server port
-    port: 9876,
-
-
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
-
-
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
-
-
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
-
-
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
-
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
-
-    // Concurrency level
-    // how many browser should be started simultaneous
-    concurrency: Infinity,
-
-    webpack: webpackConfig
-  })
+        plugins: [
+            'karma-webpack',
+            'karma-jasmine',
+            'karma-chrome-launcher',
+            'karma-phantomjs-launcher',
+            'karma-junit-reporter',
+            'karma-coverage',
+            'karma-jasmine-diff-reporter'
+        ]
+    })
 }
