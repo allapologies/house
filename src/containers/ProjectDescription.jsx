@@ -3,11 +3,17 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import { fetchProject, deleteProject, fetchSpendings, fetchDictionaries, deleteSpending } from '../actions'
+import _ from 'lodash'
+import {
+    fetchProject, deleteProject, fetchSpendings,
+    fetchDictionaries, deleteSpending
+} from '../actions'
 import { Modal } from '../components'
 
 @connect(
-    ({ projects, spendings, dictionaries }) => ({ projects, spendings, dictionaries }),
+    ({ projects, spendings, dictionaries }) => ({
+        projects, spendings: spendings.items, dictionaries: dictionaries.items
+    }),
     (dispatch) => bindActionCreators({
         fetchProject,
         deleteProject,
@@ -35,7 +41,7 @@ export class ProjectDescription extends Component {
     }
 
     onDeleteClickHandler = () => {
-        this.setState({toBeDeleted: !this.state.toBeDeleted})
+        this.setState({ toBeDeleted: !this.state.toBeDeleted })
     }
 
     onConfirmedDelete = () => {
@@ -45,7 +51,7 @@ export class ProjectDescription extends Component {
 
     getRelation = (arr, term) => {
         let result
-        arr.forEach((element)=> {
+        _.each(arr, (element) => {
             if (element.id == term) {
                 result = element.name
             }
@@ -55,9 +61,10 @@ export class ProjectDescription extends Component {
 
     countAllSpends = () => {
         let sum = 0
-        this.props.spendings.get('items').forEach((spending) => {
+        _.forEach(this.props.spendings, (spending) => {
             sum += spending.price * spending.quantity
         })
+
         return sum
     }
 
@@ -67,8 +74,8 @@ export class ProjectDescription extends Component {
     }
 
     renderPagination () {
-        const spends = this.props.spendings.get('items')
-        const paginationBar = spends.map((spending)=> {
+        const spends = this.props.spendings
+        const paginationBar = spends.map((spending) => {
             return <span key={spending.id}> {spending.id} </span>
         })
         return (
@@ -79,23 +86,24 @@ export class ProjectDescription extends Component {
     }
 
     renderSpendingsTable () {
-        let {dictionaries, spendings} = this.props
-        if (!dictionaries.size || !spendings.size) return <div>Loading project data</div>
-        let dicts = dictionaries.toJS()
-        let spends = spendings.toJS()
-        const content = spends.items.map((spending)=> {
+        let { dictionaries, spendings } = this.props
+        if (!dictionaries || !spendings) {
+            return <div>Loading data</div>
+        }
+        const content = spendings.map((spending) => {
             return (
                 <tr key={spending.id}>
-                    <td>{this.getRelation(dicts.materials, spending.material)}</td>
-                    <td>{spending.quantity}{this.getRelation(dicts.units, spending.unit)}</td>
+                    <td>{this.getRelation(dictionaries.materials, spending.material)}</td>
+                    <td>{spending.quantity}{this.getRelation(dictionaries.units, spending.unit)}</td>
                     <td>{spending.price}</td>
                     <td>{spending.price * spending.quantity}</td>
-                    <td className='hidden-xs'>{this.getRelation(dicts.stages, spending.stage)}</td>
-                    <td className='hidden-xs'>{this.getRelation(dicts.subStages, spending.subStage)}</td>
+                    <td className='hidden-xs'>{this.getRelation(dictionaries.stages, spending.stage)}</td>
+                    <td className='hidden-xs'>{this.getRelation(dictionaries.subStages, spending.subStage)}</td>
                     <td className='hidden-xs'>{spending.supplier}</td>
                     <td className='hidden-xs'>{spending.comments}</td>
                     <td>
-                        <span id={spending.id} onClick={this.spendingDeleteHandler} className='glyphicon glyphicon-remove'/>
+                        <span id={spending.id} onClick={this.spendingDeleteHandler}
+                              className='glyphicon glyphicon-remove'/>
                     </td>
                 </tr>
             )
@@ -125,8 +133,10 @@ export class ProjectDescription extends Component {
     }
 
     render () {
-        const project = this.props.projects.get('current')
-        if (!project) return <div>Loading project data</div>
+        const project = this.props.projects.current
+        if (!project) {
+            return <div>Loading data</div>
+        }
 
         const modal = (this.state.toBeDeleted) ?
             <Modal

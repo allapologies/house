@@ -5,14 +5,15 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { ProjectsListItem } from '../components'
 import { fetchProjectsList } from '../actions'
+import _ from 'lodash'
 
 @connect(
-    ({ projects }) => ({ projects }),
+    ({ projects }) => ({ projects: projects.items }),
     (dispatch) => bindActionCreators({ fetchProjectsList }, dispatch)
 )
 export class ProjectsList extends React.Component {
     static propTypes = {
-        projects: React.PropTypes.object.isRequired,
+        projects: React.PropTypes.array.isRequired,
         fetchProjectsList: React.PropTypes.func
     }
 
@@ -21,13 +22,19 @@ export class ProjectsList extends React.Component {
     }
 
     render () {
-        const projects = this.props.projects.get('items')
+        const { projects } = this.props
         if (!projects) {
-            return <div>Пожалуйста, подождите. Идёт загрузка</div>
+            return <div>Loading data</div>
         }
-        const projectsList = projects.map((project) =>
-            <ProjectsListItem key={project.projectId} project={project} />
-        )
+        const projectsList = _.map(projects, (project) => {
+            return (
+                <ProjectsListItem
+                    key={project.projectId}
+                    project={project}
+                />
+            )
+        })
+
         return (
             <div className="projectList row">
                 <div className="col-sm-6 col-sm-offset-3">

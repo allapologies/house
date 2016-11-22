@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { createProject } from '../actions'
 
-@connect(null, (dispatch)=> bindActionCreators({ createProject }, dispatch))
+@connect(null, (dispatch) => bindActionCreators({ createProject }, dispatch))
 export class NewProject extends React.Component {
     constructor (props) {
         super(props)
@@ -22,8 +22,8 @@ export class NewProject extends React.Component {
         this.setState({ projectName: event.target.value })
     }
 
-    onDescriptionInputChange = (event)=> {
-        this.setState({projectDescription: event.target.value})
+    onDescriptionInputChange = (event) => {
+        this.setState({ projectDescription: event.target.value })
     }
 
     onFormSubmit = (event) => {

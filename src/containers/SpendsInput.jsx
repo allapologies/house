@@ -3,12 +3,20 @@
 import React from 'react'
 import { reduxForm } from 'redux-form'
 import { validate } from '../utils/spendsFormValidation'
+import _ from 'lodash'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { submitSpendings, fetchDictionaries } from '../actions'
 
 const fields = [
     'stage', 'subStage', 'material', 'supplier',
     'quantity', 'unit', 'price', 'comments'
 ]
 
+@connect(
+    ({ dictionaries }) => ({ dictionaries: dictionaries.items }),
+    (dispatch) => bindActionCreators({ submitSpendings, fetchDictionaries }, dispatch)
+)
 @reduxForm({
     form: 'spendsInput',
     fields,
@@ -20,7 +28,7 @@ export class SpendsInput extends React.Component {
     }
 
     getOptions = (property) => {
-        return this.props.dictionaries.get(property).map((obj)=> {
+        return _.forEach(this.props.dictionaries[property], (obj) => {
             return <option key={obj.id} value={obj.id}>{obj.name}</option>
         })
     }
@@ -33,6 +41,9 @@ export class SpendsInput extends React.Component {
 
 
     render () {
+        if (!this.props.dictionaries) {
+            return (<div>Loading data</div>)
+        }
         const {
             fields: {
                 stage, subStage, material, supplier,
