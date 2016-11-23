@@ -1,4 +1,5 @@
 'use strict'
+
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -23,15 +24,28 @@ import { Modal } from '../components'
     }, dispatch)
 )
 export class ProjectDescription extends Component {
+    
+    static propTypes = {
+        fetchProject: PropTypes.func,
+        fetchSpendings: PropTypes.func,
+        fetchDictionaries: PropTypes.func,
+        deleteSpending: PropTypes.func,
+        deleteProject: PropTypes.func,
+        params: PropTypes.object,
+        projects: PropTypes.object,
+        spendings: PropTypes.array,
+        dictionaries: PropTypes.object
+    }
+    
+    static contextTypes = {
+        router: PropTypes.object
+    }
+
     constructor (props) {
-        super()
+        super(props)
         this.state = {
             toBeDeleted: false
         }
-    }
-
-    static contextTypes = {
-        router: PropTypes.object
     }
 
     componentWillMount () {
@@ -97,13 +111,13 @@ export class ProjectDescription extends Component {
                     <td>{spending.quantity}{this.getRelation(dictionaries.units, spending.unit)}</td>
                     <td>{spending.price}</td>
                     <td>{spending.price * spending.quantity}</td>
-                    <td className='hidden-xs'>{this.getRelation(dictionaries.stages, spending.stage)}</td>
-                    <td className='hidden-xs'>{this.getRelation(dictionaries.subStages, spending.subStage)}</td>
-                    <td className='hidden-xs'>{spending.supplier}</td>
-                    <td className='hidden-xs'>{spending.comments}</td>
+                    <td className="hidden-xs">{this.getRelation(dictionaries.stages, spending.stage)}</td>
+                    <td className="hidden-xs">{this.getRelation(dictionaries.subStages, spending.subStage)}</td>
+                    <td className="hidden-xs">{spending.supplier}</td>
+                    <td className="hidden-xs">{spending.comments}</td>
                     <td>
                         <span id={spending.id} onClick={this.spendingDeleteHandler}
-                              className='glyphicon glyphicon-remove'/>
+                              className="glyphicon glyphicon-remove"/>
                     </td>
                 </tr>
             )
@@ -118,11 +132,11 @@ export class ProjectDescription extends Component {
                         <th>Количество</th>
                         <th>Цена</th>
                         <th>Сумма</th>
-                        <th className='hidden-xs'>Этап</th>
-                        <th className='hidden-xs'>Подэтап</th>
-                        <th className='hidden-xs'>Поставщик</th>
-                        <th className='hidden-xs'>Комментарии</th>
-                        <th></th>
+                        <th className="hidden-xs">Этап</th>
+                        <th className="hidden-xs">Подэтап</th>
+                        <th className="hidden-xs">Поставщик</th>
+                        <th className="hidden-xs">Комментарии</th>
+                        <th/>
                     </tr>
                     {content}
                     </tbody>
@@ -132,32 +146,35 @@ export class ProjectDescription extends Component {
         )
     }
 
+    renderModal () {
+        return (
+            <Modal
+                onConfirm={this.onConfirmedDelete}
+                onCancel={this.onDeleteClickHandler}
+                id={this.props.params.id} />
+        )
+    }
+    
     render () {
         const project = this.props.projects.current
         if (!project) {
             return <div>Loading data</div>
         }
-
-        const modal = (this.state.toBeDeleted) ?
-            <Modal
-                onConfirm={this.onConfirmedDelete}
-                onCancel={this.onDeleteClickHandler}
-                id={this.props.params.id}/> : ""
+        
         const url = `/projects/${this.props.params.id}/spendings/new`
 
         return (
             <div>
-                {modal}
-                <div className='row'>
-                    <div className='col-xs-12'>
-                        <Link to='/'>проекты</Link>
+                {this.state.toBeDeleted ? this.renderModal() : null}
+                <div className="row">
+                    <div className="col-xs-12">
+                        <Link to="/">проекты</Link>
                         <span> > {project.title}</span>
-                        <span onClick={ this.onDeleteClickHandler }
-                              className="glyphicon glyphicon-remove-circle delete"></span>
+                        <span onClick={ this.onDeleteClickHandler } className="glyphicon glyphicon-remove-circle delete"></span>
                     </div>
                 </div>
-                <div className='row'>
-                    <div className='col-xs-12'>
+                <div className="row">
+                    <div className="col-xs-12">
                         <h4>{project.description}</h4>
                         <h5>Потрачено:
                             <span className="total">
@@ -167,13 +184,13 @@ export class ProjectDescription extends Component {
                   </span>
                         </h5>
                         <Link to={url} className="btn btn-success btn-sm">
-                            <span className="glyphicon glyphicon-plus" aria-hidden="true"></span> Добавить расходы
+                            <span className="glyphicon glyphicon-plus"aria-hidden="true"></span> Добавить расходы
                         </Link>
                     </div>
                 </div>
                 <div>
-                    <div className='row'>
-                        <div className='col-xs-12'>
+                    <div className="row">
+                        <div className="col-xs-12">
                             {this.renderSpendingsTable()}
                         </div>
                     </div>

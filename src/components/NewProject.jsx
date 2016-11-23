@@ -1,4 +1,5 @@
 'use strict'
+
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -6,16 +7,16 @@ import { createProject } from '../actions'
 
 @connect(null, (dispatch) => bindActionCreators({ createProject }, dispatch))
 export class NewProject extends React.Component {
+    static contextTypes = {
+        router: React.PropTypes.object
+    }
+
     constructor (props) {
         super(props)
         this.state = {
             projectName: '',
             projectDescription: ''
         }
-    }
-
-    static contextTypes = {
-        router: React.PropTypes.object
     }
 
     onNameInputChange = (event) => {

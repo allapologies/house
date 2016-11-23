@@ -1,6 +1,6 @@
 'use strict'
 
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { reduxForm } from 'redux-form'
 import { validate } from '../utils/spendsFormValidation'
 import _ from 'lodash'
@@ -23,6 +23,18 @@ const fields = [
     validate
 })
 export class SpendsInput extends React.Component {
+    static propTypes = {
+        dictionaries: PropTypes.object,
+        submitSpendings: PropTypes.func,
+        handleSubmit: PropTypes.func,
+        resetForm: PropTypes.func,
+        id: PropTypes.oneOfType([
+            PropTypes.number,
+            PropTypes.string
+        ]),
+        fields: PropTypes.object
+    }
+
     static contextTypes = {
         router: React.PropTypes.object
     }
@@ -48,87 +60,87 @@ export class SpendsInput extends React.Component {
             fields: {
                 stage, subStage, material, supplier,
                 quantity, unit, price, comments
-            }, handleSubmit, resetForm, submitting
+            }, handleSubmit, resetForm
         } = this.props
         return (
-            <div className='row'>
-                <div className='col-sm-6 col-md-8'>
+            <div className="row">
+                <div className="col-sm-6 col-md-8">
                     <form
-                        className='form-horizontal'
+                        className="form-horizontal"
                         onSubmit={handleSubmit(this.handleSubmit)}>
-                        <div className='form-group'>
+                        <div className="form-group">
                             <select
-                                className='form-control'
+                                className="form-control"
                                 { ... stage}>
                                 <option value="" disabled>Категория</option>
-                                {this.getOptions('stages')}
+                                {this.getOptions("stages")}
                             </select>
-                            <span className='help-block'>{stage.touched ? stage.error : ''}</span>
+                            <span className="help-block">{stage.touched ? stage.error : ""}</span>
                         </div>
-                        <div className='form-group'>
+                        <div className="form-group">
                             <select
-                                className='form-control'
+                                className="form-control"
                                 {...subStage}
-                                value={subStage.value || ''}
+                                value={subStage.value || ""}
                             >
                                 <option value="" disabled>Подкатегория</option>
-                                {this.getOptions('subStages')}
+                                {this.getOptions("subStages")}
                             </select>
                         </div>
-                        <div className='form-group'>
+                        <div className="form-group">
                             <select
-                                className='form-control'
+                                className="form-control"
                                 {...material}>
                                 <option value="" disabled>Материалы</option>
-                                {this.getOptions('materials')}
+                                {this.getOptions("materials")}
                             </select>
                         </div>
-                        <div className='form-group'>
+                        <div className="form-group">
                             <select
-                                className='form-control'
+                                className="form-control"
                                 {...supplier}>
                                 <option value="">Поставщик</option>
                                 <option value="1">Первый</option>
                                 <option value="1">Второй</option>
                             </select>
                         </div>
-                        <div className={`form-group ${quantity.touched && quantity.invalid ? 'has-error' : ''}`}>
+                        <div className={`form-group ${quantity.touched && quantity.invalid ? "has-error" : ""}`}>
                             <input
-                                type='text'
-                                className='form-control'
-                                placeholder='Количество'
+                                type="text"
+                                className="form-control"
+                                placeholder="Количество"
                                 {...quantity} />
-                            <span className='help-block'>{quantity.touched ? quantity.error : ''}</span>
+                            <span className="help-block">{quantity.touched ? quantity.error : ""}</span>
                         </div>
-                        <div className='form-group'>
+                        <div className="form-group">
                             <select
-                                className='form-control'
+                                className="form-control"
                                 {...unit}>
                                 <option value="" disabled>Ед.изм</option>
-                                {this.getOptions('units')}
+                                {this.getOptions("units")}
                             </select>
                         </div>
-                        <div className={`form-group ${price.touched && price.invalid ? 'has-error' : ''}`}>
+                        <div className={`form-group ${price.touched && price.invalid ? "has-error" : ""}`}>
                             <input
-                                type='text'
-                                className='form-control'
-                                placeholder='Цена'
+                                type="text"
+                                className="form-control"
+                                placeholder="Цена"
                                 {...price}
                             />
-                            <span className='help-block'>{price.touched ? price.error : ''}</span>
+                            <span className="help-block">{price.touched ? price.error : ""}</span>
                         </div>
-                        <div className='form-group'>
+                        <div className="form-group">
                             <textarea
-                                className='form-control'
+                                className="form-control"
                                 rows="3"
                                 {...comments}
-                                placeholder='Комментарии'
-                                value={comments.value || ''}
+                                placeholder="Комментарии"
+                                value={comments.value || ""}
                             />
                         </div>
-                        <div className='form-group'>
-                            <button type='submit' className='btn btn-default'>Сохранить</button>
-                            <button type='reset' className='btn btn-default' onClick={resetForm}>Сбросить</button>
+                        <div className="form-group">
+                            <button type="submit" className="btn btn-default">Сохранить</button>
+                            <button type="reset" className="btn btn-default" onClick={resetForm}>Сбросить</button>
                         </div>
                     </form>
                 </div>

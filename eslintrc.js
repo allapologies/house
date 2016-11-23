@@ -30,6 +30,7 @@ module.exports = {
         'no-shadow': 1,
         'semi': [1, 'never'],
         'jsx-quotes': [1, 'prefer-double'],
+        'jsx-indent': [2, 2],
         'quotes': [1, 'single'],
         'vars-on-top': 1,
         'one-var': [1, 'never'],

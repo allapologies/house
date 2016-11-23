@@ -1,17 +1,17 @@
-"use strict";
+'use strict'
 
-var projects = [
-    {projectId: 1, title: 'Дом в Барвихе', description: 'Трехэтажный дом с верандой'},
-    {projectId: 2, title: 'Баня в Репино', description: 'Баня из оцелиндрованного бревно'},
-    { projectId: 3, title: 'Однокомнатная квартира на Фучика', description: 'Ремонт кухни'},
+const projects = [
+    { projectId: 1, title: 'Дом в Барвихе', description: 'Трехэтажный дом с верандой' },
+    { projectId: 2, title: 'Баня в Репино', description: 'Баня из оцелиндрованного бревно' },
+    { projectId: 3, title: 'Однокомнатная квартира на Фучика', description: 'Ремонт кухни' },
     { projectId: 4, title: 'Гостевой дом в Горетовке', description: 'Домик на 40 кв.м' },
     { projectId: 5, title: 'Sectams potus, tanquam castus clabulareо', description: 'Cur tabes velumе' },
-    {projectId: 6, title: 'Cur saga persuadereе', description: 'Est brevis brabeuta, cesarisой'},
-    {projectId: 7, title: 'Nunquam aperto triticumо', description: 'The individual graspsо'},
-    { projectId: 8, title: 'Shipmates wave with yellow feverа', description: 'Ремонт кухни'},
-];
+    { projectId: 6, title: 'Cur saga persuadereе', description: 'Est brevis brabeuta, cesarisой' },
+    { projectId: 7, title: 'Nunquam aperto triticumо', description: 'The individual graspsо' },
+    { projectId: 8, title: 'Shipmates wave with yellow feverа', description: 'Ремонт кухни' },
+]
 
-var spendings = [
+const spendings = [
     {
         id: 1, projectId: 1, stage: 1, subStage: 1, material: 1, unit: 1,
         supplier: 'Петрович', quantity: 10, price: 500, comments: 'Без комментариев'
@@ -140,41 +140,41 @@ var spendings = [
         id: 653463, projectId: 2, stage: 1, subStage: 1, material: 2, unit: 1,
         supplier: 'Магента', quantity: 5, price: 3000, comments: 'С доставкой'
     }
-];
+]
 
-var stages = [
-    {id: 1, name: 'фундамент'},
-    {id: 2, name: 'стены'},
-    {id: 3, name: 'кровля'},
-    {id: 4, name: 'отмостка'},
-];
+const stages = [
+    { id: 1, name: 'фундамент' },
+    { id: 2, name: 'стены' },
+    { id: 3, name: 'кровля' },
+    { id: 4, name: 'отмостка' },
+]
 
-var subStages = [
-    {id: 1, name: 'пол'},
-    {id: 2, name: 'обои'},
-    {id: 3, name: 'обрешетка'},
-    {id: 4, name: 'канализация'}
-];
+const subStages = [
+    { id: 1, name: 'пол' },
+    { id: 2, name: 'обои' },
+    { id: 3, name: 'обрешетка' },
+    { id: 4, name: 'канализация' }
+]
 
-var materials = [
-    {id: 1, name: 'гвозди'},
-    {id: 2, name: 'бетон'},
-    {id: 3, name: 'брус'},
-    {id: 4, name: 'черепица'}
-];
+const materials = [
+    { id: 1, name: 'гвозди' },
+    { id: 2, name: 'бетон' },
+    { id: 3, name: 'брус' },
+    { id: 4, name: 'черепица' }
+]
 
-var units = [
-    {id: 1, name: 'м'},
-    {id: 2, name: 'шт'},
-    {id: 3, name: 'кг'},
-    {id: 4, name: 'м3'}
-];
+const units = [
+    { id: 1, name: 'м' },
+    { id: 2, name: 'шт' },
+    { id: 3, name: 'кг' },
+    { id: 4, name: 'м3' }
+]
 
 module.exports = {
-    projects: projects,
-    spendings: spendings,
-    stages: stages,
-    subStages: subStages,
-    materials: materials,
-    units: units
-};
+    projects,
+    spendings,
+    stages,
+    subStages,
+    materials,
+    units
+}
